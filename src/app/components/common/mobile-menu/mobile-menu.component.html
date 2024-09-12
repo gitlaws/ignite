@@ -1,4 +1,4 @@
-<button class="dropdown-toggle" aria-label="Menu" (click)="toggleMenu($event)"></button>
+<button class="dropdown-toggle" aria-label="Menu" (click)="toggleMenu($event)">
   <svg width="40" height="30" viewBox="0 0 40 30">
     <line x1="0" y1="5" x2="40" y2="5" />
     <line x1="0" y1="15" x2="40" y2="15" />
@@ -6,19 +6,14 @@
   </svg>
 </button>
 
-<ul
-  *ngIf="isMenuOpen"
-  class="dropdown-menu"
-  [ngClass]="theme"
-  (click)="$event.stopPropagation()"
->
+<ul *ngIf="isMenuOpen" class="dropdown-menu" (click)="$event.stopPropagation()">
   <li class="dropdown-item">
-    <a routerLink="/projects" [ngClass]="theme">Projects</a>
+    <a routerLink="/projects">Projects</a>
   </li>
   <li class="dropdown-item">
-    <a routerLink="/profile" [ngClass]="theme">Profile</a>
+    <a routerLink="/profile">Profile</a>
   </li>
-  <li class="dropdown-item"><app-theme-toggle></app-theme-toggle></li>
+  <li class="dropdown-item"></li>
   <li class="dropdown-item-social-links">
     <a
       href="https://www.linkedin.com"
@@ -33,7 +28,7 @@
         )
       "
     >
-      <i class="fab fa-linkedin" [ngClass]="theme"></i>
+      <i class="fab fa-linkedin"></i>
     </a>
     <a
       href="https://github.com"
@@ -43,7 +38,7 @@
       aria-label="GitHub"
       (click)="openLink($event, 'https://github.com/gitlaws')"
     >
-      <i class="fab fa-github" [ngClass]="theme"></i>
+      <i class="fab fa-github"></i>
     </a>
 
     <a
@@ -54,7 +49,7 @@
       aria-label="YouTube"
       (click)="openLink($event, 'https://www.youtube.com/@sm.w/streams')"
     >
-      <i class="fab fa-youtube" [ngClass]="theme"></i>
+      <i class="fab fa-youtube"></i>
     </a>
     <a
       href="https://discord.com"
@@ -64,7 +59,7 @@
       aria-label="Discord"
       (click)="openLink($event, 'https://discord.com')"
     >
-      <i class="fab fa-discord" [ngClass]="theme"></i>
+      <i class="fab fa-discord"></i>
     </a>
   </li>
 </ul>
