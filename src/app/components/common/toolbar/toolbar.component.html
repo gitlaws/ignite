@@ -1,11 +1,62 @@
-<div class="toolbar">
-  <a href="/register" class="toolbar-link">Register</a>
-  <a href="/signin" class="toolbar-icon">
-    <i class="fas fa-sign-in-alt"></i>
-    <!-- FontAwesome Sign In icon -->
+<header class="header">
+  <!-- Logo -->
+  <a routerLink="/Home" class="header__logo" title="Home">
+    <app-cube-logo></app-cube-logo>
   </a>
-  <a href="/login" class="toolbar-icon">
-    <i class="fas fa-sign-in-alt"></i>
-    <!-- FontAwesome Login icon -->
-  </a>
-</div>
+  <!-- Items -->
+  <nav class="header__nav" aria-label="Main Navigation">
+    <!-- Links -->
+    <a routerLink="/projects" class="nav__item-link">Projects</a>
+    <a routerLink="/profile" class="nav__item-link">Profile</a>
+
+    <!-- Social Links -->
+    <div class="nav__social-links">
+      <ul>
+        <li>
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener"
+            class="footer-icon"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener"
+            class="footer-icon"
+            aria-label="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com"
+            target="_blank"
+            rel="noopener"
+            class="footer-icon"
+            aria-label="YouTube"
+          >
+            <i class="fab fa-youtube"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://discord.com"
+            target="_blank"
+            rel="noopener"
+            class="footer-icon"
+            aria-label="Discord"
+          >
+            <i class="fab fa-discord"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
