@@ -1,1 +1,70 @@
-<p>mobile-menu works!</p>
+<button class="dropdown-toggle" aria-label="Menu" (click)="toggleMenu($event)"></button>
+  <svg width="40" height="30" viewBox="0 0 40 30">
+    <line x1="0" y1="5" x2="40" y2="5" />
+    <line x1="0" y1="15" x2="40" y2="15" />
+    <line x1="0" y1="25" x2="40" y2="25" />
+  </svg>
+</button>
+
+<ul
+  *ngIf="isMenuOpen"
+  class="dropdown-menu"
+  [ngClass]="theme"
+  (click)="$event.stopPropagation()"
+>
+  <li class="dropdown-item">
+    <a routerLink="/projects" [ngClass]="theme">Projects</a>
+  </li>
+  <li class="dropdown-item">
+    <a routerLink="/profile" [ngClass]="theme">Profile</a>
+  </li>
+  <li class="dropdown-item"><app-theme-toggle></app-theme-toggle></li>
+  <li class="dropdown-item-social-links">
+    <a
+      href="https://www.linkedin.com"
+      target="_blank"
+      rel="noopener"
+      class="footer-icon"
+      aria-label="LinkedIn"
+      (click)="
+        openLink(
+          $event,
+          'https://www.linkedin.com/in/stanislaw-wasilewski-1bba55273/'
+        )
+      "
+    >
+      <i class="fab fa-linkedin" [ngClass]="theme"></i>
+    </a>
+    <a
+      href="https://github.com"
+      target="_blank"
+      rel="noopener"
+      class="footer-icon"
+      aria-label="GitHub"
+      (click)="openLink($event, 'https://github.com/gitlaws')"
+    >
+      <i class="fab fa-github" [ngClass]="theme"></i>
+    </a>
+
+    <a
+      href="https://www.youtube.com"
+      target="_blank"
+      rel="noopener"
+      class="footer-icon"
+      aria-label="YouTube"
+      (click)="openLink($event, 'https://www.youtube.com/@sm.w/streams')"
+    >
+      <i class="fab fa-youtube" [ngClass]="theme"></i>
+    </a>
+    <a
+      href="https://discord.com"
+      target="_blank"
+      rel="noopener"
+      class="footer-icon"
+      aria-label="Discord"
+      (click)="openLink($event, 'https://discord.com')"
+    >
+      <i class="fab fa-discord" [ngClass]="theme"></i>
+    </a>
+  </li>
+</ul>
