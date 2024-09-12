@@ -91,39 +91,33 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
 .nav__item-link {
   padding: 10px 15px;
   text-decoration: none;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 600;
   font-style: normal;
   font-size: 1.5em;
+  color: #fff;
+}
 
-  // @include shine-animation(54s, ease-in-out, infinite);
-  // background: linear-gradient(
-  //   90deg,
-  //   transparent,
-  //   #1a1a1a,
-  //   #c0c0c0,
-  //   transparent
-  // );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 0.3s ease;
+.nav__login-link {
+  display: flex;
+  align-items: center;
+  gap: 18px; // Space between icon and text
+  color: #fff;
 
-  &.light {
-    background-color: black;
+  i {
+    font-size: 1.5em; // Adjust the size of the icon
+    color: #888; // Primary color (Gray)
+    transition: color 0.3s ease; // Smooth transition for color changes
 
     &:hover {
-      background-color: gray;
+      color: #555; // Secondary color (Blue)
     }
   }
+}
 
-  &.dark {
-    background-color: white;
-
-    &:hover {
-      background-color: lightgray;
-    }
-  }
+.nav__login-links {
+  display: flex;
+  gap: 16px; // Space between the login and register links
 }
 
 .nav__social-links {
