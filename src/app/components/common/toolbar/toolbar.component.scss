@@ -30,44 +30,45 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   @keyframes flameGlow {
     0%,
     100% {
-      text-shadow: 0 0 8px #ff4500,
-        // OrangeRed
-        0 0 16px #ff4500,
-        // OrangeRed
-        0 0 24px #ff4500,
-        // OrangeRed
-        0 0 32px #ff6347,
-        // Tomato
-        0 0 40px #ff6347,
-        // Tomato
-        0 0 48px #ff8c00,
-        // DarkOrange
-        0 0 56px #ff8c00,
-        // DarkOrange
-        0 0 64px #ffd700; // Gold
+      text-shadow: 0 0 0.5px #a9a9a9,
+        // DarkGray
+        0 0 1px #a9a9a9,
+        // DarkGray
+        0 0 1.5px #808080,
+        // Gray
+        0 0 2px #808080,
+        // Gray
+        0 0 2.5px #696969,
+        // DimGray
+        0 0 3px #696969,
+        // DimGray
+        0 0 3.5px #505050,
+        // Darker Gray
+        0 0 4px #ff4500; // OrangeRed
     }
     50% {
-      text-shadow: 0 0 8px #ff6347,
+      text-shadow: 0 0 0.5px #ff4500,
+        // OrangeRed
+        0 0 1px #ff4500,
+        // OrangeRed
+        0 0 1.5px #ff6347,
         // Tomato
-        0 0 16px #ff6347,
+        0 0 2px #ff6347,
         // Tomato
-        0 0 24px #ff6347,
-        // Tomato
-        0 0 32px #ff8c00,
+        0 0 2.5px #ff8c00,
         // DarkOrange
-        0 0 40px #ff8c00,
+        0 0 3px #ff8c00,
         // DarkOrange
-        0 0 48px #ffd700,
+        0 0 3.5px #ffd700,
         // Gold
-        0 0 56px #ffd700,
-        // Gold
-        0 0 64px #ff4500; // OrangeRed
+        0 0 4px #a9a9a9; // DarkGray
     }
   }
 
-  @mixin flame-glow($duration: 2s, $iteration: infinite) {
+  @mixin flame-glow($duration: 7s, $iteration: infinite) {
     animation: flameGlow $duration $iteration;
   }
+
   .fa-fire {
     font-size: 38px; // Adjust the size of the icon
     color: #ff4500; // Fire base color (OrangeRed)
@@ -79,7 +80,7 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
 
     // Add a glow effect to make it look like a burning flame
     &.glow {
-      @include flame-glow(2s, infinite);
+      @include flame-glow(7s, infinite);
     }
   }
 }
