@@ -16,14 +16,15 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
 .dropdown-toggle {
   position: relative;
   background-color: $cybermenu-bg-color;
-  color: $white-color;
+  color: white;
   font-size: 1.2em;
   padding: 10px;
   transition: $transition-effect;
   border: 1px solid $cybermenu-border-color;
 
   &:hover {
-    background: linear-gradient(135deg, #b3b3b3 0%, #808080 100%);
+    // background: linear-gradient(135deg, #b3b3b3 0%, #808080 100%);
+    background: $cybermenu-bg-hover-color;
     transition: background 0.5s ease;
     animation: none;
   }
@@ -43,14 +44,6 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   z-index: 1000;
   font-size: 1em;
   transition: background-color 0.3s ease;
-
-  &.light {
-    background-color: #e0e0e0;
-  }
-
-  &.dark {
-    background-color: #333333;
-  }
 
   &.open {
     transform: translateX(-50%);
