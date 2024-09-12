@@ -1,1 +1,150 @@
 @import "./_colors.scss";
+
+/* Theme Mode Transition */
+
+@mixin theme-mode-transition {
+  transition: background-color 0.3s ease;
+}
+
+/* Header Box-shadow */
+@mixin header-box-shadow($h-offset, $v-offset, $blur, $spread, $color) {
+  box-shadow: $h-offset $v-offset $blur $spread $color;
+}
+
+/* Toolbar Mixins */
+@mixin shine-animation($duration, $timing-function, $iteration) {
+  @keyframes shine {
+    0%,
+    100% {
+      background-position: -200px;
+    }
+    50% {
+      background-position: calc(200px + 100%);
+    }
+  }
+
+  animation: shine $duration $timing-function $iteration;
+}
+
+/* Theme Toggle Mixins */
+@mixin spin-animation {
+  animation: spin 0.5s ease-in-out 5;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Cube Logo Mixins */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Cyber Menu Mixins */
+@mixin glow-animation($duration, $iteration) {
+  @keyframes glow {
+    0% {
+      stroke: #b3b3b3;
+    }
+    50% {
+      stroke: #808080;
+    }
+    100% {
+      stroke: #b3b3b3;
+    }
+  }
+
+  animation: glow $duration $iteration;
+}
+
+@mixin fadeInDown-animation($duration, $timing-function, $fill-mode) {
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  animation: fadeInDown $duration $timing-function $fill-mode;
+}
+
+@mixin fadeInUp-animation {
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Profile TabNav Mixins */
+
+@mixin gradient-animation($duration, $timing-function, $iteration) {
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  animation: Gradient $duration $timing-function $iteration;
+}
+
+/* Footer, Mixins */
+@mixin pulse-animation($duration, $iteration) {
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  animation: pulse $duration $iteration;
+}
+
+@mixin gradient-animation($duration, $timing-function, $iteration) {
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  animation: Gradient $duration $timing-function $iteration;
+}

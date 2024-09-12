@@ -1,6 +1,6 @@
-@import "../../../styles/_colors.scss";
-@import "../../../styles/_mixins.scss";
-@import "../../../styles/_variables.scss";
+@import "../../../../styles/_colors.scss";
+@import "../../../../styles/_mixins.scss";
+@import "../../../../styles/_variables.scss";
 
 $social-links-bg-color-light: #f0f0f0;
 $social-links-bg-color-dark: #333;
@@ -24,14 +24,6 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   padding: 20px;
   @include theme-mode-transition;
   @include header-box-shadow(0, 4px, 6px, 0, hsla(0, 0%, 0%, 0.2));
-
-  &.light {
-    background-color: $lm-toolbar-background-color;
-  }
-
-  &.dark {
-    background-color: $dm-toolbar-background-color;
-  }
 }
 
 .header__menu {
