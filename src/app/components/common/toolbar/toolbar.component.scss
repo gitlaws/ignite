@@ -40,7 +40,7 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
 .nav__item-link {
   padding: 10px 15px;
   text-decoration: none;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Roboto Mono", monospace;
   font-weight: 600;
   font-style: normal;
   font-size: 1.5em;
@@ -61,11 +61,11 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
 
     i {
       font-size: 18px;
-      color: #888;
+      color: #4a90e2;
       transition: color 0.3s ease;
 
       &:hover {
-        color: #555;
+        color: #1c6ea4;
       }
     }
   }
