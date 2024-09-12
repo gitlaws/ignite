@@ -98,26 +98,27 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   color: #fff;
 }
 
-.nav__login-link {
-  display: flex;
-  align-items: center;
-  gap: 18px; // Space between icon and text
-  color: #fff;
-
-  i {
-    font-size: 1.5em; // Adjust the size of the icon
-    color: #888; // Primary color (Gray)
-    transition: color 0.3s ease; // Smooth transition for color changes
-
-    &:hover {
-      color: #555; // Secondary color (Blue)
-    }
-  }
-}
-
 .nav__login-links {
   display: flex;
-  gap: 16px; // Space between the login and register links
+  gap: 16px;
+
+  .nav__login-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+    font-size: 16px;
+
+    i {
+      font-size: 18px;
+      color: #888;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #555;
+      }
+    }
+  }
 }
 
 .nav__social-links {
