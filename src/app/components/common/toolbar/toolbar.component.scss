@@ -26,57 +26,6 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   @include header-box-shadow(0, 4px, 6px, 0, hsla(0, 0%, 0%, 0.2));
 }
 
-.header__logo {
-  .image-container {
-    position: relative;
-    display: inline-block;
-
-    img {
-      width: 50px;
-      height: 50px; // Adjust the size of the image
-      opacity: 0.5; // Make the image semi-transparent for contrast
-      z-index: 1; // Ensure the image is behind the icon
-    }
-
-    @keyframes gradientAnimation {
-      0% {
-        color: #ff7f50; // Coral (lighter than OrangeRed)
-      }
-      50% {
-        color: #ff6347; // DarkGray (lighter shade)
-      }
-
-      100% {
-        color: #ff7f50; // Coral (lighter than OrangeRed)
-      }
-    }
-
-    @mixin gradient-glow($duration: 5s, $iteration: infinite) {
-      animation: gradientAnimation $duration $iteration;
-    }
-
-    .fa-fire {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 38px; // Adjust the size of the icon
-      color: #ff4500; // Fire base color (OrangeRed)
-      transition: color 0.3s ease; // Smooth transition for color changes
-      z-index: 2; // Ensure the icon is in front of the image
-
-      &:hover {
-        color: #ff69b4; // Fire hover color (Tomato)
-      }
-
-      // Add a gradient glow effect to make it look like a burning flame
-      &.glow {
-        @include gradient-glow(5s, infinite);
-      }
-    }
-  }
-}
-
 .header__menu {
   display: none;
 }
