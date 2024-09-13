@@ -1,0 +1,67 @@
+@import "../../../styles/_mixins.scss";
+@import "../../../styles/_colors.scss";
+@import "../../../styles/_variables.scss";
+
+button {
+  position: fixed;
+  z-index: 5;
+  right: 3%;
+  bottom: 3%;
+  border-radius: 50%;
+  border: none;
+  background-color: #007bff;
+  transition: all 0.3s;
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  @include box-shadow();
+  outline: none;
+
+  &.is-shown {
+    height: 50px;
+    width: 50px;
+    visibility: visible;
+  }
+
+  i {
+    color: white;
+    font-size: 0;
+
+    &.is-shown {
+      font-size: 15px;
+    }
+  }
+}
+
+// .shopping-cart-button {
+//   position: fixed;
+//   bottom: 10px; /* Change from top to bottom */
+//   right: 10px;
+//   z-index: 1000;
+//   background-color: #007bff;
+//   border: none;
+//   border-radius: 50%;
+//   color: white;
+//   padding: 10px;
+//   font-size: 24px;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+//   outline: none;
+
+//   &:hover {
+//     background-color: #0056b3;
+//   }
+
+//   .item-count {
+//     position: absolute;
+//     top: -5px;
+//     right: -5px;
+//     background-color: red;
+//     color: white;
+//     border-radius: 50%;
+//     padding: 5px;
+//     font-size: 14px;
+//     min-width: 20px;
+//     text-align: center;
+//   }
+// }
