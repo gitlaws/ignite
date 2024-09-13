@@ -1,12 +1,12 @@
 .shop-by-category {
   padding: 2rem;
-  background-color: #f8f9fa;
+  background-color: #0d1117;
 
   h2 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 1.5rem;
     font-size: 2rem;
-    color: #343a40;
+    color: #c9d1d9;
   }
 
   .carousel {
@@ -17,20 +17,20 @@
     .carousel-inner {
       display: flex; /* Use Flexbox to arrange items side by side */
       flex-wrap: nowrap; /* Prevent wrapping to the next line */
+      gap: 1rem; /* Add gap between items */
 
       .carousel-item {
         flex: 0 0 auto; /* Prevent items from shrinking or growing */
-        width: 300px; /* Set a fixed width for each item */
-        margin-right: 1rem; /* Add some space between items */
         scroll-snap-align: start; /* Ensure items align correctly when scrolling */
 
         img {
-          height: 300px;
-          width: 300px;
+          height: 150px;
+          width: 150px;
           object-fit: cover;
         }
 
         .carousel-caption {
+          width: 100px; /* Set a fixed width for each item */
           background-color: rgba(0, 0, 0, 0.5);
           padding: 1rem;
           border-radius: 0.5rem;
@@ -46,6 +46,71 @@
     .carousel-control-next-icon {
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 50%;
+    }
+  }
+
+  /* Desktop view */
+  @media (min-width: 1140px) {
+    .carousel {
+      display: block; /* Disable carousel for desktop view */
+      overflow-x: visible; /* Disable horizontal scrolling */
+    }
+
+    .carousel-inner {
+      display: grid; /* Use grid layout to display items */
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(200px, 1fr)
+      ); /* Responsive grid columns */
+      gap: 1rem; /* Space between grid items */
+
+      .carousel-item {
+        width: auto; /* Auto width for grid items */
+        margin-right: 0; /* Remove margin between items */
+
+        img {
+          height: auto; /* Auto height for images */
+          width: 100%; /* Full width for images */
+        }
+      }
+    }
+  }
+
+  /* Tablet view */
+  @media (min-width: 768px) and (max-width: 1139px) {
+    .carousel {
+      display: flex; /* Enable carousel for tablet view */
+      overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    .carousel-inner {
+      gap: 1rem; /* Add gap between items */
+
+      .carousel-item {
+        img {
+          height: 250px; /* Smaller height for tablet view */
+          width: 250px; /* Smaller width for tablet view */
+        }
+      }
+    }
+  }
+
+  /* Mobile view */
+  @media (max-width: 767px) {
+    .carousel {
+      display: flex; /* Enable carousel for mobile view */
+      overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    .carousel-inner {
+      gap: 1rem; /* Add gap between items */
+
+      .carousel-item {
+        img {
+          height: 200px; /* Smaller height for mobile view */
+          width: 200px; /* Smaller width for mobile view */
+        }
+      }
     }
   }
 }
