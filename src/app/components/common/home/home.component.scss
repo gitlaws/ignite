@@ -56,23 +56,66 @@
 }
 
 .order-now {
-  margin-top: 50px;
-  background-color: #161b22; /* Slightly lighter dark background */
+  .hero-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(
+        0,
+        0,
+        0,
+        0.5
+      ); /* Dark overlay for better text readability */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff; /* White text for contrast */
+
+      .order-header {
+        text-align: center;
+
+        h2 {
+          font-size: 2.5em;
+          margin-bottom: 20px;
+        }
+
+        .cta-button {
+          padding: 10px 20px;
+          font-size: 1.2em;
+          color: #fff;
+          background-color: #28a745; /* Green button for call-to-action */
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: #218838; /* Darker green on hover */
+          }
+        }
+      }
+    }
+  }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-  }
-
-  .order-header {
-    text-align: center;
-    margin-bottom: 20px;
-
-    h2 {
-      font-size: 2em;
-      color: #c9d1d9; /* Light color for better readability */
-    }
   }
 
   .order-content {
@@ -81,29 +124,11 @@
     justify-content: space-between;
     align-items: flex-start;
 
-    .order-image {
-      flex: 1 1 40%;
-      margin-right: 20px;
-
-      img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-      }
-
-      figcaption {
-        text-align: center;
-        margin-top: 10px;
-        font-style: italic;
-        color: #8b949e; /* Light color for better readability */
-      }
-    }
-
     .order-description {
-      flex: 1 1 55%;
+      flex: 1 1 100%;
+      margin-top: 20px;
 
       p {
-        margin-top: 20px;
         font-size: 1.1em;
         line-height: 1.6;
         color: #c9d1d9; /* Light color for better readability */
