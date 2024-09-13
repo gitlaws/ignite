@@ -7,15 +7,23 @@ button {
   z-index: 5;
   right: 3%;
   bottom: 3%;
-//   border-radius: 50%;
   border: none;
-  background-color: #f66a0a;
+  background: linear-gradient(
+    135deg,
+    #f66a0a,
+    #ff8c00
+  ); /* Dynamic color gradient */
   transition: all 0.3s;
   height: 0;
   width: 0;
   visibility: hidden;
-  @include box-shadow();
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adjusted shadow color, opacity, and blur radius */
+  border-radius: 10px; /* Slight border radius for a modern look */
   outline: none;
+  display: flex; /* Use Flexbox */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  transform: scale(1); /* Initial scale */
 
   &.is-shown {
     height: 50px;
@@ -23,9 +31,21 @@ button {
     visibility: visible;
   }
 
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      #ff8c00,
+      #f66a0a
+    ); /* Reverse gradient on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* More pronounced shadow on hover */
+    transform: scale(1.1); /* Slightly increase size on hover */
+  }
+
   i {
-    color: white;
+    color: black;
     font-size: 0;
+    padding-right: 2px;
+    transition: font-size 0.3s; /* Smooth transition for font size */
 
     &.is-shown {
       font-size: 20px;
