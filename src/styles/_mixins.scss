@@ -60,13 +60,13 @@
 @mixin glow-animation($duration, $iteration) {
   @keyframes glow {
     0% {
-      stroke: #ff6347;
+      stroke: #00bfff; /* Start with a complementary blue color */
     }
     50% {
-      stroke: #ff6347;
+      stroke: #32cd32; /* Transition to a complementary green color */
     }
     100% {
-      stroke: #ff6347;
+      stroke: #00bfff; /* Return to the complementary blue color */
     }
   }
 
