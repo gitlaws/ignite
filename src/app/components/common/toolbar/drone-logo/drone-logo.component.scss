@@ -1,0 +1,44 @@
+.drone-logo {
+  .body {
+    fill: linear-gradient(135deg, #00f, #0ff);
+  }
+
+  .propeller {
+    rect {
+      fill: linear-gradient(135deg, #f00, #ff0);
+    }
+
+    animation: rotate 2s linear infinite;
+    transform-origin: center;
+
+    &::before,
+    &::after {
+      content: "";
+      background: inherit;
+      width: 10px;
+      height: 40px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: center;
+      animation: inherit;
+    }
+
+    &::before {
+      transform: rotate(120deg);
+    }
+
+    &::after {
+      transform: rotate(240deg);
+    }
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
