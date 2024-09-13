@@ -13,10 +13,10 @@ export class TopOfPageCartComponent {
 
   constructor(private viewportScroller: ViewportScroller) {}
 
-  @HostListener('window:scroll') onWindowScroll() {
-    const yCoordinate = this.viewportScroller.getScrollPosition()[1];
-    this.isShown = yCoordinate > 400;
-  }
+  // @HostListener('window:scroll') onWindowScroll() {
+  //   const yCoordinate = this.viewportScroller.getScrollPosition()[1];
+  //   this.isShown = yCoordinate > 400;
+  // }
 
   public goToTop(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
