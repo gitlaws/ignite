@@ -1,44 +1,56 @@
-.drone-logo {
-  .body {
-    fill: linear-gradient(135deg, #00f, #0ff);
+.container {
+  position: relative;
+  width: 120px;
+  height: 40px;
+
+  background: url("https://media.giphy.com/media/TLTtAWQvY0Mq92rsiu/giphy.gif?cid=790b7611gdxo3r9vwv1cbpn3qrq35ot4guw1vg7kjq8szwnh&ep=v1_gifs_search&rid=giphy.gif&ct=s");
+  background-size: cover; /* Ensure the GIF covers the entire container */
+  background-repeat: no-repeat;
+
+  .foreground-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("https://png.pngtree.com/png-clipart/20230928/original/pngtree-purple-green-drone-3d-illustrations-png-image_13008760.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    animation: shake 5s infinite; /* Apply the shake animation */
   }
 
-  .propeller {
-    rect {
-      fill: linear-gradient(135deg, #f00, #ff0);
-    }
-
-    animation: rotate 2s linear infinite;
-    transform-origin: center;
-
-    &::before,
-    &::after {
-      content: "";
-      background: inherit;
-      width: 10px;
-      height: 40px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform-origin: center;
-      animation: inherit;
-    }
-
-    &::before {
-      transform: rotate(120deg);
-    }
-
-    &::after {
-      transform: rotate(240deg);
-    }
-  }
-
-  @keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-    }
+  @keyframes shake {
+    0%,
     100% {
-      transform: rotate(360deg);
+      transform: translate(-50%, -50%);
+    }
+    10% {
+      transform: translate(-49%, -51%);
+    }
+    20% {
+      transform: translate(-51%, -49%);
+    }
+    30% {
+      transform: translate(-50%, -50%);
+    }
+    40% {
+      transform: translate(-48%, -52%);
+    }
+    50% {
+      transform: translate(-52%, -48%);
+    }
+    60% {
+      transform: translate(-50%, -50%);
+    }
+    70% {
+      transform: translate(-49%, -52%);
+    }
+    80% {
+      transform: translate(-51%, -48%);
+    }
+    90% {
+      transform: translate(-50%, -50%);
     }
   }
 }
