@@ -7,7 +7,7 @@ button {
   z-index: 5;
   right: 3%;
   bottom: 3%;
-  border-radius: 50%;
+//   border-radius: 50%;
   border: none;
   background-color: #f66a0a;
   transition: all 0.3s;
@@ -28,7 +28,7 @@ button {
     font-size: 0;
 
     &.is-shown {
-      font-size: 15px;
+      font-size: 20px;
     }
   }
 }
