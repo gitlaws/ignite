@@ -1,1 +1,21 @@
-<p>category-carousel works!</p>
+<div class="carousel">
+  <div class="carousel-images" [style.transform]="transformStyle">
+    <img
+      *ngFor="let image of images; let i = index"
+      class="carousel-image"
+      [attr.data-src]="image"
+      [attr.src]="i === currentIndex ? image : ''"
+      (load)="onImageLoad(i)"
+    />
+  </div>
+  <button class="carousel-button prev" (click)="prevImage()">Previous</button>
+  <button class="carousel-button next" (click)="nextImage()">Next</button>
+  <div class="carousel-dots">
+    <span
+      *ngFor="let image of images; let i = index"
+      class="dot"
+      [class.active]="i === currentIndex"
+      (click)="goToImage(i)"
+    ></span>
+  </div>
+</div>
