@@ -1,61 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  HostListener,
+} from '@angular/core';
 
 @Component({
   selector: 'app-category-carousel',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './category-carousel.component.html',
-  styleUrl: './category-carousel.component.scss',
+  styleUrls: ['./category-carousel.component.scss'],
 })
 export class CategoryCarouselComponent implements OnInit {
-  categories = [
-    {
-      name: 'Category 1',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Category 2',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Category 3',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Category 4',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Category 5',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Category 6',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Category 7',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Category 8',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-    {
-      name: 'Category 9',
-      image:
-        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    },
-  ];
+  @Input() categories: { name: string; image: string }[] = [];
+  @Input() options: {
+    autoplay?: boolean;
+    interval?: number;
+    pagination?: boolean;
+  } = {};
+  @Output() categorySelected = new EventEmitter<string>();
+
   currentIndex = 0;
   autoplayInterval: any;
 
@@ -65,7 +33,9 @@ export class CategoryCarouselComponent implements OnInit {
 
   ngOnInit() {
     this.lazyLoadImages();
-    this.startAutoplay();
+    if (this.options.autoplay) {
+      this.startAutoplay();
+    }
   }
 
   lazyLoadImages() {
@@ -74,7 +44,7 @@ export class CategoryCarouselComponent implements OnInit {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target as HTMLImageElement;
-          img.src = img.dataset['src']!;
+          img.src = img.dataset.src!;
           observer.unobserve(img);
         }
       });
@@ -91,8 +61,8 @@ export class CategoryCarouselComponent implements OnInit {
       const nextImage = document.querySelectorAll('.carousel-image')[
         this.currentIndex + 1
       ] as HTMLImageElement;
-      if (nextImage.dataset['src']) {
-        nextImage.src = nextImage.dataset['src'];
+      if (nextImage.dataset.src) {
+        nextImage.src = nextImage.dataset.src;
       }
     }
   }
@@ -120,11 +90,15 @@ export class CategoryCarouselComponent implements OnInit {
   startAutoplay() {
     this.autoplayInterval = setInterval(() => {
       this.nextImage();
-    }, 3000);
+    }, this.options.interval || 3000);
   }
 
   stopAutoplay() {
     clearInterval(this.autoplayInterval);
+  }
+
+  selectCategory(category: string) {
+    this.categorySelected.emit(category);
   }
 
   @HostListener('window:keydown', ['$event'])
