@@ -12,39 +12,48 @@ export class CategoryCarouselComponent implements OnInit {
   categories = [
     {
       name: 'Category 1',
-      image: 'https://source.unsplash.com/random/800x600?sig=1',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Category 2',
-      image: 'https://source.unsplash.com/random/800x600?sig=2',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Category 3',
-      image: 'https://source.unsplash.com/random/800x600?sig=3',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Category 4',
-      image: 'https://source.unsplash.com/random/800x600?sig=4',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Category 5',
-      image: 'https://source.unsplash.com/random/800x600?sig=5',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Category 6',
-      image: 'https://source.unsplash.com/random/800x600?sig=6',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Category 7',
-      image: 'https://source.unsplash.com/random/800x600?sig=7',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Category 8',
-      image: 'https://source.unsplash.com/random/800x600?sig=8',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       name: 'Category 9',
-      image: 'https://source.unsplash.com/random/800x600?sig=9',
+      image:
+        'https://images.unsplash.com/photo-1726571175984-96bae5054c26?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
   ];
   currentIndex = 0;
@@ -65,7 +74,7 @@ export class CategoryCarouselComponent implements OnInit {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target as HTMLImageElement;
-          img.src = img.dataset.src!;
+          img.src = img.dataset['src']!;
           observer.unobserve(img);
         }
       });
@@ -82,8 +91,8 @@ export class CategoryCarouselComponent implements OnInit {
       const nextImage = document.querySelectorAll('.carousel-image')[
         this.currentIndex + 1
       ] as HTMLImageElement;
-      if (nextImage.dataset.src) {
-        nextImage.src = nextImage.dataset.src;
+      if (nextImage.dataset['src']) {
+        nextImage.src = nextImage.dataset['src'];
       }
     }
   }

@@ -1,13 +1,40 @@
-<div class="category-carousel" role="region" aria-label="Category Carousel"></div>
+<div class="category-carousel" role="region" aria-label="Category Carousel">
   <div class="carousel-inner" [style.transform]="transformStyle">
-    <div *ngFor="let category of categories; let i = index" class="carousel-item" [class.active]="i === currentIndex">
-      <img [attr.data-src]="category.image" alt="{{ category.name }}" class="carousel-image" (load)="onImageLoad(i)">
+    <div
+      *ngFor="let category of categories; let i = index"
+      class="carousel-item"
+      [class.active]="i === currentIndex"
+    >
+      <img
+        [attr.data-src]="category.image"
+        alt="{{ category.name }}"
+        class="carousel-image"
+        (load)="onImageLoad(i)"
+      />
       <div class="category-name">{{ category.name }}</div>
     </div>
   </div>
-  <button class="carousel-button prev" (click)="prevImage()" aria-label="Previous Category">Previous</button>
-  <button class="carousel-button next" (click)="nextImage()" aria-label="Next Category">Next</button>
+  <button
+    class="carousel-button prev"
+    (click)="prevImage()"
+    aria-label="Previous Category"
+  >
+    Previous
+  </button>
+  <button
+    class="carousel-button next"
+    (click)="nextImage()"
+    aria-label="Next Category"
+  >
+    Next
+  </button>
   <div class="carousel-dots">
-    <span *ngFor="let category of categories; let i = index" class="dot" [class.active]="i === currentIndex" (click)="goToImage(i)" aria-label="Go to Category {{ i + 1 }}"></span>
+    <span
+      *ngFor="let category of categories; let i = index"
+      class="dot"
+      [class.active]="i === currentIndex"
+      (click)="goToImage(i)"
+      [attr.aria-label]="'Go to Category ' + (i + 1)"
+    ></span>
   </div>
 </div>
