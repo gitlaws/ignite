@@ -9,8 +9,46 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrl: './category-carousel.component.scss',
 })
 export class CategoryCarouselComponent implements OnInit {
-  images = ['image1.jpg', 'image2.jpg', 'image3.jpg'];
+  categories = [
+    {
+      name: 'Category 1',
+      image: 'https://source.unsplash.com/random/800x600?sig=1',
+    },
+    {
+      name: 'Category 2',
+      image: 'https://source.unsplash.com/random/800x600?sig=2',
+    },
+    {
+      name: 'Category 3',
+      image: 'https://source.unsplash.com/random/800x600?sig=3',
+    },
+    {
+      name: 'Category 4',
+      image: 'https://source.unsplash.com/random/800x600?sig=4',
+    },
+    {
+      name: 'Category 5',
+      image: 'https://source.unsplash.com/random/800x600?sig=5',
+    },
+    {
+      name: 'Category 6',
+      image: 'https://source.unsplash.com/random/800x600?sig=6',
+    },
+    {
+      name: 'Category 7',
+      image: 'https://source.unsplash.com/random/800x600?sig=7',
+    },
+    {
+      name: 'Category 8',
+      image: 'https://source.unsplash.com/random/800x600?sig=8',
+    },
+    {
+      name: 'Category 9',
+      image: 'https://source.unsplash.com/random/800x600?sig=9',
+    },
+  ];
   currentIndex = 0;
+  autoplayInterval: any;
 
   get transformStyle() {
     return `translateX(-${this.currentIndex * 100}%)`;
@@ -18,6 +56,7 @@ export class CategoryCarouselComponent implements OnInit {
 
   ngOnInit() {
     this.lazyLoadImages();
+    this.startAutoplay();
   }
 
   lazyLoadImages() {
@@ -38,17 +77,19 @@ export class CategoryCarouselComponent implements OnInit {
   onImageLoad(index: number) {
     if (
       index === this.currentIndex &&
-      this.currentIndex < this.images.length - 1
+      this.currentIndex < this.categories.length - 1
     ) {
       const nextImage = document.querySelectorAll('.carousel-image')[
         this.currentIndex + 1
       ] as HTMLImageElement;
-      nextImage['src'] = nextImage.dataset.src!;
+      if (nextImage.dataset.src) {
+        nextImage.src = nextImage.dataset.src;
+      }
     }
   }
 
   nextImage() {
-    if (this.currentIndex < this.images.length - 1) {
+    if (this.currentIndex < this.categories.length - 1) {
       this.currentIndex++;
     } else {
       this.currentIndex = 0;
@@ -59,12 +100,22 @@ export class CategoryCarouselComponent implements OnInit {
     if (this.currentIndex > 0) {
       this.currentIndex--;
     } else {
-      this.currentIndex = this.images.length - 1;
+      this.currentIndex = this.categories.length - 1;
     }
   }
 
   goToImage(index: number) {
     this.currentIndex = index;
+  }
+
+  startAutoplay() {
+    this.autoplayInterval = setInterval(() => {
+      this.nextImage();
+    }, 3000);
+  }
+
+  stopAutoplay() {
+    clearInterval(this.autoplayInterval);
   }
 
   @HostListener('window:keydown', ['$event'])
