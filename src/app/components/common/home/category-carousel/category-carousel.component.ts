@@ -44,7 +44,7 @@ export class CategoryCarouselComponent implements OnInit {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const img = entry.target as HTMLImageElement;
-          img.src = img.dataset.src!;
+          img.src = img.dataset['src']!;
           observer.unobserve(img);
         }
       });
@@ -61,8 +61,8 @@ export class CategoryCarouselComponent implements OnInit {
       const nextImage = document.querySelectorAll('.carousel-image')[
         this.currentIndex + 1
       ] as HTMLImageElement;
-      if (nextImage.dataset.src) {
-        nextImage.src = nextImage.dataset.src;
+      if (nextImage.dataset['src']) {
+        nextImage.src = nextImage.dataset['src'];
       }
     }
   }
