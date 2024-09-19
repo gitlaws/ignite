@@ -4,32 +4,32 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterInfoComponent } from './register-info/register-info.component'; // Import ReactiveFormsModule
+import { RegisterInfoComponent } from './register-info/register-info.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RegisterInfoComponent], // Add ReactiveFormsModule here
+  imports: [CommonModule, ReactiveFormsModule, RegisterInfoComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  registrationForm!: FormGroup;
-  registerForm: FormGroup<any>;
+  registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
-    this.registrationForm = this.fb.group({
-      name: ['', Validators.required],
+    this.registerForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      rememberMe: [false],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   onSubmit() {
-    // Handle form submission (e.g., send data to server)
-    console.log(this.registrationForm.value);
+    if (this.registerForm.valid) {
+      // Handle form submission (e.g., send data to server)
+      console.log(this.registerForm.value);
+    }
   }
 }
