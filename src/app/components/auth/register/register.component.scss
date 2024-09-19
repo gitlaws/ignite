@@ -1,5 +1,5 @@
 $background-color: #0d1117;
-$text-color: #c9d1d9;
+$form-text-color: #c9d1d9;
 $input-background: #161b22;
 $input-border: #30363d;
 $error-color: #f85149;
@@ -12,7 +12,7 @@ $link-hover-color: darken($link-color, 10%);
 
 form {
   background-color: $background-color;
-  color: $text-color;
+  color: $form-text-color;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -30,7 +30,7 @@ form {
     background-color: $input-background;
     border: 1px solid $input-border;
     border-radius: 4px;
-    color: $text-color;
+    color: $form-text-color;
 
     &:focus {
       border-color: lighten($input-border, 10%);
