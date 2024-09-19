@@ -5,10 +5,10 @@ $input-border: #30363d;
 $error-color: #f85149;
 $button-background: #238636;
 $button-disabled-background: #484f58;
-$bg-color: #0d1117;
-$text-color: #c9d1d9;
 $link-color: #58a6ff;
 $link-hover-color: #1f6feb;
+$input-focus-border-color: lighten($input-border, 10%);
+$text-color: #c9d1d9;
 
 form {
   background-color: $background-color;
@@ -43,7 +43,7 @@ form {
     font-size: 1em;
 
     &:focus {
-      border-color: lighten($input-border, 10%);
+      border-color: $input-focus-border-color;
       outline: none;
     }
   }
