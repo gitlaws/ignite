@@ -1,32 +1,67 @@
+// Define variables for colors and padding
+$register-form-button-color-primary: #6f42c1;
+$register-form-button-hover-color-primary: #5a32a3;
+$register-form-color-secondary: #2d333b;
+$register-form-color-white: #ffffff;
+$register-form-spacing-small: 5px;
+$register-form-spacing-medium: 10px;
+$register-form-spacing-large: 8px;
+
+.register-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 10%;
+  background-color: $register-form-color-secondary;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+}
+
 form {
   display: flex;
   flex-direction: column;
   width: 300px;
-  margin: auto;
-  color: white;
+  color: $register-form-color-white;
+
+  div {
+    margin-bottom: $register-form-spacing-medium;
+  }
+
+  label {
+    margin-bottom: $register-form-spacing-small;
+  }
+
+  input {
+    padding: $register-form-spacing-large;
+    font-size: 14px;
+  }
+
+  button {
+    padding: $register-form-spacing-medium;
+    background-color: $register-form-button-color-primary;
+    color: $register-form-color-white;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($register-form-button-hover-color-primary, 10%);
+    }
+
+    &:disabled {
+      background-color: $register-form-color-secondary;
+    }
+  }
 }
 
-div {
-  margin-bottom: 10px;
-}
+// Add media queries for responsiveness
+@media (max-width: 600px) {
+  .register-form-container {
+    width: 100%;
+    padding: 0 20px;
+  }
 
-label {
-  margin-bottom: 5px;
-}
-
-input {
-  padding: 8px;
-  font-size: 14px;
-}
-
-button {
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:disabled {
-  background-color: #cccccc;
+  form {
+    width: 100%;
+  }
 }
