@@ -1,8 +1,8 @@
-<div *ngIf="errorMessage" class="error-message">
+<!-- <div *ngIf="errorMessage" class="error-message">
   {{ errorMessage }}
-</div>
+</div> -->
 
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<form>
   <div>
     <label for="name">Name</label>
     <input id="name" formControlName="name" />
@@ -17,3 +17,5 @@
   </div>
   <button type="submit">Register</button>
 </form>
+
+<!-- <h1>registration works!</h1> -->
