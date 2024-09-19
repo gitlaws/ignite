@@ -15,6 +15,7 @@ import { RegisterInfoComponent } from './register-info/register-info.component';
 })
 export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
+  registerForm: FormGroup<any>;
 
   constructor(private fb: FormBuilder, router: Router) {}
 

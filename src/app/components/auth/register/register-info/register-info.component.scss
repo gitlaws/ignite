@@ -1,0 +1,30 @@
+$bg-color: #0d1117;
+$text-color: #c9d1d9;
+$link-color: #58a6ff;
+$link-hover-color: #1f6feb;
+
+.register-info {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: 20px;
+  border-radius: 8px;
+
+  h2 {
+    color: $text-color;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: $link-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $link-hover-color;
+      text-decoration: underline;
+    }
+  }
+}

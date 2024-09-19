@@ -1,67 +1,58 @@
-// Define variables for colors and padding
-$register-form-button-color-primary: #6f42c1;
-$register-form-button-hover-color-primary: #5a32a3;
-$register-form-color-secondary: #2d333b;
-$register-form-color-white: #ffffff;
-$register-form-spacing-small: 5px;
-$register-form-spacing-medium: 10px;
-$register-form-spacing-large: 8px;
+// register.component.scss
 
-.register-form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5% 10%;
-  background-color: $register-form-color-secondary;
-  border-radius: 10px;
-  width: 80%;
-  margin: auto;
-}
+$background-color: #0d1117;
+$text-color: #c9d1d9;
+$input-background: #161b22;
+$input-border: #30363d;
+$error-color: #f85149;
+$button-background: #238636;
+$button-disabled-background: #484f58;
 
 form {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  color: $register-form-color-white;
-
-  div {
-    margin-bottom: $register-form-spacing-medium;
-  }
+  background-color: $background-color;
+  color: $text-color;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   label {
-    margin-bottom: $register-form-spacing-small;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
   }
 
   input {
-    padding: $register-form-spacing-large;
-    font-size: 14px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: $input-background;
+    border: 1px solid $input-border;
+    border-radius: 4px;
+    color: $text-color;
+
+    &:focus {
+      border-color: lighten($input-border, 10%);
+      outline: none;
+    }
+  }
+
+  small {
+    color: $error-color;
+    display: block;
+    margin-top: 5px;
   }
 
   button {
-    padding: $register-form-spacing-medium;
-    background-color: $register-form-button-color-primary;
-    color: $register-form-color-white;
+    background-color: $button-background;
+    color: $text-color;
+    padding: 10px 20px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
 
-    &:hover {
-      background-color: darken($register-form-button-hover-color-primary, 10%);
-    }
-
     &:disabled {
-      background-color: $register-form-color-secondary;
+      background-color: $button-disabled-background;
+      cursor: not-allowed;
     }
-  }
-}
-
-// Add media queries for responsiveness
-@media (max-width: 600px) {
-  .register-form-container {
-    width: 100%;
-    padding: 0 20px;
-  }
-
-  form {
-    width: 100%;
   }
 }
