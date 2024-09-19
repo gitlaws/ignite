@@ -21,24 +21,6 @@
     </div>
 
     <div>
-      <label for="email">Email:</label>
-      <input id="email" formControlName="email" type="email" />
-      <div
-        *ngIf="
-          registerForm.get('email')?.invalid &&
-          registerForm.get('email')?.touched
-        "
-      >
-        <small *ngIf="registerForm.get('email')?.errors?.['required']">
-          Email is required.
-        </small>
-        <small *ngIf="registerForm.get('email')?.errors?.['email']">
-          Invalid email format.
-        </small>
-      </div>
-    </div>
-
-    <div>
       <label for="password">Password:</label>
       <input id="password" formControlName="password" type="password" />
       <div
@@ -52,6 +34,24 @@
         </small>
         <small *ngIf="registerForm.get('password')?.errors?.['minlength']">
           Password must be at least 6 characters long.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" />
+      <div
+        *ngIf="
+          registerForm.get('email')?.invalid &&
+          registerForm.get('email')?.touched
+        "
+      >
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">
+          Email is required.
+        </small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">
+          Invalid email format.
         </small>
       </div>
     </div>
