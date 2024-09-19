@@ -28,3 +28,12 @@ $link-hover-color: #1f6feb;
     }
   }
 }
+
+.register-info {
+  p.note {
+    background-color: lighten($bg-color, 5%);
+    border-left: 4px solid $link-color;
+    padding: 10px;
+    font-style: italic;
+  }
+}
