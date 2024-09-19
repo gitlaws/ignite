@@ -2,6 +2,10 @@ $bg-color: #0d1117;
 $text-color: #c9d1d9;
 $link-color: #58a6ff;
 $link-hover-color: #1f6feb;
+$input-border: #30363d; // Define the input border color
+$input-focus-border-color: lighten($input-border, 10%);
+$note-bg-color: lighten($bg-color, 10%);
+$note-border-color: $link-color;
 
 .register-info {
   background-color: $bg-color;
@@ -46,8 +50,8 @@ $link-hover-color: #1f6feb;
   }
 
   p.note {
-    background-color: lighten($bg-color, 10%);
-    border-left: 4px solid $link-color;
+    background-color: $note-bg-color;
+    border-left: 4px solid $note-border-color;
     padding: 15px;
     font-style: italic;
     font-size: 1em;
