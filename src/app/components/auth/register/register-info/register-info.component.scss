@@ -8,6 +8,7 @@ $link-hover-color: #1f6feb;
   color: $text-color;
   padding: 20px;
   border-radius: 8px;
+  margin-bottom: 20px; // Add margin to separate from the form
 
   h2 {
     color: $text-color;
@@ -27,9 +28,7 @@ $link-hover-color: #1f6feb;
       text-decoration: underline;
     }
   }
-}
 
-.register-info {
   p.note {
     background-color: lighten($bg-color, 5%);
     border-left: 4px solid $link-color;
