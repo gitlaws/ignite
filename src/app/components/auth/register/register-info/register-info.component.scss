@@ -18,23 +18,26 @@ $link-hover-color: #1f6feb;
   border: 1px solid darken($bg-color, 10%);
   max-width: 600px;
   margin: 20px auto;
+  font-family: "Roboto", "Arial", sans-serif;
 
   h2 {
     color: $text-color;
     margin-bottom: 15px;
     font-size: 1.5em;
+    font-weight: 700;
   }
 
   p {
     margin-bottom: 15px;
     font-size: 1.1em;
     line-height: 1.5;
+    font-weight: 400;
   }
 
   a {
     color: $link-color;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
 
     &:hover {
       color: $link-hover-color;
@@ -65,6 +68,24 @@ $link-hover-color: #1f6feb;
 
     p.note {
       font-size: 0.9em;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 25px;
+    margin: 15px auto;
+    max-width: 90%;
+
+    h2 {
+      font-size: 1.4em;
+    }
+
+    p {
+      font-size: 1.05em;
+    }
+
+    p.note {
+      font-size: 0.95em;
     }
   }
 }
