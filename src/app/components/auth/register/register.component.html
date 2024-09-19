@@ -1,16 +1,19 @@
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
   <div>
-    <label for="name">Name:</label>
-    <input id="name" formControlName="name" type="text" />
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" />
   </div>
   <div>
-    <label for="email">Email:</label>
-    <input id="email" formControlName="email" type="email" />
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" />
   </div>
   <div>
-    <label for="password">Password:</label>
-    <input id="password" formControlName="password" type="password" />
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password" />
   </div>
-  <button type="submit" [disabled]="registrationForm.invalid">Register</button>
-  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+  <button type="submit">Register</button>
 </form>

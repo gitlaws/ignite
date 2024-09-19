@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule], // Add ReactiveFormsModule here
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  registrationForm: FormGroup;
-  errorMessage: string;
+  registrationForm!: FormGroup;
+  errorMessage: string = '';
 
   constructor(private fb: FormBuilder, private afAuth: AngularFireAuth) {}
 
@@ -31,10 +33,18 @@ export class RegisterComponent implements OnInit {
           email,
           password
         );
-        await userCredential.user.updateProfile({ displayName: name });
-        // Handle successful registration (e.g., navigate to another page)
+        if (userCredential.user) {
+          await userCredential.user.updateProfile({ displayName: name });
+          // Handle successful registration (e.g., navigate to another page)
+        } else {
+          this.errorMessage = 'User registration failed.';
+        }
       } catch (error) {
-        this.errorMessage = error.message;
+        if (error instanceof Error) {
+          this.errorMessage = error.message;
+        } else {
+          this.errorMessage = 'An unknown error occurred.';
+        }
       }
     }
   }
