@@ -12,15 +12,15 @@ $text-color: #c9d1d9;
 
 form {
   background-color: $background-color;
-  background: linear-gradient(
-    135deg,
-    lighten($background-color, 5%),
-    darken($background-color, 5%)
-  );
+  // background: linear-gradient(
+  //   135deg,
+  //   lighten($background-color, 5%),
+  //   darken($background-color, 5%)
+  // );
   color: $form-text-color;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   margin: 20px auto;
   font-family: "Roboto", "Arial", sans-serif;
