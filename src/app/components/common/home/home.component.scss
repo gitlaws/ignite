@@ -1,37 +1,44 @@
-$primary-color: #238636;
-$secondary-color: #58a6ff;
-$background-color: #0d1117;
-$text-color: #c9d1d9;
-$contrast-background-color: #161b22;
+$home-primary-color: #238636;
+$home-secondary-color: #58a6ff;
+$home-background-color: #0d1117;
+$home-text-color: #c9d1d9;
+$home-contrast-background-color: #161b22;
 
 .category-container {
-  background: linear-gradient(
-    135deg,
-    $background-color,
-    $contrast-background-color
-  ); // Gradient background
-  padding: 20px; // Padding for spacing
+  background: $home-background-color;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; // Full viewport height
+  min-height: 100vh;
 }
 
 .placeholder-header h2 {
-  font-size: 1.5rem; // Base font size for mobile
+  font-size: 1.5rem;
   line-height: 1.4;
   letter-spacing: 0.5px;
-  color: $text-color; // Light grey for readability
-  font-weight: 700; // Bold for emphasis
-  text-transform: uppercase; // Uppercase for impact
+  color: $home-text-color;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .placeholder-content p {
-  font-size: 1rem; // Base font size for mobile
+  font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 20px;
-  color: $text-color; // Light grey for readability
+  color: $home-text-color;
+
+  a {
+    color: $home-secondary-color;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+
+    &:hover {
+      color: lighten($home-secondary-color, 10%);
+      text-decoration: none;
+    }
+  }
 }
 
 .placeholder-content ul {
@@ -41,13 +48,13 @@ $contrast-background-color: #161b22;
   li {
     margin-bottom: 15px;
     padding: 10px;
-    color: $text-color; // Light grey for readability
-    background-color: $contrast-background-color; // Darker background for contrast
+    color: $home-text-color;
+    background-color: $home-contrast-background-color;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     strong {
-      color: $secondary-color; // Blue color for emphasis
+      color: $home-secondary-color;
     }
   }
 }
@@ -57,63 +64,63 @@ $contrast-background-color: #161b22;
   padding: 12px 24px;
   font-size: 1rem;
   color: #ffffff;
-  background-color: $primary-color; // Green background
+  background-color: $home-primary-color;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: darken($primary-color, 10%); // Darker green on hover
-    transform: translateY(-2px); // Lift effect
+    background-color: darken($home-primary-color, 10%);
+    transform: translateY(-2px);
   }
 }
 
 @media (min-width: 768px) {
   .category-container {
-    padding: 40px; // Increased padding for larger screens
+    padding: 40px;
   }
 
   .placeholder-header h2 {
-    font-size: 2rem; // Larger font size for tablets
+    font-size: 2rem;
   }
 
   .placeholder-content p {
-    font-size: 1.2rem; // Larger font size for tablets
+    font-size: 1.2rem;
   }
 
   .cta-button {
-    padding: 14px 28px; // Larger padding for tablets
+    padding: 14px 28px;
   }
 }
 
 @media (min-width: 1024px) {
   .category-container {
-    padding: 60px; // Increased padding for desktops
+    padding: 60px;
   }
 
   .homepage-placeholder {
     width: 900px;
-    background-color: $contrast-background-color; // Optional: Add background color for contrast
-    padding: 20px; // Optional: Add padding for spacing
-    border-radius: 5px; // Optional: Add border radius for rounded corners
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Optional: Add subtle shadow for depth
+    background-color: $home-contrast-background-color;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .placeholder-header h2 {
-    font-size: 2.5rem; // Larger font size for desktops
-    color: $text-color; // Light grey for readability
+    font-size: 2.5rem;
+    color: $home-text-color;
   }
 
   .placeholder-content p {
-    font-size: 1.4rem; // Larger font size for desktops
-    color: $text-color; // Light grey for readability
+    font-size: 1.4rem;
+    color: $home-text-color;
   }
 
   .cta-button {
-    padding: 16px 32px; // Larger padding for desktops
+    padding: 16px 32px;
   }
 }
