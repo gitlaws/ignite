@@ -16,11 +16,7 @@ import { RegisterInfoComponent } from './register-info/register-info.component';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private afAuth: AngularFireAuth
-  ) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -30,16 +26,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value;
-      try {
-        await this.afAuth.createUserWithEmailAndPassword(email, password);
-        // Navigate to another page or show success message
-        this.router.navigate(['/']);
-      } catch (error) {
-        console.error('Error during registration:', error);
-      }
+      // Handle form submission (e.g., send data to server)
+      console.log(this.registerForm.value);
     }
   }
 }
