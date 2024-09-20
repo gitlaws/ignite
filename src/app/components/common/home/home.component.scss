@@ -1,5 +1,5 @@
 .category-container {
-  background-color: #f0f0f0; // Light grey background
+  background-color: #0d1117; // Dark background
   padding: 20px; // Padding for spacing
 }
 
@@ -7,13 +7,14 @@
   font-size: 1.5rem; // Base font size for mobile
   line-height: 1.4;
   letter-spacing: 0.5px;
-  color: #333; // Dark grey for readability
+  color: #c9d1d9; // Light grey for readability
 }
 
 .placeholder-content p {
   font-size: 1rem; // Base font size for mobile
   line-height: 1.6;
   margin-bottom: 20px;
+  color: #c9d1d9; // Light grey for readability
 }
 
 .placeholder-content ul {
@@ -23,12 +24,13 @@
   li {
     margin-bottom: 15px;
     padding: 10px;
-    background-color: #fff; // White background for contrast
+    color: #c9d1d9;
+    background-color: #161b22; // Darker background for contrast
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
 
     strong {
-      color: #007bff; // Blue color for emphasis
+      color: #58a6ff; // Blue color for emphasis
     }
   }
 }
@@ -37,8 +39,8 @@
   display: inline-block;
   padding: 12px 24px;
   font-size: 1rem;
-  color: #fff;
-  background-color: #007bff; // Blue background
+  color: #ffffff;
+  background-color: #238636; // Green background
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -48,7 +50,7 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: #0056b3; // Darker blue on hover
+    background-color: #2ea043; // Darker green on hover
     transform: translateY(-2px); // Lift effect
   }
 }
@@ -73,15 +75,30 @@
 
 @media (min-width: 1024px) {
   .category-container {
-    padding: 60px; // Increased padding for desktops
+    background-color: #0d1117; // Dark background
+    padding: 20px; // Padding for spacing
+    display: flex;
+    justify-content: center; // Center horizontally
+    align-items: center; // Center vertically
+    min-height: 100vh; // Ensure it takes full viewport height
+  }
+
+  .homepage-placeholder {
+    width: 900px;
+    background-color: #161b22; // Optional: Add background color for contrast
+    padding: 20px; // Optional: Add padding for spacing
+    border-radius: 5px; // Optional: Add border radius for rounded corners
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Optional: Add subtle shadow for depth
   }
 
   .placeholder-header h2 {
     font-size: 2.5rem; // Larger font size for desktops
+    color: #c9d1d9; // Light grey for readability
   }
 
   .placeholder-content p {
     font-size: 1.4rem; // Larger font size for desktops
+    color: #c9d1d9; // Light grey for readability
   }
 
   .cta-button {
