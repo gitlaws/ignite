@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ToolbarComponent } from './components/common/toolbar/toolbar.component';
 import { TopOfPageCartComponent } from './components/common/top-of-page-cart/top-of-page-cart.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { HomeComponent } from './components/common/home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { RegisterComponent } from './components/auth/register/register.component
     ToolbarComponent,
     TopOfPageCartComponent,
     RegisterComponent,
+    HomeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

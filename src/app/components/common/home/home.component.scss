@@ -194,3 +194,48 @@
     }
   }
 }
+
+.homepage-placeholder {
+  background-color: #0d1117; /* Dark background for GitHub dark theme */
+  padding: 50px 0;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .placeholder-header {
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 2.5em;
+      color: #c9d1d9; /* Light color for better readability */
+    }
+  }
+
+  .placeholder-content {
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #c9d1d9; /* Light color for better readability */
+      margin-bottom: 20px;
+    }
+
+    .cta-button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      color: #fff;
+      background-color: #28a745; /* Green button for call-to-action */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #218838; /* Darker green on hover */
+      }
+    }
+  }
+}
