@@ -16,7 +16,11 @@ import { RegisterInfoComponent } from './register-info/register-info.component';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private afAuth: AngularFireAuth
+  ) {}
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -28,8 +32,18 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      // Handle form submission (e.g., send data to server)
-      console.log(this.registerForm.value);
+      const { email, password } = this.registerForm.value;
+      this.afAuth
+        .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Successfully registered
+          console.log('User registered:', userCredential);
+          this.router.navigate(['/welcome']); // Navigate to a welcome page or dashboard
+        })
+        .catch((error) => {
+          // Handle registration errors
+          console.error('Registration error:', error);
+        });
     }
   }
 }
