@@ -4,8 +4,8 @@
 
 $social-links-bg-color-light: #f0f0f0;
 $social-links-bg-color-dark: #333;
-$social-links-border-color: #ccc;
-$social-link-hover-color: #0056b3;
+$social-links-border-color: #444;
+$social-link-hover-color: #58a6ff;
 $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
 
 .header {
@@ -19,8 +19,7 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   z-index: 100;
   width: 100%;
   height: 100px;
-  // background: transparent;
-  background-color: #161b22;
+  background-color: #0d1117;
   padding: 20px;
   @include theme-mode-transition;
   @include header-box-shadow(0, 4px, 6px, 0, hsla(0, 0%, 0%, 0.2));
@@ -39,12 +38,10 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
 
 .nav__item-link {
   padding: 10px 15px;
-  text-decoration: none;
-  font-family: "SUSE", sans-serif;
+
   font-weight: 600;
   font-style: normal;
   font-size: 1.5em;
-  color: #fff;
 }
 
 .nav__login-links {
@@ -52,20 +49,21 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   gap: 16px;
 
   .nav__login-link {
+    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 16px;
-    color: #fff;
+    color: #c9d1d9;
     font-size: 16px;
-    font-family: "Roboto Mono", monospace;
+    font-family: "SUSE", sans-serif;
 
     i {
       font-size: 18px;
-      color: #ff6f00;
+      color: #ff7b72;
       transition: color 0.3s ease;
 
       &:hover {
-        color: #e65100;
+        color: #f85149;
       }
     }
   }
@@ -75,7 +73,6 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  // padding: 10px 0;
 
   ul {
     display: flex;
@@ -89,20 +86,20 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
     font-size: 1em;
 
     &.light {
-      color: #757575;
+      color: #8b949e;
 
       &:hover {
-        color: #616161;
-        text-shadow: 0px 0px 5px #616161;
+        color: #c9d1d9;
+        text-shadow: 0px 0px 5px #c9d1d9;
       }
     }
 
     &.dark {
-      color: #888; // Lighter dark gray
+      color: #8b949e;
 
       &:hover {
-        color: #555; // Lighter medium gray
-        text-shadow: 0px 0px 5px #555; // Lighter medium gray
+        color: #c9d1d9;
+        text-shadow: 0px 0px 5px #c9d1d9;
       }
     }
   }
@@ -110,6 +107,11 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   a {
     font-size: 1.75em;
     transition: color 0.3s ease;
+    color: #c9d1d9;
+
+    &:hover {
+      color: $social-link-hover-color;
+    }
   }
 }
 
