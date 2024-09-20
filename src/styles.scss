@@ -8,8 +8,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap");
 
+/* Webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161b22; /* Dark background color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d; /* Darker thumb color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58; /* Slightly lighter on hover */
+}
+
 * {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #30363d #161b22; /* Thumb color and track color */
   padding: 0;
   margin: 0;
   box-sizing: border-box;
