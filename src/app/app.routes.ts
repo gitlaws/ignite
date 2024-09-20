@@ -24,12 +24,12 @@ export const routes: Routes = [
   //         (component) => component.ProjectsComponent
   //       ),
   //   },
-  //   {
-  //     path: 'profile',
-  //     loadComponent: () =>
-  //       import('./features/profile/profile.component').then(
-  //         (m) => m.ProfileComponent
-  //       ),
-  //   },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./components/auth/register/register.component').then(
+        (m) => m.RegisterComponent
+      ),
+  },
   // other routes...
 ];
