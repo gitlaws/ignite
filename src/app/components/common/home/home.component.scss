@@ -1,20 +1,37 @@
+$primary-color: #238636;
+$secondary-color: #58a6ff;
+$background-color: #0d1117;
+$text-color: #c9d1d9;
+$contrast-background-color: #161b22;
+
 .category-container {
-  background-color: #0d1117; // Dark background
+  background: linear-gradient(
+    135deg,
+    $background-color,
+    $contrast-background-color
+  ); // Gradient background
   padding: 20px; // Padding for spacing
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; // Full viewport height
 }
 
 .placeholder-header h2 {
   font-size: 1.5rem; // Base font size for mobile
   line-height: 1.4;
   letter-spacing: 0.5px;
-  color: #c9d1d9; // Light grey for readability
+  color: $text-color; // Light grey for readability
+  font-weight: 700; // Bold for emphasis
+  text-transform: uppercase; // Uppercase for impact
 }
 
 .placeholder-content p {
   font-size: 1rem; // Base font size for mobile
   line-height: 1.6;
   margin-bottom: 20px;
-  color: #c9d1d9; // Light grey for readability
+  color: $text-color; // Light grey for readability
 }
 
 .placeholder-content ul {
@@ -24,13 +41,13 @@
   li {
     margin-bottom: 15px;
     padding: 10px;
-    color: #c9d1d9;
-    background-color: #161b22; // Darker background for contrast
+    color: $text-color; // Light grey for readability
+    background-color: $contrast-background-color; // Darker background for contrast
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
 
     strong {
-      color: #58a6ff; // Blue color for emphasis
+      color: $secondary-color; // Blue color for emphasis
     }
   }
 }
@@ -40,7 +57,7 @@
   padding: 12px 24px;
   font-size: 1rem;
   color: #ffffff;
-  background-color: #238636; // Green background
+  background-color: $primary-color; // Green background
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -50,7 +67,7 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: #2ea043; // Darker green on hover
+    background-color: darken($primary-color, 10%); // Darker green on hover
     transform: translateY(-2px); // Lift effect
   }
 }
@@ -75,17 +92,12 @@
 
 @media (min-width: 1024px) {
   .category-container {
-    background-color: #0d1117; // Dark background
-    padding: 20px; // Padding for spacing
-    display: flex;
-    justify-content: center; // Center horizontally
-    align-items: center; // Center vertically
-    min-height: 100vh; // Ensure it takes full viewport height
+    padding: 60px; // Increased padding for desktops
   }
 
   .homepage-placeholder {
     width: 900px;
-    background-color: #161b22; // Optional: Add background color for contrast
+    background-color: $contrast-background-color; // Optional: Add background color for contrast
     padding: 20px; // Optional: Add padding for spacing
     border-radius: 5px; // Optional: Add border radius for rounded corners
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Optional: Add subtle shadow for depth
@@ -93,12 +105,12 @@
 
   .placeholder-header h2 {
     font-size: 2.5rem; // Larger font size for desktops
-    color: #c9d1d9; // Light grey for readability
+    color: $text-color; // Light grey for readability
   }
 
   .placeholder-content p {
     font-size: 1.4rem; // Larger font size for desktops
-    color: #c9d1d9; // Light grey for readability
+    color: $text-color; // Light grey for readability
   }
 
   .cta-button {
