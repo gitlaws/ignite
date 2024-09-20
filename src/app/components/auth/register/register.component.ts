@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterInfoComponent } from './register-info/register-info.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RegisterInfoComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RegisterInfoComponent,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuth,
+  ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
