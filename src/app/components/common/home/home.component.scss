@@ -20,14 +20,16 @@
     h2 {
       font-size: 2.5rem;
       color: #58a6ff;
+      margin-bottom: 20px; /* Added margin for consistency */
+      letter-spacing: 0.5px; /* Adjusted letter spacing */
     }
   }
 
   .placeholder-content {
     p {
-      font-size: 1.125rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
+      font-size: 1.2rem; /* Slightly increased font size */
+      line-height: 1.8; /* Adjusted line height for readability */
+      margin-bottom: 25px; /* Increased margin for better spacing */
     }
 
     ul {
@@ -35,7 +37,10 @@
       padding: 0;
 
       li {
-        margin-bottom: 15px;
+        margin-bottom: 20px; /* Increased spacing between list items */
+        padding: 10px; /* Added padding for better spacing */
+        // background-color: #161b22; /* Subtle background color */
+        // border-radius: 5px; /* Rounded corners */
 
         strong {
           color: #58a6ff;
@@ -45,8 +50,8 @@
 
     .cta-button {
       display: inline-block;
-      padding: 10px 20px;
-      font-size: 1rem;
+      padding: 12px 24px; /* Increased padding */
+      font-size: 1.1rem; /* Slightly increased font size */
       color: #ffffff;
       background-color: #238636;
       border: none;
@@ -54,9 +59,40 @@
       cursor: pointer;
       text-align: center;
       text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box-shadow */
+      transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
 
       &:hover {
         background-color: #2ea043;
+        transform: translateY(-2px); /* Slight lift on hover */
+      }
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .homepage-placeholder {
+    padding: 30px 0;
+
+    .container {
+      padding: 0 10px;
+    }
+
+    .placeholder-header {
+      h2 {
+        font-size: 2rem; /* Adjusted font size for smaller screens */
+      }
+    }
+
+    .placeholder-content {
+      p {
+        font-size: 1.1rem; /* Adjusted font size for smaller screens */
+      }
+
+      .cta-button {
+        padding: 10px 20px; /* Adjusted padding for smaller screens */
+        font-size: 1rem; /* Adjusted font size for smaller screens */
       }
     }
   }
