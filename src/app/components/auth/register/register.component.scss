@@ -10,6 +10,28 @@ $link-hover-color: #1f6feb;
 $input-focus-border-color: lighten($input-border, 10%);
 $text-color: #c9d1d9;
 
+.register-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  margin: auto;
+  margin-bottom: 100px;
+  max-width: 600px;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 25px;
+    margin: 15px auto;
+    max-width: 90%;
+  }
+}
+
 form {
   background-color: $background-color;
   // background: linear-gradient(
@@ -24,6 +46,11 @@ form {
   max-width: 500px;
   margin: 20px auto;
   font-family: "Roboto", "Arial", sans-serif;
+  width: 100%;
+
+  div {
+    margin-bottom: 20px;
+  }
 
   label {
     display: block;
@@ -56,9 +83,10 @@ form {
   }
 
   button {
+    width: 100%;
+    padding: 12px;
     background-color: $button-background;
     color: $text-color;
-    padding: 12px 25px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -71,71 +99,6 @@ form {
     &:disabled {
       background-color: $button-disabled-background;
       cursor: not-allowed;
-    }
-  }
-}
-
-.register-form-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  margin: auto;
-  margin-bottom: 100px;
-  max-width: 600px;
-
-  @media (max-width: 768px) {
-    padding: 20px;
-    max-width: 100%;
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    padding: 25px;
-    margin: 15px auto;
-    max-width: 90%;
-  }
-}
-
-form {
-  width: 100%;
-  max-width: 500px;
-
-  div {
-    margin-bottom: 20px;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  input {
-    width: 100%;
-    padding: 12px;
-    font-size: 1em;
-    margin-bottom: 10px;
-  }
-
-  small {
-    color: $error-color;
-  }
-
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: $link-color;
-    color: $text-color;
-    border: none;
-    cursor: pointer;
-    font-size: 1em;
-
-    &:hover {
-      background-color: $link-hover-color;
-    }
-
-    &:disabled {
-      background-color: #cccccc;
     }
   }
 }
