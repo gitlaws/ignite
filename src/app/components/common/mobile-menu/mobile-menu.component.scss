@@ -3,7 +3,7 @@
 @import "../../../../styles/variables";
 
 // Social links colors
-$social-links-bg-color-dark: #444c56;
+$social-links-bg-color-dark: #c9d1d9;
 $social-links-border-color: #30363d;
 $social-link-hover-color: #58a6ff;
 $social-link-hover-shadow: rgba(56, 139, 253, 0.5);
@@ -53,7 +53,11 @@ $dropdown-hover-text-shadow: rgba(88, 166, 255, 0.5);
   opacity: 1;
   z-index: 1000;
   font-size: 1em;
-  background-color: $dropdown-bg-color;
+  border: 1px solid #30363d;
+
+  background-color: rgba(255, 255, 255, 0.1); // Semi-transparent background
+  -webkit-backdrop-filter: blur(10px); // Blur effect for Safari
+  backdrop-filter: blur(10px);
   transition: background-color 0.3s ease;
 
   &.open {
