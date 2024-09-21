@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  user$: Observable<User | null>;
+
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+    this.user$ = this.afAuth.authState;
+  }
 
   // Sign up with email and password
   signUp(email: string, password: string) {
@@ -23,5 +29,10 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       this.router.navigate(['/login']);
     });
+  }
+
+  // Get current user
+  getCurrentUser(): Observable<User | null> {
+    return this.user$;
   }
 }

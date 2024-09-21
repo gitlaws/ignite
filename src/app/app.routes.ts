@@ -11,22 +11,13 @@ export const routes: Routes = [
         (m) => m.HomeComponent
       ),
   },
-
   {
-    path: 'Home',
+    path: 'home',
     loadComponent: () =>
       import('./components/common/home/home.component').then(
         (m) => m.HomeComponent
       ),
   },
-
-  //   {
-  //     path: 'projects',
-  //     loadComponent: () =>
-  //       import('./features/projects/projects.component').then(
-  //         (component) => component.ProjectsComponent
-  //       ),
-  //   },
   {
     path: 'register',
     loadComponent: () =>
@@ -34,10 +25,19 @@ export const routes: Routes = [
         (m) => m.RegisterComponent
       ),
   },
-  // other routes...
-
-  // { path: 'register', component: RegisterComponent },
-  // { path: 'login', component: LoginComponent },
-  // { path: 'signout', component: SignoutComponent },
-  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./components/auth/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
+  },
+  {
+    path: 'signout',
+    loadComponent: () =>
+      import('./components/auth/signout/signout.component').then(
+        (m) => m.SignoutComponent
+      ),
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
