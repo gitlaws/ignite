@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/compat/app';
 import { User } from 'firebase/auth';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class AuthService {
   user$: Observable<User | null>;
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {
-    this.user$ = this.afAuth.authState;
+    this.user$ = this.afAuth.authState as Observable<User | null>;
   }
 
   // Sign up with email and password
