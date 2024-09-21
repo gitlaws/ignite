@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
   {
@@ -32,4 +34,8 @@ export const routes: Routes = [
       ),
   },
   // other routes...
+
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
