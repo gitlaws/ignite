@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterInfoComponent } from './register-info/register-info.component';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private afAuth: AngularFireAuth
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -33,8 +33,8 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     if (this.registerForm.valid) {
       const { email, password } = this.registerForm.value;
-      this.afAuth
-        .createUserWithEmailAndPassword(email, password)
+      this.authService
+        .signUp(email, password)
         .then((userCredential) => {
           // Successfully registered
           console.log('User registered:', userCredential);
