@@ -1,11 +1,11 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'YOUR_API_KEY',
-    authDomain: 'YOUR_AUTH_DOMAIN',
-    projectId: 'YOUR_PROJECT_ID',
-    storageBucket: 'YOUR_STORAGE_BUCKET',
-    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-    appId: 'YOUR_APP_ID',
+    apiKey: 'AIzaSyA6AfDNEK4NA2BjnqgpD9X2vlkzrnwXPms',
+    authDomain: 'ignitebase.firebaseapp.com',
+    projectId: 'ignitebase',
+    storageBucket: 'ignitebase.appspot.com',
+    messagingSenderId: '155175757197',
+    appId: '1:155175757197:web:2766cb9d0b1478a61849c4',
   },
 };
