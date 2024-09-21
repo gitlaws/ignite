@@ -27,17 +27,17 @@ export const routes: Routes = [
   //         (component) => component.ProjectsComponent
   //       ),
   //   },
-  // {
-  //   path: 'register',
-  //   loadComponent: () =>
-  //     import('./components/auth/register/register.component').then(
-  //       (m) => m.RegisterComponent
-  //     ),
-  // },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./components/auth/register/register.component').then(
+        (m) => m.RegisterComponent
+      ),
+  },
   // other routes...
 
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signout', component: SignoutComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // { path: 'register', component: RegisterComponent },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'signout', component: SignoutComponent },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

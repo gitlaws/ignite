@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         .then((userCredential) => {
           // Successfully logged in
           console.log('User logged in:', userCredential);
-          this.router.navigate(['/dashboard']); // Navigate to a dashboard or home page
+          this.router.navigate(['/home']); // Navigate to a dashboard or home page
         })
         .catch((error) => {
           // Handle login errors

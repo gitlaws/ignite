@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
         .then((userCredential) => {
           // Successfully registered
           console.log('User registered:', userCredential);
-          this.router.navigate(['/welcome']); // Navigate to a welcome page or dashboard
+          this.router.navigate(['/home']); // Navigate to a welcome page or dashboard
         })
         .catch((error) => {
           // Handle registration errors
