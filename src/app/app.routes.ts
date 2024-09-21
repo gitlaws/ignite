@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { SignoutComponent } from './components/auth/signout/signout.component';
 
 export const routes: Routes = [
   {
@@ -26,16 +27,17 @@ export const routes: Routes = [
   //         (component) => component.ProjectsComponent
   //       ),
   //   },
-  {
-    path: 'register',
-    loadComponent: () =>
-      import('./components/auth/register/register.component').then(
-        (m) => m.RegisterComponent
-      ),
-  },
+  // {
+  //   path: 'register',
+  //   loadComponent: () =>
+  //     import('./components/auth/register/register.component').then(
+  //       (m) => m.RegisterComponent
+  //     ),
+  // },
   // other routes...
 
-  // { path: 'register', component: RegisterComponent },
-  // { path: 'login', component: LoginComponent },
-  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signout', component: SignoutComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
