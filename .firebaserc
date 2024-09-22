@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "ignitebase"
-  }
+    "default": "ignitebase",
+    "staging": "ignitebase"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

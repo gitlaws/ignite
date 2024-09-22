@@ -10,6 +10,6 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth()),
+    provideAuth(() => getAuth()), provideFirebaseApp(() => initializeApp({"projectId":"ignitebase","appId":"1:155175757197:web:2766cb9d0b1478a61849c4","storageBucket":"ignitebase.appspot.com","apiKey":"AIzaSyA6AfDNEK4NA2BjnqgpD9X2vlkzrnwXPms","authDomain":"ignitebase.firebaseapp.com","messagingSenderId":"155175757197"})), provideAuth(() => getAuth()),
   ],
 }).catch((err) => console.error(err));
