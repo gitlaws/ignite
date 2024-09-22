@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { User } from 'firebase/auth'; // Correct import for User type
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './profile.component.scss',
 })
 export class ProfileComponent implements OnInit {
-  user: firebase.User;
+  user: User | null = null;
   displayName!: string;
   photoURL!: string;
 
