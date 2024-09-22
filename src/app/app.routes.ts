@@ -40,7 +40,7 @@ import { Routes, RouterModule } from '@angular/router';
 //   { path: '', redirectTo: '/login', pathMatch: 'full' },
 // ];
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () =>
