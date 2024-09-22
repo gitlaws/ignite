@@ -4,6 +4,8 @@ import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 import { IgniteLogoComponent } from './ignite-logo/ignite-logo.component';
 import { DroneLogoComponent } from './drone-logo/drone-logo.component';
 import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,6 +16,8 @@ import { RouterLink } from '@angular/router';
     IgniteLogoComponent,
     DroneLogoComponent,
     RouterLink,
+    RouterModule,
+    CommonModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',

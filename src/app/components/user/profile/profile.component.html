@@ -1,0 +1,22 @@
+<div *ngIf="user">
+  <h2>Profile</h2>
+  <img
+    [src]="user.photoURL || 'https://via.placeholder.com/150'"
+    alt="Profile Photo"
+  />
+  <form (ngSubmit)="updateProfile()">
+    <label for="displayName">Display Name:</label>
+    <input
+      type="text"
+      id="displayName"
+      [(ngModel)]="displayName"
+      name="displayName"
+    />
+
+    <label for="photoURL">Photo URL:</label>
+    <input type="text" id="photoURL" [(ngModel)]="photoURL" name="photoURL" />
+
+    <button type="submit">Update Profile</button>
+  </form>
+  <button (click)="logout()">Logout</button>
+</div>

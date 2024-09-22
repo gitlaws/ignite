@@ -1,49 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterInfoComponent } from './register-info/register-info.component';
 import { AuthService } from '../../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RegisterInfoComponent } from './register-info/register-info.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RegisterInfoComponent],
+  imports: [CommonModule, RegisterInfoComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup;
+export class RegisterComponent {
+  email!: string;
+  password!: string;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-    this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+  register() {
+    this.authService.register(this.email, this.password).catch((error) => {
+      console.error('Registration error', error);
     });
-  }
-
-  onSubmit() {
-    if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value;
-      this.authService
-        .signUp(email, password)
-        .then((userCredential) => {
-          // Successfully registered
-          console.log('User registered:', userCredential);
-          this.router.navigate(['/home']); // Navigate to a welcome page or dashboard
-        })
-        .catch((error) => {
-          // Handle registration errors
-          console.error('Registration error:', error);
-        });
-    }
   }
 }
