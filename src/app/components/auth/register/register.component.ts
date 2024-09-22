@@ -8,7 +8,7 @@ import { RegisterInfoComponent } from './register-info/register-info.component';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, RegisterInfoComponent],
+  imports: [CommonModule, RegisterInfoComponent, FormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })

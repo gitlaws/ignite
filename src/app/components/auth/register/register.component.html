@@ -1,61 +1,26 @@
-<div class="register-form-wrapper">
-  <app-register-info></app-register-info>
-
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="username">Username:</label>
-      <input id="username" formControlName="username" type="text" />
-      <div
-        *ngIf="
-          registerForm.get('username')?.invalid &&
-          registerForm.get('username')?.touched
-        "
-      >
-        <small *ngIf="registerForm.get('username')?.errors?.['required']">
-          Username is required.
-        </small>
-        <small *ngIf="registerForm.get('username')?.errors?.['minlength']">
-          Username must be at least 3 characters long.
-        </small>
-      </div>
-    </div>
-
-    <div>
-      <label for="password">Password:</label>
-      <input id="password" formControlName="password" type="password" />
-      <div
-        *ngIf="
-          registerForm.get('password')?.invalid &&
-          registerForm.get('password')?.touched
-        "
-      >
-        <small *ngIf="registerForm.get('password')?.errors?.['required']">
-          Password is required.
-        </small>
-        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">
-          Password must be at least 6 characters long.
-        </small>
-      </div>
-    </div>
-
-    <div>
+<div class="register-container">
+  <h2>Register</h2>
+  <form (ngSubmit)="register()">
+    <div class="form-group">
       <label for="email">Email:</label>
-      <input id="email" formControlName="email" type="email" />
-      <div
-        *ngIf="
-          registerForm.get('email')?.invalid &&
-          registerForm.get('email')?.touched
-        "
-      >
-        <small *ngIf="registerForm.get('email')?.errors?.['required']">
-          Email is required.
-        </small>
-        <small *ngIf="registerForm.get('email')?.errors?.['email']">
-          Invalid email format.
-        </small>
-      </div>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="email"
+        name="email"
+        required
+      />
     </div>
-
-    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+    </div>
+    <button type="submit">Register</button>
   </form>
 </div>
