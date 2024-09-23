@@ -1,10 +1,24 @@
+$background-color: #0d1117;
+$form-text-color: #c9d1d9;
+$input-background: #161b22;
+$input-border: #30363d;
+$error-color: #f85149;
+$button-background: #238636;
+$button-disabled-background: #484f58;
+$link-color: #58a6ff;
+$link-hover-color: #1f6feb;
+$input-focus-border-color: lighten($input-border, 10%);
+$text-color: #c9d1d9;
+
 .login-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid $input-border;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: $background-color;
+  color: $form-text-color;
 }
 
 .login-container h2 {
@@ -25,18 +39,32 @@
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
+  background-color: $input-background;
+  border: 1px solid $input-border;
+  border-radius: 6px;
+  color: $form-text-color;
+
+  &:focus {
+    border-color: $input-focus-border-color;
+    outline: none;
+  }
 }
 
 button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: $button-background;
+  color: $text-color;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
 
-button:hover {
-  background-color: #0056b3;
+  &:hover {
+    background-color: lighten($button-background, 10%);
+  }
+
+  &:disabled {
+    background-color: $button-disabled-background;
+    cursor: not-allowed;
+  }
 }
