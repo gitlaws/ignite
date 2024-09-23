@@ -13,8 +13,8 @@ import { RegisterInfoComponent } from './register-info/register-info.component';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  email!: string;
   password!: string;
+  email!: string;
 
   constructor(private authService: AuthService) {}
 

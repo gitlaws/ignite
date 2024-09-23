@@ -1,6 +1,8 @@
 <div class="register-container">
-  <h2>Register</h2>
-  <form (ngSubmit)="register()">
+  <app-register-info></app-register-info>
+
+  <!-- <h2>Register</h2> -->
+  <form (ngSubmit)="register()" #registerForm="ngForm">
     <div class="form-group">
       <label for="email">Email:</label>
       <input
@@ -9,7 +11,11 @@
         [(ngModel)]="email"
         name="email"
         required
+        #emailField="ngModel"
       />
+      <small *ngIf="emailField.invalid && emailField.touched">
+        Email is required and must be a valid email address.
+      </small>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
@@ -19,8 +25,13 @@
         [(ngModel)]="password"
         name="password"
         required
+        minlength="6"
+        #passwordField="ngModel"
       />
+      <small *ngIf="passwordField.invalid && passwordField.touched">
+        Password is required and must be at least 6 characters long.
+      </small>
     </div>
-    <button type="submit">Register</button>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
   </form>
 </div>
