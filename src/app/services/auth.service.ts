@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  signOut,
+  authState,
+} from '@angular/fire/auth';
 import { User } from 'firebase/auth';
 import { Observable } from 'rxjs';
 
@@ -7,30 +14,30 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(private auth: Auth) {}
 
   register(email: string, password: string) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password);
+    return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
   login(email: string, password: string) {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+    return signInWithEmailAndPassword(this.auth, email, password);
   }
+
   getUser(): Observable<User | null> {
-    return this.afAuth.authState as Observable<User | null>;
+    return authState(this.auth);
   }
 
   updateProfile(displayName: string, photoURL: string): Promise<void> {
-    return this.afAuth.currentUser.then((user) => {
-      if (user) {
-        return user.updateProfile({ displayName, photoURL });
-      } else {
-        return Promise.reject('No user is currently logged in');
-      }
-    });
+    const user = this.auth.currentUser;
+    if (user) {
+      return updateProfile(user, { displayName, photoURL });
+    } else {
+      return Promise.reject('No user is currently logged in');
+    }
   }
 
   logout(): Promise<void> {
-    return this.afAuth.signOut();
+    return signOut(this.auth);
   }
 }
