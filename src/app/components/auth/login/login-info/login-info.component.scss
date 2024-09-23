@@ -3,7 +3,12 @@
 $background-color: #0d1117;
 $text-color: #c9d1d9;
 $header-color: #58a6ff;
+$link-color: #58a6ff;
+$link-hover-color: lighten($link-color, 10%);
 $spacing: 16px;
+$spacing-lg: 24px; // Larger spacing for larger screens
+$font-size-base: 1rem;
+$font-size-lg: 1.25rem; // Larger font size for larger screens
 
 .login-info {
   display: flex;
@@ -28,7 +33,54 @@ $spacing: 16px;
   }
 
   p {
-    font-size: 1rem;
+    font-size: $font-size-base;
     margin: 0;
+
+    a {
+      color: $link-color;
+      text-decoration: none;
+
+      &:hover {
+        color: $link-hover-color;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .forgot-password {
+    margin-top: $spacing;
+    font-size: $font-size-base;
+
+    a {
+      color: $link-color;
+      text-decoration: none;
+
+      &:hover {
+        color: $link-hover-color;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Media queries for responsiveness
+  @media (min-width: 768px) {
+    padding: $spacing-lg;
+
+    header {
+      margin-bottom: $spacing-lg;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    p {
+      font-size: $font-size-lg;
+    }
+
+    .forgot-password {
+      margin-top: $spacing-lg;
+      font-size: $font-size-lg;
+    }
   }
 }
