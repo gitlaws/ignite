@@ -58,17 +58,17 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
     font-family: "SUSE", sans-serif;
 
     &:hover {
-      color: #58a6ff;
+      color: #539bf5;
+
+      i {
+        color: #adbac7;
+      }
     }
 
     i {
       font-size: 18px;
-      color: #8b949e;
+      color: #768390;
       transition: color 0.3s ease;
-
-      &:hover {
-        color: #c9d1d9;
-      }
     }
   }
 }
