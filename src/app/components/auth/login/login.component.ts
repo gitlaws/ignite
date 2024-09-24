@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+
 import { LoginInfoComponent } from './login-info/login-info.component';
 
 @Component({
@@ -16,11 +17,16 @@ export class LoginComponent {
   email!: string;
   password!: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   login() {
     this.authService.login(this.email, this.password).catch((error) => {
       console.error('Login error', error);
     });
+  }
+
+  onSubmit() {
+    // Navigate to the profile page
+    this.router.navigate(['/profile']);
   }
 }
