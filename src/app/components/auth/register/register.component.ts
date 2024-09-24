@@ -39,6 +39,9 @@ export class RegisterComponent {
       })
       .catch((error) => {
         console.error('Registration error', error);
+        this.snackbarService.callSnackbar(
+          'Registration failed: ' + error.message
+        );
       });
   }
 }
