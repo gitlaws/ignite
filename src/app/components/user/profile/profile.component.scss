@@ -8,12 +8,13 @@ $button-text-color: #ffffff; // White text for buttons
 
 :host {
   display: block;
-  padding: 20px;
+  padding: 30px; // Increased padding
   background-color: $background-color;
   border: 1px solid $border-color;
-  border-radius: 6px;
+  border-radius: 8px; // Slightly larger border-radius
   max-width: 600px;
-  margin: 0 auto;
+  margin: 20px auto; // Added margin for better spacing
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Added box-shadow
 }
 
 h1,
@@ -21,17 +22,18 @@ h2 {
   color: $primary-color;
   border-bottom: 2px solid $border-color;
   padding-bottom: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px; // Increased margin-bottom
 }
 
 p {
   color: $text-color;
+  margin-bottom: 20px; // Added margin-bottom for spacing
 }
 
 img {
   display: block;
   border-radius: 50%;
-  margin: 0 auto 20px;
+  margin: 0 auto 25px; // Increased margin-bottom
   border: 2px solid $border-color;
   width: 150px; /* Fixed width */
   height: 150px; /* Fixed height */
@@ -41,7 +43,7 @@ img {
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px; // Increased gap
 
   label {
     color: $text-color;
@@ -49,26 +51,28 @@ form {
   }
 
   input {
-    padding: 10px;
+    padding: 12px; // Increased padding
     border: 1px solid $border-color;
     border-radius: 4px;
     font-size: 16px;
     background-color: #161b22; // Slightly lighter background for inputs
     color: $text-color;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); // Added inner shadow
   }
 
   button[type="submit"] {
     background-color: $button-bg-color;
     color: $button-text-color;
-    padding: 10px 15px;
+    padding: 12px 18px; // Increased padding
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s; // Added transform transition
 
     &:hover {
       background-color: darken($button-bg-color, 10%);
+      transform: translateY(-2px); // Added hover effect
     }
   }
 }
@@ -76,15 +80,16 @@ form {
 button {
   background-color: $secondary-color;
   color: $button-text-color;
-  padding: 10px 15px;
+  padding: 12px 18px; // Increased padding
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.2s; // Added transform transition
+  margin-top: 25px; // Increased margin-top
 
   &:hover {
     background-color: lighten($secondary-color, 10%);
+    transform: translateY(-2px); // Added hover effect
   }
 }
