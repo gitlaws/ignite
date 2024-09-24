@@ -1,4 +1,14 @@
 <div *ngIf="user">
+  <h1>Welcome, {{ user.displayName }}!</h1>
+  <p>
+    Welcome to your profile page. Here you can update your display name and
+    profile photo. Make sure to save your changes by clicking the "Update
+    Profile" button.
+  </p>
+  <p>
+    If you wish to log out, you can do so by clicking the "Logout" button below.
+  </p>
+
   <h2>Profile</h2>
   <img
     [src]="user.photoURL || 'https://via.placeholder.com/150'"
