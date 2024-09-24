@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-mobile-menu',
@@ -9,35 +10,34 @@ import { RouterLink } from '@angular/router';
   templateUrl: './mobile-menu.component.html',
   styleUrl: './mobile-menu.component.scss',
 })
-export class MobileMenuComponent {
-  // theme!: 'light' | 'dark';
+export class MobileMenuComponent implements OnInit, OnDestroy {
   isMenuOpen = false;
+  isLoggedIn = false;
   menuItems = [
     { name: 'Login', url: '/login' },
     { name: 'Register', url: '/register' },
   ];
 
-  openLink(event: MouseEvent, url: string): void {
-    event.preventDefault(); // Prevent default anchor behavior
-    window.open(url, '_blank', 'noopener'); // Open link in a new tab
-  }
-
-  constructor(private elementRef: ElementRef) {}
+  constructor(
+    private elementRef: ElementRef,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Add a click event listener to the document
     document.addEventListener('click', this.documentClickHandler.bind(this));
+    this.authService.getUser().subscribe((user) => {
+      this.isLoggedIn = !!user;
+      this.updateMenuItems();
+    });
   }
 
   ngOnDestroy(): void {
-    // Remove the click event listener from the document
     document.removeEventListener('click', this.documentClickHandler.bind(this));
   }
 
   documentClickHandler(event: MouseEvent) {
-    // Check if the click event is coming from within the dropdown content
     if (!this.elementRef.nativeElement.contains(event.target)) {
-      // If not, close the dropdown
       this.isMenuOpen = false;
     }
   }
@@ -45,5 +45,32 @@ export class MobileMenuComponent {
   toggleMenu(event: MouseEvent) {
     event.stopPropagation();
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  openLink(event: MouseEvent, url: string): void {
+    event.preventDefault(); // Prevent default anchor behavior
+    window.open(url, '_blank', 'noopener'); // Open link in a new tab
+  }
+
+  logout() {
+    this.authService.logout().then(() => {
+      this.isLoggedIn = false;
+      this.updateMenuItems();
+      this.router.navigate(['/home']);
+    });
+  }
+
+  private updateMenuItems() {
+    if (this.isLoggedIn) {
+      this.menuItems = [
+        { name: 'Profile', url: '/profile' },
+        { name: 'Logout', url: '/logout' },
+      ];
+    } else {
+      this.menuItems = [
+        { name: 'Login', url: '/login' },
+        { name: 'Register', url: '/register' },
+      ];
+    }
   }
 }

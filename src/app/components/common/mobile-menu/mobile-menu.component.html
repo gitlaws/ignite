@@ -7,11 +7,17 @@
 </button>
 
 <ul *ngIf="isMenuOpen" class="dropdown-menu" (click)="$event.stopPropagation()">
-  <li class="dropdown-item">
+  <li class="dropdown-item" *ngIf="!isLoggedIn">
     <a routerLink="/login">Login</a>
   </li>
-  <li class="dropdown-item">
+  <li class="dropdown-item" *ngIf="!isLoggedIn">
     <a routerLink="/register">Register</a>
+  </li>
+  <li class="dropdown-item" *ngIf="isLoggedIn">
+    <a routerLink="/profile">Profile</a>
+  </li>
+  <li class="dropdown-item" *ngIf="isLoggedIn" (click)="logout()">
+    <a>Logout</a>
   </li>
   <li class="dropdown-item-social-links">
     <a
