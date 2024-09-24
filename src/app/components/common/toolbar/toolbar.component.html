@@ -21,11 +21,10 @@
       <a *ngIf="isLoggedIn" routerLink="/profile" class="nav__login-link">
         <i class="fa-solid fa-user"></i> Profile
       </a>
-      <button *ngIf="isLoggedIn" (click)="logout()" class="nav__login-link">
-        <i class="fa-solid fa-sign-out-alt"></i> Logout
-      </button>
+      <a *ngIf="isLoggedIn" (click)="logout()" class="nav__login-link">
+        <i class="fa-solid fa-power-off"></i> Logout
+      </a>
     </div>
-
     <!-- <div class="nav__social-links">
       <ul>
         <li>

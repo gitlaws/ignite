@@ -55,37 +55,13 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
     color: #c9d1d9;
     font-size: 1em;
     font-family: "SUSE", sans-serif;
-
-    &:hover {
-      color: #539bf5;
-
-      i {
-        color: #adbac7;
-      }
-    }
-
-    i {
-      font-size: 1.25em;
-      color: #768390;
-      transition: color 0.3s ease;
-    }
-  }
-
-  .logout-button {
-    background-color: #21262d;
-    border: 1px solid #30363d;
-    color: #c9d1d9;
+    // background-color: #21262d;
+    // border: 1px solid #30363d;
     padding: 10px 15px;
-    font-size: 1em;
-    font-family: "SUSE", sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover {
-      background-color: #30363d;
+      // background-color: #30363d;
       color: #539bf5;
 
       i {
