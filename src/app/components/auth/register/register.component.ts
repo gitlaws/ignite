@@ -19,8 +19,15 @@ export class RegisterComponent {
   constructor(private authService: AuthService) {}
 
   register() {
-    this.authService.register(this.email, this.password).catch((error) => {
-      console.error('Registration error', error);
-    });
+    this.authService
+      .register(this.email, this.password)
+      .then(() => {
+        alert(
+          'Registration successful! Please check your email to verify your account.'
+        );
+      })
+      .catch((error) => {
+        console.error('Registration error', error);
+      });
   }
 }
