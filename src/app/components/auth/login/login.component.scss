@@ -28,21 +28,26 @@ $text-color: #c9d1d9;
 
 .form-group {
   margin-bottom: 15px;
+  font-family: "Roboto", "Arial", sans-serif;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .form-group input {
   width: 100%;
   padding: 8px;
+  margin-bottom: 15px;
   box-sizing: border-box;
   background-color: $input-background;
   border: 1px solid $input-border;
   border-radius: 6px;
   color: $form-text-color;
+  font-size: 1em;
 
   &:focus {
     border-color: $input-focus-border-color;
@@ -52,11 +57,12 @@ $text-color: #c9d1d9;
 
 button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
+  font-size: 1em;
   background-color: $button-background;
   color: $text-color;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
 
   &:hover {
