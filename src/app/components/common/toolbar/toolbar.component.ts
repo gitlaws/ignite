@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth.service'; // Adjust the path as necessary
 import { CubeLogoComponent } from './cube-logo/cube-logo.component';
 import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 import { IgniteLogoComponent } from './ignite-logo/ignite-logo.component';
@@ -20,6 +21,16 @@ import { CommonModule } from '@angular/common';
     CommonModule,
   ],
   templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.scss',
+  styleUrls: ['./toolbar.component.scss'],
 })
-export class ToolbarComponent {}
+export class ToolbarComponent implements OnInit {
+  isLoggedIn = false;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.getUser().subscribe((user) => {
+      this.isLoggedIn = !!user;
+    });
+  }
+}

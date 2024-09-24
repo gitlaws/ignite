@@ -15,8 +15,11 @@
       <a routerLink="/register" class="nav__login-link">
         <i class="fa-solid fa-user-pen"></i> Register
       </a>
-      <a routerLink="/login" class="nav__login-link">
-        <i class="fa-solid fa-sign-in-alt"></i> Login
+      <a *ngIf="!isLoggedIn" routerLink="/login" class="nav__login-link">
+        <i class="fa-duotone fa-solid fa-user"></i> Login
+      </a>
+      <a *ngIf="isLoggedIn" routerLink="/profile" class="nav__login-link">
+        <i class="fa-solid fa-user"></i> Profile
       </a>
     </div>
 
