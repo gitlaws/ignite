@@ -12,7 +12,7 @@
 
     <!-- Login Links -->
     <div class="nav__login-links">
-      <a routerLink="/register" class="nav__login-link">
+      <a *ngIf="!isLoggedIn" routerLink="/register" class="nav__login-link">
         <i class="fa-solid fa-user-pen"></i> Register
       </a>
       <a *ngIf="!isLoggedIn" routerLink="/login" class="nav__login-link">
@@ -21,6 +21,9 @@
       <a *ngIf="isLoggedIn" routerLink="/profile" class="nav__login-link">
         <i class="fa-solid fa-user"></i> Profile
       </a>
+      <button *ngIf="isLoggedIn" (click)="logout()" class="nav__login-link">
+        <i class="fa-solid fa-sign-out-alt"></i> Logout
+      </button>
     </div>
 
     <!-- <div class="nav__social-links">
