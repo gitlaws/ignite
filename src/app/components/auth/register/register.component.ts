@@ -12,7 +12,7 @@ import { SnackbarService } from '../../../services/snackbar.service';
   imports: [CommonModule, FormsModule, RegisterInfoComponent, RouterLink],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [SnackbarService], // Provide the SnackbarService here
+  providers: [SnackbarService],
 })
 export class RegisterComponent {
   password!: string;
@@ -27,9 +27,7 @@ export class RegisterComponent {
     this.authService
       .register(this.email, this.password)
       .then(() => {
-        this.snackbarService.show(
-          'Registration successful! Please check your email to verify your account.'
-        );
+        this.snackbarService.show('Registered, check email for confirmation');
       })
       .catch((error) => {
         console.error('Registration error', error);
