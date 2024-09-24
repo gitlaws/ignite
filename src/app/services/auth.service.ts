@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
+  User,
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendEmailVerification,
-  updateProfile,
   signOut,
+  updateProfile,
+  sendPasswordResetEmail,
+  sendEmailVerification,
   authState,
 } from '@angular/fire/auth';
-import { User } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { SnackbarService } from './snackbar.service'; // Adjust the import path as needed
 
@@ -50,5 +51,9 @@ export class AuthService {
     return signOut(this.auth).then(() => {
       this.snackbarService.callSnackbar('You have been logged out'); // Show snackbar message
     });
+  }
+
+  sendPasswordResetEmail(email: string) {
+    return sendPasswordResetEmail(this.auth, email); // Use this.auth instead of this.afAuth
   }
 }
