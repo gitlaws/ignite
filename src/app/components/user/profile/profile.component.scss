@@ -1,6 +1,6 @@
 $primary-color: #58a6ff;
 $secondary-color: #c9d1d9;
-$background-color: #0d1117;
+$background-color: #181818;
 $text-color: #c9d1d9;
 $border-color: #30363d;
 $button-bg-color: #238636;
@@ -11,12 +11,9 @@ $button-text-color: #ffffff;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  // min-height: 100vh;
-  // min-height: 100dvh;
   margin-top: 100px;
 
   @media (max-width: 400px) {
-    // margin: 120px 0;
     padding: 0 10px;
   }
 }
@@ -33,7 +30,40 @@ $button-text-color: #ffffff;
 
   @media (min-width: 768px) {
     padding: 2rem;
-    max-width: 600px;
+    max-width: 800px;
+  }
+}
+
+.profile-columns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+  padding: 10px;
+}
+
+.left-column {
+  max-width: 40%;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+.right-column {
+  max-width: 60%;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
   }
 }
 
@@ -100,6 +130,12 @@ form {
     @media (min-width: 768px) {
       padding: 0.875rem;
     }
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0.25rem rgba($primary-color, 0.5);
+    }
   }
 
   button[type="submit"] {
@@ -119,6 +155,11 @@ form {
     &:hover {
       background-color: darken($button-bg-color, 10%);
       transform: translateY(-0.125rem);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0.25rem rgba($button-bg-color, 0.5);
     }
   }
 }
@@ -142,5 +183,10 @@ button {
   &:hover {
     background-color: lighten(#161b22, 10%);
     transform: translateY(-0.125rem);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0.25rem rgba($text-color, 0.5);
   }
 }
