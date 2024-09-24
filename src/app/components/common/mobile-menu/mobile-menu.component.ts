@@ -56,7 +56,7 @@ export class MobileMenuComponent implements OnInit, OnDestroy {
     this.authService.logout().then(() => {
       this.isLoggedIn = false;
       this.updateMenuItems();
-      this.router.navigate(['/home']);
+      this.router.navigate(['/login']);
     });
   }
 
