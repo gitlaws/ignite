@@ -27,7 +27,9 @@ export class RegisterComponent {
     this.authService
       .register(this.email, this.password)
       .then(() => {
-        this.snackbarService.show('Registered, check email for confirmation');
+        this.snackbarService.callSnackbar(
+          'Registered, check email for confirmation'
+        );
       })
       .catch((error) => {
         console.error('Registration error', error);

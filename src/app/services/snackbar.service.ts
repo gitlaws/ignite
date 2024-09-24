@@ -1,4 +1,3 @@
-// src/app/services/snackbar/snackbar.service.ts
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -6,10 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class SnackbarService {
-  private snackbarSubject = new Subject<string>();
-  public snackbar$ = this.snackbarSubject.asObservable();
+  public snackbar$ = new Subject<string>();
 
-  public show(message: string): void {
-    this.snackbarSubject.next(message);
+  public callSnackbar(message: string): void {
+    this.snackbar$.next(message);
   }
 }
