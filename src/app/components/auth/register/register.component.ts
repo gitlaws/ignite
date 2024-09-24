@@ -35,4 +35,8 @@ export class RegisterComponent {
         console.error('Registration error', error);
       });
   }
+
+  callSnackbar() {
+    this.snackbarService.callSnackbar('This is a snackbar message');
+  }
 }
