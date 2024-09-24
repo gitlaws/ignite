@@ -11,7 +11,7 @@ import {
   authState,
 } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import { SnackbarService } from './snackbar.service'; // Adjust the import path as needed
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,23 +19,21 @@ import { SnackbarService } from './snackbar.service'; // Adjust the import path 
 export class AuthService {
   private authenticated = false;
 
-  constructor(
-    private auth: Auth,
-    private snackbarService: SnackbarService // Inject SnackbarService
-  ) {}
+  constructor(private auth: Auth, private snackbarService: SnackbarService) {}
 
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password).then(
       (userCredential) => {
-        this.authenticated = true;
-        return sendEmailVerification(userCredential.user);
+        return sendEmailVerification(userCredential.user).then(() => {
+          this.authenticated = true; // Set authenticated to true after email verification
+        });
       }
     );
   }
 
   login(email: string, password: string) {
     return signInWithEmailAndPassword(this.auth, email, password).then(() => {
-      this.authenticated = true;
+      this.authenticated = true; // Set authenticated to true after login
     });
   }
 
@@ -58,12 +56,12 @@ export class AuthService {
 
   logout(): Promise<void> {
     return signOut(this.auth).then(() => {
-      this.authenticated = false;
-      this.snackbarService.callSnackbar('You have been logged out'); // Show snackbar message
+      this.authenticated = false; // Set authenticated to false after logout
+      this.snackbarService.callSnackbar('You have been logged out');
     });
   }
 
   sendPasswordResetEmail(email: string) {
-    return sendPasswordResetEmail(this.auth, email); // Use this.auth instead of this.afAuth
+    return sendPasswordResetEmail(this.auth, email);
   }
 }

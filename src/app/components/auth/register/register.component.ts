@@ -40,7 +40,7 @@ export class RegisterComponent {
         // Simulate email verification process
         this.verifyEmail().then((isVerified) => {
           if (isVerified) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/profile']); // Redirect to profile page
           } else {
             console.error('Email verification failed');
             this.snackbarService.callSnackbar('Email verification failed');

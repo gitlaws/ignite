@@ -33,6 +33,16 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     this.authService
       .updateProfile(this.displayName, this.photoURL)
+      .then(() => {
+        if (this.user) {
+          // Create a new user object with updated properties
+          this.user = {
+            ...this.user,
+            displayName: this.displayName,
+            photoURL: this.photoURL,
+          };
+        }
+      })
       .catch((error) => {
         console.error('Update profile error', error);
       });
