@@ -17,6 +17,8 @@ import { SnackbarService } from './snackbar.service'; // Adjust the import path 
   providedIn: 'root',
 })
 export class AuthService {
+  private authenticated = false;
+
   constructor(
     private auth: Auth,
     private snackbarService: SnackbarService // Inject SnackbarService
@@ -25,13 +27,20 @@ export class AuthService {
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password).then(
       (userCredential) => {
+        this.authenticated = true;
         return sendEmailVerification(userCredential.user);
       }
     );
   }
 
   login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password);
+    return signInWithEmailAndPassword(this.auth, email, password).then(() => {
+      this.authenticated = true;
+    });
+  }
+
+  isAuthenticated(): boolean {
+    return this.authenticated;
   }
 
   getUser(): Observable<User | null> {
@@ -49,6 +58,7 @@ export class AuthService {
 
   logout(): Promise<void> {
     return signOut(this.auth).then(() => {
+      this.authenticated = false;
       this.snackbarService.callSnackbar('You have been logged out'); // Show snackbar message
     });
   }

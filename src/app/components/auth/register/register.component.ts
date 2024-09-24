@@ -37,7 +37,15 @@ export class RegisterComponent {
         this.snackbarService.callSnackbar(
           'Registered, check email for confirmation'
         );
-        this.onRegisterClick();
+        // Simulate email verification process
+        this.verifyEmail().then((isVerified) => {
+          if (isVerified) {
+            this.router.navigate(['/login']);
+          } else {
+            console.error('Email verification failed');
+            this.snackbarService.callSnackbar('Email verification failed');
+          }
+        });
       })
       .catch((error) => {
         console.error('Registration error', error);
@@ -47,20 +55,11 @@ export class RegisterComponent {
       });
   }
 
-  onRegisterClick() {
-    this.verifyEmail().then((isVerified) => {
-      if (isVerified) {
-        this.router.navigate(['/login']);
-      } else {
-        console.error('Email verification failed');
-      }
-    });
-  }
-
   verifyEmail(): Promise<boolean> {
     return new Promise((resolve) => {
+      // Simulate email verification
       setTimeout(() => {
-        resolve(true);
+        resolve(true); // Resolve with true if verification is successful
       }, 2000);
     });
   }
