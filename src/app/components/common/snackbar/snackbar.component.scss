@@ -6,10 +6,10 @@
   left: 50%;
   bottom: 30px;
   transform: translate(-50%, -50%);
-  background-color: black;
-  color: white;
+  background-color: #2d333b; /* GitHub dark mode background */
+  color: #c9d1d9; /* GitHub dark mode text color */
   text-align: center;
-  border-radius: 3px;
+  border-radius: 6px; /* Slightly larger border-radius for a modern look */
   padding: 15px;
   position: fixed;
   font-size: 15px;
