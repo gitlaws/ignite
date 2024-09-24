@@ -5,11 +5,18 @@ import { RouterLink } from '@angular/router';
 import { RegisterInfoComponent } from './register-info/register-info.component';
 import { AuthService } from '../../../services/auth.service';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RegisterInfoComponent, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RegisterInfoComponent,
+    RouterLink,
+    SnackbarComponent,
+  ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   providers: [SnackbarService],
