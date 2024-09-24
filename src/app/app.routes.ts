@@ -9,20 +9,11 @@ export const routes: Routes = [
         (m) => m.HomeComponent
       ),
   },
-  // {
-  //   path: 'login',
-  //   loadComponent: () =>
-  //     import('./components/auth/login/login.component').then(
-  //       (m) => m.LoginComponent
-  //     ),
-  //   canActivate: [AuthGuard],
-  // },
-
   {
-    path: 'sign-in',
+    path: 'login',
     loadComponent: () =>
-      import('./components/auth/sign-in/sign-in.component').then(
-        (m) => m.SignInComponent
+      import('./components/auth/login/login.component').then(
+        (m) => m.LoginComponent
       ),
     canActivate: [AuthGuard],
   },
