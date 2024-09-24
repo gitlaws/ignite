@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { RegisterInfoComponent } from './register-info/register-info.component';
 import { AuthService } from '../../../services/auth.service';
 import { SnackbarService } from '../../../services/snackbar.service';
@@ -26,7 +26,8 @@ export class RegisterComponent {
 
   constructor(
     private authService: AuthService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private router: Router
   ) {}
 
   register() {
@@ -36,6 +37,7 @@ export class RegisterComponent {
         this.snackbarService.callSnackbar(
           'Registered, check email for confirmation'
         );
+        this.onRegisterClick();
       })
       .catch((error) => {
         console.error('Registration error', error);
@@ -43,5 +45,23 @@ export class RegisterComponent {
           'Registration failed: ' + error.message
         );
       });
+  }
+
+  onRegisterClick() {
+    this.verifyEmail().then((isVerified) => {
+      if (isVerified) {
+        this.router.navigate(['/login']);
+      } else {
+        console.error('Email verification failed');
+      }
+    });
+  }
+
+  verifyEmail(): Promise<boolean> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, 2000);
+    });
   }
 }
