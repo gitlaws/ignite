@@ -30,13 +30,7 @@
         Password is required and must be at least 6 characters long.
       </small>
     </div>
-    <button
-      type="submit"
-      [disabled]="registerForm.invalid"
-      (click)="callSnackbar()"
-    >
-      Register
-    </button>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
   </form>
   <app-snackbar></app-snackbar>
 </div>

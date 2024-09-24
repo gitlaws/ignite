@@ -43,7 +43,7 @@ export class RegisterComponent {
       });
   }
 
-  callSnackbar() {
-    this.snackbarService.callSnackbar('This is a snackbar message');
-  }
+  // callSnackbar() {
+  //   this.snackbarService.callSnackbar('This is a snackbar message');
+  // }
 }
