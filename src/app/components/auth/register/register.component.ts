@@ -19,7 +19,6 @@ import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [SnackbarService],
 })
 export class RegisterComponent {
   password!: string;
@@ -42,8 +41,4 @@ export class RegisterComponent {
         console.error('Registration error', error);
       });
   }
-
-  // callSnackbar() {
-  //   this.snackbarService.callSnackbar('This is a snackbar message');
-  // }
 }
