@@ -60,6 +60,12 @@ export class MobileMenuComponent implements OnInit, OnDestroy {
     });
   }
 
+  navigateToProfile() {
+    if (this.isLoggedIn) {
+      this.router.navigate(['/profile']);
+    }
+  }
+
   private updateMenuItems() {
     if (this.isLoggedIn) {
       this.menuItems = [
