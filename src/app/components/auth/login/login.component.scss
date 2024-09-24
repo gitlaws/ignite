@@ -12,6 +12,18 @@ $input-focus-border-color: lighten($input-border, 10%);
 $text-color: #c9d1d9;
 $transition-duration: 0.3s;
 
+#login-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+
+  @media (max-width: 400px) {
+    margin: 120px 0;
+    padding: 0 10px;
+  }
+}
+
 .login-container {
   max-width: 400px;
   width: 100%; // Ensure it takes full width within the max-width constraint
