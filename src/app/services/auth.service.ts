@@ -10,12 +10,16 @@ import {
 } from '@angular/fire/auth';
 import { User } from 'firebase/auth';
 import { Observable } from 'rxjs';
+import { SnackbarService } from './snackbar.service'; // Adjust the import path as needed
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: Auth) {}
+  constructor(
+    private auth: Auth,
+    private snackbarService: SnackbarService // Inject SnackbarService
+  ) {}
 
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password).then(
@@ -43,6 +47,8 @@ export class AuthService {
   }
 
   logout(): Promise<void> {
-    return signOut(this.auth);
+    return signOut(this.auth).then(() => {
+      this.snackbarService.callSnackbar('You have been logged out'); // Show snackbar message
+    });
   }
 }

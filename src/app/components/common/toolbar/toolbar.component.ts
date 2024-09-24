@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../services/auth.service'; // Adjust the path as necessary
+import { AuthService } from '../../../services/auth.service';
 import { CubeLogoComponent } from './cube-logo/cube-logo.component';
 import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 import { IgniteLogoComponent } from './ignite-logo/ignite-logo.component';
@@ -38,7 +38,7 @@ export class ToolbarComponent implements OnInit {
   logout() {
     this.authService.logout().then(() => {
       this.isLoggedIn = false;
-      this.router.navigate(['/home']);
+      this.router.navigate(['/login']);
     });
   }
 }
