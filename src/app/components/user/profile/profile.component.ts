@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { User } from 'firebase/auth'; // Correct import for User type
 import { AuthService } from '../../../services/auth.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   displayName!: string;
   photoURL!: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.authService.getUser().subscribe((user) => {
@@ -39,6 +39,8 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 }

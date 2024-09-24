@@ -3,7 +3,6 @@ import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
-
 import { LoginInfoComponent } from './login-info/login-info.component';
 
 @Component({
@@ -14,19 +13,23 @@ import { LoginInfoComponent } from './login-info/login-info.component';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  email!: string;
-  password!: string;
+  email: string = '';
+  password: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.authService.login(this.email, this.password).catch((error) => {
-      console.error('Login error', error);
-    });
+    this.authService
+      .login(this.email, this.password)
+      .then(() => {
+        this.router.navigate(['/profile']);
+      })
+      .catch((error) => {
+        console.error('Login error', error);
+      });
   }
 
   onSubmit() {
-    // Navigate to the profile page
-    this.router.navigate(['/profile']);
+    this.login();
   }
 }
