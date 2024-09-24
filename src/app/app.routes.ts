@@ -9,14 +9,24 @@ export const routes: Routes = [
         (m) => m.HomeComponent
       ),
   },
+  // {
+  //   path: 'login',
+  //   loadComponent: () =>
+  //     import('./components/auth/login/login.component').then(
+  //       (m) => m.LoginComponent
+  //     ),
+  //   canActivate: [AuthGuard],
+  // },
+
   {
-    path: 'login',
+    path: 'sign-in',
     loadComponent: () =>
-      import('./components/auth/login/login.component').then(
-        (m) => m.LoginComponent
+      import('./components/auth/sign-in/sign-in.component').then(
+        (m) => m.SignInComponent
       ),
     canActivate: [AuthGuard],
   },
+
   {
     path: 'register',
     loadComponent: () =>
@@ -31,6 +41,7 @@ export const routes: Routes = [
         (m) => m.ProfileComponent
       ),
   },
+
   {
     path: 'forgot-password',
     loadComponent: () =>
