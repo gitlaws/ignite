@@ -1,32 +1,35 @@
-<div class="profile-container" *ngIf="user">
-  <h1>Welcome, {{ user.displayName }}!</h1>
-  <p>
-    Welcome to your profile page. Here you can update your display name and
-    profile photo. Make sure to save your changes by clicking the "Update
-    Profile" button.
-  </p>
-  <p>
-    If you wish to log out, you can do so by clicking the "Logout" button below.
-  </p>
+<div id="profile-wrapper">
+  <div class="profile-container" *ngIf="user">
+    <h1>Welcome, {{ user.displayName }}!</h1>
+    <p>
+      Welcome to your profile page. Here you can update your display name and
+      profile photo. Make sure to save your changes by clicking the "Update
+      Profile" button.
+    </p>
+    <p>
+      If you wish to log out, you can do so by clicking the "Logout" button
+      below.
+    </p>
 
-  <h2>Profile</h2>
-  <img
-    [src]="user.photoURL || 'https://via.placeholder.com/150'"
-    alt="Profile Photo"
-  />
-  <form (ngSubmit)="updateProfile()">
-    <label for="displayName">Display Name:</label>
-    <input
-      type="text"
-      id="displayName"
-      [(ngModel)]="displayName"
-      name="displayName"
+    <h2>Profile</h2>
+    <img
+      [src]="user.photoURL || 'https://via.placeholder.com/150'"
+      alt="Profile Photo"
     />
+    <form (ngSubmit)="updateProfile()">
+      <label for="displayName">Display Name:</label>
+      <input
+        type="text"
+        id="displayName"
+        [(ngModel)]="displayName"
+        name="displayName"
+      />
 
-    <label for="photoURL">Photo URL:</label>
-    <input type="text" id="photoURL" [(ngModel)]="photoURL" name="photoURL" />
+      <label for="photoURL">Photo URL:</label>
+      <input type="text" id="photoURL" [(ngModel)]="photoURL" name="photoURL" />
 
-    <button type="submit">Update Profile</button>
-  </form>
-  <button (click)="logout()">Logout</button>
+      <button type="submit">Update Profile</button>
+    </form>
+    <button (click)="logout()">Logout</button>
+  </div>
 </div>

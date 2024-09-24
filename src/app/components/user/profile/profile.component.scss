@@ -1,23 +1,38 @@
-$primary-color: #58a6ff; // Lighter blue for better contrast
-$secondary-color: #c9d1d9; // Light gray for text
-$background-color: #0d1117; // GitHub dark mode background
-$text-color: #c9d1d9; // Light gray for text
-$border-color: #30363d; // Darker border color
-$button-bg-color: #238636; // Darker green for buttons
-$button-text-color: #ffffff; // White text for buttons
+$primary-color: #58a6ff;
+$secondary-color: #c9d1d9;
+$background-color: #0d1117;
+$text-color: #c9d1d9;
+$border-color: #30363d;
+$button-bg-color: #238636;
+$button-text-color: #ffffff;
 
-:host {
+#profile-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  // min-height: 100vh;
+  // min-height: 100dvh;
+  margin-top: 100px;
+
+  @media (max-width: 400px) {
+    // margin: 120px 0;
+    padding: 0 10px;
+  }
+}
+
+.profile-container {
   display: block;
-  padding: 1.5rem; // Relative units for padding
+  padding: 1.5rem;
   background-color: $background-color;
   border: 1px solid $border-color;
-  border-radius: 0.5rem; // Relative units for border-radius
+  border-radius: 0.5rem;
   max-width: 100%;
-  margin: 1rem auto; // Relative units for margin
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); // Relative units for box-shadow
+  margin: 1rem auto;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 
   @media (min-width: 768px) {
-    padding: 2rem; // Increased padding for larger screens
+    padding: 2rem;
     max-width: 600px;
   }
 }
@@ -25,47 +40,47 @@ $button-text-color: #ffffff; // White text for buttons
 h1,
 h2 {
   color: $primary-color;
-  border-bottom: 0.125rem solid $border-color; // Relative units for border
+  border-bottom: 0.125rem solid $border-color;
   padding-bottom: 0.5rem;
-  margin-bottom: 1.25rem; // Relative units for margin-bottom
+  margin-bottom: 1.25rem;
 
   @media (min-width: 768px) {
-    margin-bottom: 1.5rem; // Increased margin-bottom for larger screens
+    margin-bottom: 1.5rem;
   }
 }
 
 p {
   color: $text-color;
-  margin-bottom: 1rem; // Relative units for margin-bottom
+  margin-bottom: 1rem;
 
   @media (min-width: 768px) {
-    margin-bottom: 1.25rem; // Increased margin-bottom for larger screens
+    margin-bottom: 1.25rem;
   }
 }
 
 img {
   display: block;
   border-radius: 50%;
-  margin: 0 auto 20px; // Default margin-bottom
+  margin: 0 auto 20px;
   border: 2px solid $border-color;
-  width: 120px; /* Default width */
-  height: 120px; /* Default height */
-  object-fit: cover; /* Ensures the image covers the area */
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
 
   @media (min-width: 768px) {
-    width: 150px; /* Increased width for larger screens */
-    height: 150px; /* Increased height for larger screens */
-    margin-bottom: 25px; // Increased margin-bottom for larger screens
+    width: 150px;
+    height: 150px;
+    margin-bottom: 25px;
   }
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 1rem; // Relative units for gap
+  gap: 1rem;
 
   @media (min-width: 768px) {
-    gap: 1.25rem; // Increased gap for larger screens
+    gap: 1.25rem;
   }
 
   label {
@@ -74,58 +89,58 @@ form {
   }
 
   input {
-    padding: 0.75rem; // Relative units for padding
+    padding: 0.75rem;
     border: 1px solid $border-color;
-    border-radius: 0.25rem; // Relative units for border-radius
+    border-radius: 0.25rem;
     font-size: 1rem;
-    background-color: #161b22; // Slightly lighter background for inputs
+    background-color: #161b22;
     color: $text-color;
-    box-shadow: inset 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1); // Added inner shadow
+    box-shadow: inset 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1);
 
     @media (min-width: 768px) {
-      padding: 0.875rem; // Increased padding for larger screens
+      padding: 0.875rem;
     }
   }
 
   button[type="submit"] {
     background-color: $button-bg-color;
     color: $button-text-color;
-    padding: 0.75rem 1rem; // Relative units for padding
+    padding: 0.75rem 1rem;
     border: none;
-    border-radius: 0.25rem; // Relative units for border-radius
+    border-radius: 0.25rem;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; // Added transform transition
+    transition: background-color 0.3s, transform 0.2s;
 
     @media (min-width: 768px) {
-      padding: 0.875rem 1.125rem; // Increased padding for larger screens
+      padding: 0.875rem 1.125rem;
     }
 
     &:hover {
       background-color: darken($button-bg-color, 10%);
-      transform: translateY(-0.125rem); // Added hover effect
+      transform: translateY(-0.125rem);
     }
   }
 }
 
 button {
-  background-color: #161b22; // Slightly lighter background for buttons
+  background-color: #161b22;
   color: $text-color;
-  padding: 0.75rem 1rem; // Relative units for padding
+  padding: 0.75rem 1rem;
   border: none;
-  border-radius: 0.25rem; // Relative units for border-radius
+  border-radius: 0.25rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s; // Added transform transition
-  margin-top: 1.25rem; // Relative units for margin-top
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 1.25rem;
 
   @media (min-width: 768px) {
-    padding: 0.875rem 1.125rem; // Increased padding for larger screens
-    margin-top: 1.5rem; // Increased margin-top for larger screens
+    padding: 0.875rem 1.125rem;
+    margin-top: 1.5rem;
   }
 
   &:hover {
     background-color: lighten(#161b22, 10%);
-    transform: translateY(-0.125rem); // Added hover effect
+    transform: translateY(-0.125rem);
   }
 }
