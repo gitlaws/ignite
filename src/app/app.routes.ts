@@ -31,5 +31,12 @@ export const routes: Routes = [
         (m) => m.ProfileComponent
       ),
   },
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import(
+        './components/auth/forgot-password/forgot-password.component'
+      ).then((m) => m.ForgotPasswordComponent),
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
