@@ -3,6 +3,7 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendEmailVerification,
   updateProfile,
   signOut,
   authState,
@@ -17,7 +18,11 @@ export class AuthService {
   constructor(private auth: Auth) {}
 
   register(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+    return createUserWithEmailAndPassword(this.auth, email, password).then(
+      (userCredential) => {
+        return sendEmailVerification(userCredential.user);
+      }
+    );
   }
 
   login(email: string, password: string) {
