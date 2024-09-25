@@ -35,17 +35,19 @@
         placeholder="Photo URL"
       />
       <label for="profilePicture">Upload Profile Picture:</label>
-      <input
-        type="file"
-        id="profilePicture"
-        (change)="onFileSelected($event)"
-      />
       <div
         id="drop-zone"
         (dragover)="onDragOver($event)"
         (drop)="onDrop($event)"
+        (click)="triggerFileInput()"
       >
-        Drag and drop your profile picture here
+        Drag and drop your profile picture here or click to select
+        <input
+          type="file"
+          id="profilePicture"
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
       </div>
       <button type="submit">Update Profile</button>
     </form>

@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { User } from 'firebase/auth';
@@ -24,6 +30,8 @@ export class ProfileComponent implements OnInit {
   photoURL: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
 
+  @ViewChild('profilePictureInput') profilePictureInput!: ElementRef;
+
   constructor(
     private authService: AuthService,
     private cdr: ChangeDetectorRef,
@@ -41,6 +49,10 @@ export class ProfileComponent implements OnInit {
         console.error('User is null');
       }
     });
+  }
+
+  triggerFileInput(): void {
+    this.profilePictureInput.nativeElement.click();
   }
 
   onFileSelected(event: Event): void {
@@ -73,6 +85,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
   async updateProfile() {
     try {
       let photoURL = this.user?.photoURL || '';
@@ -89,10 +105,6 @@ export class ProfileComponent implements OnInit {
     } catch (error) {
       console.error('Update profile error', error);
     }
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
   }
 
   logout() {
