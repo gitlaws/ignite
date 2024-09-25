@@ -32,7 +32,7 @@
         [(ngModel)]="photoURL"
         name="photoURL"
         title="Enter the URL of your profile photo"
-        placeholder="Photo URL"
+        placeholder="Paste Photo URL"
       />
       <label for="profilePicture">Upload Profile Picture:</label>
       <div
@@ -46,6 +46,7 @@
           type="file"
           id="profilePicture"
           (change)="onFileSelected($event)"
+          #profilePictureInput
         />
       </div>
       <button type="submit">Update Profile</button>

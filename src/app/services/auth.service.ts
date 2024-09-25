@@ -29,15 +29,15 @@ export class AuthService {
   user$: Observable<User | null>;
 
   constructor(private auth: Auth, private snackbarService: SnackbarService) {
-    this.auth.setPersistence(browserLocalPersistence); // Set persistence to local
-    this.user$ = authState(this.auth); // Observable to track auth state
+    this.auth.setPersistence(browserLocalPersistence);
+    this.user$ = authState(this.auth);
   }
 
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password).then(
       (userCredential) => {
         return sendEmailVerification(userCredential.user).then(() => {
-          this.authenticated = true; // Set authenticated to true after email verification
+          this.authenticated = true;
         });
       }
     );
@@ -45,7 +45,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return signInWithEmailAndPassword(this.auth, email, password).then(() => {
-      this.authenticated = true; // Set authenticated to true after login
+      this.authenticated = true;
     });
   }
 
@@ -84,7 +84,7 @@ export class AuthService {
 
   async logout(): Promise<void> {
     await signOut(this.auth);
-    this.authenticated = false; // Set authenticated to false after logout
+    this.authenticated = false;
     this.snackbarService.callSnackbar('You have been logged out');
   }
 

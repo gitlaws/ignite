@@ -10,12 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { User } from 'firebase/auth';
 import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-profile',
@@ -45,7 +39,6 @@ export class ProfileComponent implements OnInit {
         this.displayName = user.displayName || '';
         this.photoURL = user.photoURL || '';
       } else {
-        // Handle the case where user is null
         console.error('User is null');
       }
     });
@@ -63,7 +56,7 @@ export class ProfileComponent implements OnInit {
       reader.onload = (e) => {
         if (e.target?.result !== undefined) {
           this.photoURL = e.target.result;
-          this.cdr.detectChanges(); // Trigger change detection to update the view
+          this.cdr.detectChanges();
         }
       };
       reader.readAsDataURL(this.selectedFile);
@@ -78,7 +71,7 @@ export class ProfileComponent implements OnInit {
       reader.onload = (e: any) => {
         if (e.target.result !== undefined) {
           this.photoURL = e.target.result;
-          this.cdr.detectChanges(); // Trigger change detection to update the view
+          this.cdr.detectChanges();
         }
       };
       reader.readAsDataURL(this.selectedFile);
@@ -93,15 +86,14 @@ export class ProfileComponent implements OnInit {
     try {
       let photoURL = this.user?.photoURL || '';
       if (this.selectedFile) {
-        const storage = getStorage();
-        const storageRef = ref(storage, `profile_pictures/${this.user?.uid}`);
-        await uploadBytes(storageRef, this.selectedFile);
-        photoURL = await getDownloadURL(storageRef);
+        photoURL = await this.authService.uploadProfilePicture(
+          this.selectedFile
+        );
       }
 
       await this.authService.updateProfile(this.displayName, photoURL);
-      this.cdr.detectChanges(); // Trigger change detection to update the view
-      this.router.navigate(['/profile']); // Redirect to profile page
+      this.cdr.detectChanges();
+      this.router.navigate(['/profile']);
     } catch (error) {
       console.error('Update profile error', error);
     }
