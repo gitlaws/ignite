@@ -34,43 +34,6 @@ $button-text-color: #ffffff;
   }
 }
 
-.profile-columns {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-}
-
-.left-column,
-.right-column {
-  flex: 1;
-  padding: 10px;
-  background-color: #161b22;
-  border-radius: 6px;
-  border: 1px solid $border-color;
-  margin-bottom: 1rem;
-}
-
-.left-column {
-  max-width: 40%;
-  text-align: center;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-  }
-}
-
-.right-column {
-  max-width: 60%;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-  }
-}
-
 h1,
 h2 {
   color: $primary-color;
@@ -156,19 +119,20 @@ form {
     border-radius: 6px;
     margin-bottom: 1rem;
     width: 100%;
-  }
+    display: none; // Hide the file input
 
-  input[type="file"]::file-selector-button {
-    background-color: $button-bg-color;
-    color: $button-text-color;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-  }
+    &::file-selector-button {
+      background-color: $button-bg-color;
+      color: $button-text-color;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
 
-  input[type="file"]::file-selector-button:hover {
-    background-color: darken($button-bg-color, 10%);
+    &::file-selector-button:hover {
+      background-color: darken($button-bg-color, 10%);
+    }
   }
 
   button[type="submit"] {
