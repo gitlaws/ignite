@@ -11,7 +11,7 @@ import { User } from 'firebase/auth';
 import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
 import { SnackbarService } from '../../../services/snackbar.service';
-import { SnackbarComponent } from '../../common/snackbar/snackbar.component'; // Import SnackbarService
+import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-profile',
@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private snackbarService: SnackbarService // Inject SnackbarService
+    private snackbarService: SnackbarService
   ) {}
 
   ngOnInit() {
@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
 
   async updateProfile() {
     try {
-      let photoURL = this.photoURL; // Use the current photoURL
+      let photoURL = this.photoURL;
       let changesMade = false;
 
       if (this.selectedFile) {
@@ -118,7 +118,7 @@ export class ProfileComponent implements OnInit {
       ) {
         await this.authService.updateProfile(this.displayName, photoURL);
         this.cdr.detectChanges();
-        this.snackbarService.callSnackbar('Profile updated successfully'); // Show snackbar
+        this.snackbarService.callSnackbar('Profile updated successfully');
         this.router.navigate(['/profile']);
         changesMade = true;
       }
@@ -128,7 +128,7 @@ export class ProfileComponent implements OnInit {
       }
     } catch (error) {
       console.error('Update profile error', error);
-      this.snackbarService.callSnackbar('Failed to update profile'); // Show error snackbar
+      this.snackbarService.callSnackbar('Failed to update profile');
     }
   }
 

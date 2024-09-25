@@ -55,19 +55,61 @@ p {
   }
 }
 
-img {
-  display: block;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  border: 2px solid $border-color;
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
+.profile-photo-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 
-  @media (min-width: 768px) {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 25px;
+  img {
+    display: block;
+    border-radius: 50%;
+    border: 2px solid $border-color;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out; // Fade-in effect
+
+    @media (min-width: 768px) {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 25px;
+    }
+  }
+
+  .remove-photo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // background-color: rgba(36, 41, 46, 0.8); // Dark background with opacity
+    color: $button-text-color;
+    padding: 0.25rem 0.5rem; // Smaller padding
+    border-radius: 0.25rem; // Slight border radius
+    font-size: 0.875rem; // Smaller font size
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background-color 0.3s;
+
+    &:hover {
+      background-color: rgba(36, 41, 46, 1); // Slightly darker on hover
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0.25rem rgba(36, 41, 46, 0.5);
+    }
+  }
+
+  img:hover + .remove-photo-overlay,
+  .remove-photo-overlay:hover {
+    opacity: 1; // Ensure the overlay remains visible on hover
+  }
+
+  img:hover,
+  .remove-photo-overlay:hover + img {
+    opacity: 0.7; // Maintain image opacity when hovering over the overlay
   }
 }
 
@@ -207,32 +249,5 @@ button {
     outline: none;
     border-color: $primary-color;
     box-shadow: 0 0 0.25rem rgba($primary-color, 0.5);
-  }
-}
-
-button.remove-photo {
-  background-color: #ff4d4d;
-  color: $button-text-color;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  margin-top: 1rem;
-
-  @media (min-width: 768px) {
-    padding: 0.875rem 1.125rem;
-    margin-top: 1.25rem;
-  }
-
-  &:hover {
-    background-color: darken(#ff4d4d, 10%);
-    transform: translateY(-0.125rem);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0.25rem rgba(#ff4d4d, 0.5);
   }
 }
