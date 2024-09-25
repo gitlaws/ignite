@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   user: User | null = null;
   displayName: string = '';
   photoURL: string | null = '';
-  selectedFile: File | null = null; // Add this property
+  selectedFile: File | null = null;
 
   @ViewChild('profilePictureInput') profilePictureInput!: ElementRef;
 
@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
       reader.onload = (e) => {
         if (e.target?.result !== undefined) {
           this.photoURL = e.target.result as string;
-          this.cdr.detectChanges(); // Trigger change detection to update the view
+          this.cdr.detectChanges();
         }
       };
       reader.readAsDataURL(this.selectedFile);
@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
       reader.onload = (e: any) => {
         if (e.target.result !== undefined) {
           this.photoURL = e.target.result;
-          this.cdr.detectChanges(); // Trigger change detection to update the view
+          this.cdr.detectChanges();
         }
       };
       reader.readAsDataURL(this.selectedFile);
@@ -90,8 +90,8 @@ export class ProfileComponent implements OnInit {
       }
 
       await this.authService.updateProfile(this.displayName, photoURL);
-      this.cdr.detectChanges(); // Trigger change detection to update the view
-      this.router.navigate(['/profile']); // Redirect to profile page
+      this.cdr.detectChanges();
+      this.router.navigate(['/profile']);
     } catch (error) {
       console.error('Update profile error', error);
     }
