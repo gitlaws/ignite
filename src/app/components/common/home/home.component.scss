@@ -3,6 +3,39 @@ $home-secondary-color: #58a6ff;
 $home-background-color: #0d1117;
 $home-text-color: #c9d1d9;
 $home-contrast-background-color: #161b22;
+$font-family: "Arial, sans-serif";
+
+#home-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 100px; // Ensure at least 100px below the toolbar
+
+  @media (max-width: 400px) {
+    margin: 120px 0 0 0; // Ensure at least 100px below the toolbar
+    padding: 0 10px;
+  }
+
+  @media (min-width: 401px) and (max-width: 768px) {
+    margin: 150px 0 0 0; // Adjust for tablet
+    padding: 0 20px;
+    // min-height: 100dvh;
+  }
+
+  @media (min-width: 769px) {
+    margin: 120px 0 0 0; // Adjust for desktop
+    // min-height: 100dvh;
+    padding: 0 30px;
+  }
+}
+
+section {
+  font-family: $font-family;
+  background-color: $home-background-color;
+  color: $home-text-color;
+  margin: 0;
+  padding: 0;
+}
 
 .category-container {
   background: $home-background-color;
@@ -11,7 +44,8 @@ $home-contrast-background-color: #161b22;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  // min-height: 100vh;
+  // min-height: 100dvh;
 }
 
 .placeholder-header h2 {
@@ -21,6 +55,7 @@ $home-contrast-background-color: #161b22;
   color: $home-text-color;
   font-weight: 700;
   text-transform: uppercase;
+  margin: 0 0 20px;
 }
 
 .placeholder-content p {
@@ -76,6 +111,24 @@ $home-contrast-background-color: #161b22;
   &:hover {
     background-color: darken($home-primary-color, 10%);
     transform: translateY(-2px);
+  }
+}
+
+@media (min-width: 480px) {
+  .category-container {
+    padding: 30px;
+  }
+
+  .placeholder-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .placeholder-content p {
+    font-size: 1.1rem;
+  }
+
+  .cta-button {
+    padding: 13px 26px;
   }
 }
 
