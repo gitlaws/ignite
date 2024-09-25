@@ -40,6 +40,13 @@
         id="profilePicture"
         (change)="onFileSelected($event)"
       />
+      <div
+        id="drop-zone"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event)"
+      >
+        Drag and drop your profile picture here
+      </div>
       <button type="button" (click)="uploadProfilePicture()">
         Upload Profile Picture
       </button>

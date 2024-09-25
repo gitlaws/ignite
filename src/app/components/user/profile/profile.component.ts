@@ -43,6 +43,17 @@ export class ProfileComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+      this.selectedFile = event.dataTransfer.files[0];
+    }
+  }
+
   uploadProfilePicture() {
     if (this.selectedFile) {
       this.authService
