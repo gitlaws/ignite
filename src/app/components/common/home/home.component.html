@@ -96,14 +96,11 @@
           <div id="button-wrapper">
             <button
               class="cta-button register-button"
-              onclick="window.location.href='/register'"
+              [routerLink]="['/register']"
             >
               Register
             </button>
-            <button
-              class="cta-button login-button"
-              onclick="window.location.href='/login'"
-            >
+            <button class="cta-button login-button" [routerLink]="['/login']">
               Login
             </button>
           </div>
