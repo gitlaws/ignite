@@ -166,6 +166,11 @@ form {
       outline: none;
       box-shadow: 0 0 0.25rem rgba($button-bg-color, 0.5);
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6; /* Adjust the opacity to indicate the button is disabled */
+    }
   }
 }
 

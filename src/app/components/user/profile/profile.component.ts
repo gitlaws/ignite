@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   displayName: string = '';
   photoURL: string | null = '';
   selectedFile: File | null = null;
-
+  isChanged: boolean = false;
   initialDisplayName: string = '';
   initialPhotoURL: string | null = '';
 
@@ -69,6 +69,7 @@ export class ProfileComponent implements OnInit {
         if (e.target?.result !== undefined) {
           this.photoURL = e.target.result as string;
           this.cdr.detectChanges();
+          this.checkForChanges();
         }
       };
       reader.readAsDataURL(this.selectedFile);
@@ -84,6 +85,7 @@ export class ProfileComponent implements OnInit {
         if (e.target.result !== undefined) {
           this.photoURL = e.target.result;
           this.cdr.detectChanges();
+          this.checkForChanges();
         }
       };
       reader.readAsDataURL(this.selectedFile);
@@ -98,6 +100,7 @@ export class ProfileComponent implements OnInit {
     this.photoURL = null;
     this.selectedFile = null;
     this.cdr.detectChanges();
+    this.checkForChanges();
   }
 
   async updateProfile() {
@@ -126,10 +129,25 @@ export class ProfileComponent implements OnInit {
       if (!changesMade) {
         this.snackbarService.callSnackbar('No changes to update');
       }
+
+      this.isChanged = false;
+      this.initialDisplayName = this.displayName;
+      this.initialPhotoURL = this.photoURL;
     } catch (error) {
       console.error('Update profile error', error);
       this.snackbarService.callSnackbar('Failed to update profile');
     }
+  }
+
+  onFieldChange() {
+    this.checkForChanges();
+  }
+
+  checkForChanges() {
+    this.isChanged =
+      this.displayName !== this.initialDisplayName ||
+      this.photoURL !== this.initialPhotoURL ||
+      !!this.selectedFile;
   }
 
   logout() {

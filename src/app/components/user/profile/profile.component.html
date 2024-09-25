@@ -26,6 +26,7 @@
         name="displayName"
         title="Enter your display name"
         placeholder="Display Name"
+        (ngModelChange)="onFieldChange()"
       />
       <label for="photoURL">Photo URL:</label>
       <input
@@ -35,6 +36,7 @@
         name="photoURL"
         title="Enter the URL of your profile photo"
         placeholder="Paste Photo URL"
+        (ngModelChange)="onFieldChange()"
       />
       <label for="profilePicture">Upload Profile Picture:</label>
       <div
@@ -51,7 +53,13 @@
           #profilePictureInput
         />
       </div>
-      <button type="submit">Update Profile</button>
+      <button
+        type="submit"
+        [disabled]="!isChanged"
+        [title]="isChanged ? '' : 'No changes to update'"
+      >
+        Update Profile
+      </button>
     </form>
     <button (click)="logout()">Logout</button>
   </div>
