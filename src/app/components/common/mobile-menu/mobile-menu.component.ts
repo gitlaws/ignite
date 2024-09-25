@@ -1,14 +1,14 @@
+import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
-import { AuthService } from '../../../services/auth.service'; // Adjust the path as necessary
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-mobile-menu',
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './mobile-menu.component.html',
-  styleUrl: './mobile-menu.component.scss',
+  styleUrls: ['./mobile-menu.component.scss'],
 })
 export class MobileMenuComponent implements OnInit, OnDestroy {
   isMenuOpen = false;
