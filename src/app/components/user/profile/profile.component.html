@@ -13,20 +13,22 @@
     <h2>Profile</h2>
     <div class="profile-photo-container">
       <img
-        [src]="photoURL || 'https://via.placeholder.com/150'"
+        [src]="
+          profileForm.get('photoURL')?.value ||
+          'https://via.placeholder.com/150'
+        "
         alt="Profile Photo"
       />
       <div class="remove-photo-overlay" (click)="removePhoto()">
         Remove Photo
       </div>
     </div>
-    <form (ngSubmit)="updateProfile()">
+    <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
       <label for="displayName">Display Name:</label>
       <input
         type="text"
         id="displayName"
-        [(ngModel)]="displayName"
-        name="displayName"
+        formControlName="displayName"
         title="Enter your display name"
         placeholder="Display Name"
       />
@@ -34,8 +36,7 @@
       <input
         type="text"
         id="photoURL"
-        [(ngModel)]="photoURL"
-        name="photoURL"
+        formControlName="photoURL"
         title="Enter the URL of your profile photo"
         placeholder="Paste Photo URL"
       />
@@ -59,5 +60,4 @@
     <button (click)="logout()">Logout</button>
   </div>
   <app-snackbar></app-snackbar>
-  <!-- Include SnackbarComponent -->
 </div>

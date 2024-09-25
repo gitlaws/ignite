@@ -24,7 +24,6 @@ import { SnackbarService } from './snackbar.service';
   providedIn: 'root',
 })
 export class AuthService {
-  private authenticated = false;
   private storage = getStorage();
   user$: Observable<User | null>;
 
@@ -36,21 +35,13 @@ export class AuthService {
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password).then(
       (userCredential) => {
-        return sendEmailVerification(userCredential.user).then(() => {
-          this.authenticated = true;
-        });
+        return sendEmailVerification(userCredential.user);
       }
     );
   }
 
   login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password).then(() => {
-      this.authenticated = true;
-    });
-  }
-
-  isAuthenticated(): boolean {
-    return this.authenticated;
+    return signInWithEmailAndPassword(this.auth, email, password);
   }
 
   getUser(): Observable<User | null> {
@@ -84,7 +75,6 @@ export class AuthService {
 
   async logout(): Promise<void> {
     await signOut(this.auth);
-    this.authenticated = false;
     this.snackbarService.callSnackbar('You have been logged out');
   }
 
