@@ -10,6 +10,12 @@ import {
   sendEmailVerification,
   authState,
 } from '@angular/fire/auth';
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { SnackbarService } from './snackbar.service';
 
@@ -18,6 +24,7 @@ import { SnackbarService } from './snackbar.service';
 })
 export class AuthService {
   private authenticated = false;
+  private storage = getStorage();
 
   constructor(private auth: Auth, private snackbarService: SnackbarService) {}
 
@@ -52,6 +59,18 @@ export class AuthService {
     } else {
       return Promise.reject('No user is currently logged in');
     }
+  }
+
+  uploadProfilePicture(file: File): Promise<string> {
+    const user = this.auth.currentUser;
+    if (!user) {
+      return Promise.reject('No user is currently logged in');
+    }
+
+    const storageRef = ref(this.storage, `profile_pictures/${user.uid}`);
+    return uploadBytes(storageRef, file).then(() => {
+      return getDownloadURL(storageRef);
+    });
   }
 
   logout(): Promise<void> {

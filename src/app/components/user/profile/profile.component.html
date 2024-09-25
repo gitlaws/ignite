@@ -34,10 +34,17 @@
         title="Enter the URL of your profile photo"
         placeholder="Photo URL"
       />
+      <label for="profilePicture">Upload Profile Picture:</label>
+      <input
+        type="file"
+        id="profilePicture"
+        (change)="onFileSelected($event)"
+      />
+      <button type="button" (click)="uploadProfilePicture()">
+        Upload Profile Picture
+      </button>
       <button type="submit">Update Profile</button>
     </form>
-
     <button (click)="logout()">Logout</button>
   </div>
-
- 
+</div>

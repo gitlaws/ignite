@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { User } from 'firebase/auth'; // Correct import for User type
+import { User } from 'firebase/auth';
 import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   user: User | null = null;
   displayName!: string;
   photoURL!: string;
+  selectedFile: File | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -30,12 +31,29 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadProfilePicture() {
+    if (this.selectedFile) {
+      this.authService
+        .uploadProfilePicture(this.selectedFile)
+        .then((url) => {
+          this.photoURL = url;
+          this.updateProfile();
+        })
+        .catch((error) => {
+          console.error('Upload profile picture error', error);
+        });
+    }
+  }
+
   updateProfile() {
     this.authService
       .updateProfile(this.displayName, this.photoURL)
       .then(() => {
         if (this.user) {
-          // Create a new user object with updated properties
           this.user = {
             ...this.user,
             displayName: this.displayName,
