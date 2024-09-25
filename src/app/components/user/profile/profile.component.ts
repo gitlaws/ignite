@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { User } from 'firebase/auth';
@@ -10,7 +10,7 @@ import { RouterLink, RouterModule, Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink, RouterModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss',
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
   user: User | null = null;
@@ -18,7 +18,11 @@ export class ProfileComponent implements OnInit {
   photoURL!: string;
   selectedFile: File | null = null;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.authService.getUser().subscribe((user) => {
@@ -42,6 +46,7 @@ export class ProfileComponent implements OnInit {
         .then((url) => {
           this.photoURL = url;
           this.updateProfile();
+          this.cdr.detectChanges(); // Manually trigger change detection
         })
         .catch((error) => {
           console.error('Upload profile picture error', error);

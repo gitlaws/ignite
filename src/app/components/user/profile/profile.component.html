@@ -12,7 +12,7 @@
     </p>
     <h2>Profile</h2>
     <img
-      [src]="user.photoURL || 'https://via.placeholder.com/150'"
+      [src]="photoURL || 'https://via.placeholder.com/150'"
       alt="Profile Photo"
     />
     <form (ngSubmit)="updateProfile()">

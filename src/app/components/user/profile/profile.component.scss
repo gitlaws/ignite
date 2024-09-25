@@ -48,6 +48,10 @@ $button-text-color: #ffffff;
 .right-column {
   flex: 1;
   padding: 10px;
+  background-color: #161b22;
+  border-radius: 6px;
+  border: 1px solid $border-color;
+  margin-bottom: 1rem;
 }
 
 .left-column {
@@ -108,6 +112,10 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: #161b22;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid $border-color;
 
   @media (min-width: 768px) {
     gap: 1.25rem;
@@ -116,6 +124,8 @@ form {
   label {
     color: $text-color;
     font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
   }
 
   input {
@@ -136,6 +146,29 @@ form {
       border-color: $primary-color;
       box-shadow: 0 0 0.25rem rgba($primary-color, 0.5);
     }
+  }
+
+  input[type="file"] {
+    background-color: #21262d;
+    color: $text-color;
+    border: 1px solid $border-color;
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  input[type="file"]::file-selector-button {
+    background-color: $button-bg-color;
+    color: $button-text-color;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  input[type="file"]::file-selector-button:hover {
+    background-color: darken($button-bg-color, 10%);
   }
 
   button[type="submit"] {
