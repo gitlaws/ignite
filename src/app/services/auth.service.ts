@@ -45,6 +45,10 @@ export class AuthService {
     return authState(this.auth);
   }
 
+  getCurrentUserUid(): string | null {
+    return this.auth.currentUser ? this.auth.currentUser.uid : null;
+  }
+
   updateProfile(displayName: string, photoURL: string): Promise<void> {
     const user = this.auth.currentUser;
     if (user) {
