@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  User,
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,9 +10,7 @@ import {
   sendEmailVerification,
   authState,
 } from '@angular/fire/auth';
-import { User } from 'firebase/auth'; // Import User from firebase/auth
 import { Observable } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { SnackbarService } from './snackbar.service';
 
 @Injectable({
@@ -20,11 +19,7 @@ import { SnackbarService } from './snackbar.service';
 export class AuthService {
   private authenticated = false;
 
-  constructor(
-    private auth: Auth,
-    private afAuth: AngularFireAuth,
-    private snackbarService: SnackbarService
-  ) {}
+  constructor(private auth: Auth, private snackbarService: SnackbarService) {}
 
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password).then(
@@ -51,22 +46,12 @@ export class AuthService {
   }
 
   updateProfile(displayName: string, photoURL: string): Promise<void> {
-    const user = this.auth.currentUser as User | null;
+    const user = this.auth.currentUser;
     if (user) {
       return updateProfile(user, { displayName, photoURL });
     } else {
       return Promise.reject('No user is currently logged in');
     }
-  }
-
-  resetPassword(password: string): Promise<void> {
-    return this.afAuth.currentUser.then((user) => {
-      if (user) {
-        return user.updatePassword(password);
-      } else {
-        return Promise.reject('No user is currently signed in.');
-      }
-    });
   }
 
   logout(): Promise<void> {

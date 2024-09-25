@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit {
   user: User | null = null;
   displayName!: string;
   photoURL!: string;
-  password!: string;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -46,17 +45,6 @@ export class ProfileComponent implements OnInit {
       })
       .catch((error) => {
         console.error('Update profile error', error);
-      });
-  }
-
-  resetPassword() {
-    this.authService
-      .resetPassword(this.password)
-      .then(() => {
-        alert('Password reset successful');
-      })
-      .catch((error: Error) => {
-        console.error('Reset password error', error);
       });
   }
 
