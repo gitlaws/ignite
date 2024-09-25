@@ -21,8 +21,8 @@ import { RouterLink, RouterModule, Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   user: User | null = null;
   displayName: string = '';
-  photoURL: string | ArrayBuffer | null = null;
-  selectedFile: File | null = null;
+  photoURL: string | null = '';
+  selectedFile: File | null = null; // Add this property
 
   @ViewChild('profilePictureInput') profilePictureInput!: ElementRef;
 
@@ -32,14 +32,12 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.authService.getUser().subscribe((user) => {
       if (user) {
         this.user = user;
         this.displayName = user.displayName || '';
         this.photoURL = user.photoURL || '';
-      } else {
-        console.error('User is null');
       }
     });
   }
@@ -55,8 +53,8 @@ export class ProfileComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e) => {
         if (e.target?.result !== undefined) {
-          this.photoURL = e.target.result;
-          this.cdr.detectChanges();
+          this.photoURL = e.target.result as string;
+          this.cdr.detectChanges(); // Trigger change detection to update the view
         }
       };
       reader.readAsDataURL(this.selectedFile);
@@ -71,7 +69,7 @@ export class ProfileComponent implements OnInit {
       reader.onload = (e: any) => {
         if (e.target.result !== undefined) {
           this.photoURL = e.target.result;
-          this.cdr.detectChanges();
+          this.cdr.detectChanges(); // Trigger change detection to update the view
         }
       };
       reader.readAsDataURL(this.selectedFile);
@@ -92,8 +90,8 @@ export class ProfileComponent implements OnInit {
       }
 
       await this.authService.updateProfile(this.displayName, photoURL);
-      this.cdr.detectChanges();
-      this.router.navigate(['/profile']);
+      this.cdr.detectChanges(); // Trigger change detection to update the view
+      this.router.navigate(['/profile']); // Redirect to profile page
     } catch (error) {
       console.error('Update profile error', error);
     }
