@@ -16,9 +16,6 @@
         [src]="photoURL || 'https://via.placeholder.com/150'"
         alt="Profile Photo"
       />
-      <div class="remove-photo-overlay" (click)="removePhoto()">
-        Remove Photo
-      </div>
     </div>
     <form (ngSubmit)="updateProfile()">
       <label for="displayName">Display Name:</label>
@@ -59,5 +56,4 @@
     <button (click)="logout()">Logout</button>
   </div>
   <app-snackbar></app-snackbar>
-  <!-- Include SnackbarComponent -->
 </div>
