@@ -4,6 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { User } from 'firebase/auth';
 import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-profile',
@@ -14,37 +20,42 @@ import { RouterLink, RouterModule, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user: User | null = null;
-  displayName!: string;
-  photoURL!: string;
+  displayName: string = '';
+  photoURL: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authService.getUser().subscribe((user) => {
       if (user) {
         this.user = user;
         this.displayName = user.displayName || '';
         this.photoURL = user.photoURL || '';
-        if (!user.emailVerified) {
-          alert('Please verify your email to access your profile.');
-        }
       } else {
-        this.router.navigate(['/login']); // Redirect to login if no user
+        // Handle the case where user is null
+        console.error('User is null');
       }
     });
   }
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result !== undefined) {
+          this.photoURL = e.target.result;
+          this.cdr.detectChanges(); // Trigger change detection to update the view
+        }
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
   }
 
   onDrop(event: DragEvent) {
@@ -53,44 +64,35 @@ export class ProfileComponent implements OnInit {
       this.selectedFile = event.dataTransfer.files[0];
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.photoURL = e.target.result;
-        this.cdr.detectChanges(); // Trigger change detection to update the view
+        if (e.target.result !== undefined) {
+          this.photoURL = e.target.result;
+          this.cdr.detectChanges(); // Trigger change detection to update the view
+        }
       };
       reader.readAsDataURL(this.selectedFile);
     }
   }
 
-  uploadProfilePicture() {
-    if (this.selectedFile) {
-      this.authService
-        .uploadProfilePicture(this.selectedFile)
-        .then((url) => {
-          this.photoURL = url;
-          this.updateProfile();
-          this.cdr.detectChanges(); // Manually trigger change detection
-        })
-        .catch((error) => {
-          console.error('Upload profile picture error', error);
-        });
+  async updateProfile() {
+    try {
+      let photoURL = this.user?.photoURL || '';
+      if (this.selectedFile) {
+        const storage = getStorage();
+        const storageRef = ref(storage, `profile_pictures/${this.user?.uid}`);
+        await uploadBytes(storageRef, this.selectedFile);
+        photoURL = await getDownloadURL(storageRef);
+      }
+
+      await this.authService.updateProfile(this.displayName, photoURL);
+      this.cdr.detectChanges(); // Trigger change detection to update the view
+      this.router.navigate(['/profile']); // Redirect to profile page
+    } catch (error) {
+      console.error('Update profile error', error);
     }
   }
 
-  updateProfile() {
-    this.authService
-      .updateProfile(this.displayName, this.photoURL)
-      .then(() => {
-        if (this.user) {
-          this.user = {
-            ...this.user,
-            displayName: this.displayName,
-            photoURL: this.photoURL,
-          };
-          this.cdr.detectChanges(); // Manually trigger change detection
-        }
-      })
-      .catch((error) => {
-        console.error('Update profile error', error);
-      });
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
   }
 
   logout() {

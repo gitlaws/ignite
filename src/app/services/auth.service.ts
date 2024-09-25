@@ -57,12 +57,16 @@ export class AuthService {
     return this.user$;
   }
 
-  updateProfile(displayName: string, photoURL: string): Promise<void> {
+  async updateProfile(
+    displayName: string,
+    photoURL: string | null
+  ): Promise<void> {
     const user = this.auth.currentUser;
     if (user) {
-      return updateProfile(user, { displayName, photoURL });
+      await updateProfile(user, { displayName, photoURL });
+      this.snackbarService.callSnackbar('Profile updated successfully');
     } else {
-      return Promise.reject('No user is currently logged in');
+      throw new Error('No user is currently signed in');
     }
   }
 
@@ -78,11 +82,10 @@ export class AuthService {
     });
   }
 
-  logout(): Promise<void> {
-    return signOut(this.auth).then(() => {
-      this.authenticated = false; // Set authenticated to false after logout
-      this.snackbarService.callSnackbar('You have been logged out');
-    });
+  async logout(): Promise<void> {
+    await signOut(this.auth);
+    this.authenticated = false; // Set authenticated to false after logout
+    this.snackbarService.callSnackbar('You have been logged out');
   }
 
   sendPasswordResetEmail(email: string) {
