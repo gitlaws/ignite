@@ -69,47 +69,13 @@ p {
     width: 120px;
     height: 120px;
     object-fit: cover;
-    transition: opacity 0.3s ease-in-out; // Fade-in effect
+    transition: opacity 0.3s ease-in-out;
 
     @media (min-width: 768px) {
       width: 150px;
       height: 150px;
-      margin-bottom: 25px;
+      margin-bottom: 10px;
     }
-  }
-
-  .remove-photo-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    // background-color: rgba(36, 41, 46, 0.8); // Dark background with opacity
-    color: $button-text-color;
-    padding: 0.25rem 0.5rem; // Smaller padding
-    border-radius: 0.25rem; // Slight border radius
-    font-size: 0.875rem; // Smaller font size
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s, background-color 0.3s;
-
-    &:hover {
-      background-color: rgba(36, 41, 46, 1); // Slightly darker on hover
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0.25rem rgba(36, 41, 46, 0.5);
-    }
-  }
-
-  img:hover + .remove-photo-overlay,
-  .remove-photo-overlay:hover {
-    opacity: 1; // Ensure the overlay remains visible on hover
-  }
-
-  img:hover,
-  .remove-photo-overlay:hover + img {
-    opacity: 0.7; // Maintain image opacity when hovering over the overlay
   }
 }
 
@@ -161,7 +127,7 @@ form {
     border-radius: 6px;
     margin-bottom: 1rem;
     width: 100%;
-    display: none; // Hide the file input
+    display: none;
 
     &::file-selector-button {
       background-color: $button-bg-color;
