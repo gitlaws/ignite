@@ -10,11 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { User } from 'firebase/auth';
 import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
+import { SnackbarService } from '../../../services/snackbar.service';
+import { SnackbarComponent } from '../../common/snackbar/snackbar.component'; // Import SnackbarService
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    RouterModule,
+    SnackbarComponent,
+  ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
@@ -24,12 +32,16 @@ export class ProfileComponent implements OnInit {
   photoURL: string | null = '';
   selectedFile: File | null = null;
 
+  initialDisplayName: string = '';
+  initialPhotoURL: string | null = '';
+
   @ViewChild('profilePictureInput') profilePictureInput!: ElementRef;
 
   constructor(
     private authService: AuthService,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private snackbarService: SnackbarService // Inject SnackbarService
   ) {}
 
   ngOnInit() {
@@ -38,6 +50,8 @@ export class ProfileComponent implements OnInit {
         this.user = user;
         this.displayName = user.displayName || '';
         this.photoURL = user.photoURL || '';
+        this.initialDisplayName = this.displayName;
+        this.initialPhotoURL = this.photoURL;
       }
     });
   }
@@ -82,18 +96,33 @@ export class ProfileComponent implements OnInit {
 
   async updateProfile() {
     try {
-      let photoURL = this.user?.photoURL || '';
+      let photoURL = this.photoURL; // Use the current photoURL
+      let changesMade = false;
+
       if (this.selectedFile) {
         photoURL = await this.authService.uploadProfilePicture(
           this.selectedFile
         );
+        changesMade = true;
       }
 
-      await this.authService.updateProfile(this.displayName, photoURL);
-      this.cdr.detectChanges();
-      this.router.navigate(['/profile']);
+      if (
+        this.displayName !== this.initialDisplayName ||
+        photoURL !== this.initialPhotoURL
+      ) {
+        await this.authService.updateProfile(this.displayName, photoURL);
+        this.cdr.detectChanges();
+        this.snackbarService.callSnackbar('Profile updated successfully'); // Show snackbar
+        this.router.navigate(['/profile']);
+        changesMade = true;
+      }
+
+      if (!changesMade) {
+        this.snackbarService.callSnackbar('No changes to update');
+      }
     } catch (error) {
       console.error('Update profile error', error);
+      this.snackbarService.callSnackbar('Failed to update profile'); // Show error snackbar
     }
   }
 
