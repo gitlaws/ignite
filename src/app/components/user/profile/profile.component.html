@@ -39,20 +39,7 @@
         (ngModelChange)="onFieldChange()"
       />
       <label for="profilePicture">Upload Profile Picture:</label>
-      <div
-        id="drop-zone"
-        (dragover)="onDragOver($event)"
-        (drop)="onDrop($event)"
-        (click)="triggerFileInput()"
-      >
-        Drag and drop your profile picture here or click to select
-        <input
-          type="file"
-          id="profilePicture"
-          (change)="onFileSelected($event)"
-          #profilePictureInput
-        />
-      </div>
+      <app-drop-zone (fileSelected)="onFileSelected($event)"></app-drop-zone>
     </form>
     <!-- <div class="button-container">
       <button (click)="logout()">Logout</button>

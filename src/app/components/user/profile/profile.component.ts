@@ -12,6 +12,7 @@ import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
+import { DropZoneComponent } from './drop-zone/drop-zone.component';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +23,7 @@ import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
     RouterLink,
     RouterModule,
     SnackbarComponent,
+    DropZoneComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
@@ -56,44 +58,21 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  onFileSelected(file: File): void {
+    this.selectedFile = file;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (e.target?.result !== undefined) {
+        this.photoURL = e.target.result as string;
+        this.cdr.detectChanges();
+        this.checkForChanges();
+      }
+    };
+    reader.readAsDataURL(this.selectedFile);
+  }
+
   triggerFileInput(): void {
     this.profilePictureInput.nativeElement.click();
-  }
-
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      this.selectedFile = input.files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target?.result !== undefined) {
-          this.photoURL = e.target.result as string;
-          this.cdr.detectChanges();
-          this.checkForChanges();
-        }
-      };
-      reader.readAsDataURL(this.selectedFile);
-    }
-  }
-
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-      this.selectedFile = event.dataTransfer.files[0];
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        if (e.target.result !== undefined) {
-          this.photoURL = e.target.result;
-          this.cdr.detectChanges();
-          this.checkForChanges();
-        }
-      };
-      reader.readAsDataURL(this.selectedFile);
-    }
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
   }
 
   removePhoto(): void {
