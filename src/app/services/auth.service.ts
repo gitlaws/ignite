@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
-  User,
   Auth,
+  authState,
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
   sendPasswordResetEmail,
-  sendEmailVerification,
-  authState,
+  User,
 } from '@angular/fire/auth';
 import {
   getStorage,
@@ -25,8 +26,12 @@ import { SnackbarService } from './snackbar.service';
 export class AuthService {
   private authenticated = false;
   private storage = getStorage();
+  user$: Observable<User | null>;
 
-  constructor(private auth: Auth, private snackbarService: SnackbarService) {}
+  constructor(private auth: Auth, private snackbarService: SnackbarService) {
+    this.auth.setPersistence(browserLocalPersistence); // Set persistence to local
+    this.user$ = authState(this.auth); // Observable to track auth state
+  }
 
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password).then(
@@ -49,7 +54,7 @@ export class AuthService {
   }
 
   getUser(): Observable<User | null> {
-    return authState(this.auth);
+    return this.user$;
   }
 
   updateProfile(displayName: string, photoURL: string): Promise<void> {

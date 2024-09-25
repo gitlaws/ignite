@@ -26,11 +26,15 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getUser().subscribe((user) => {
-      this.user = user;
-      this.displayName = user?.displayName || '';
-      this.photoURL = user?.photoURL || '';
-      if (user && !user.emailVerified) {
-        alert('Please verify your email to access your profile.');
+      if (user) {
+        this.user = user;
+        this.displayName = user.displayName || '';
+        this.photoURL = user.photoURL || '';
+        if (!user.emailVerified) {
+          alert('Please verify your email to access your profile.');
+        }
+      } else {
+        this.router.navigate(['/login']); // Redirect to login if no user
       }
     });
   }
