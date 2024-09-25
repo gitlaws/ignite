@@ -40,12 +40,4 @@
     <button (click)="logout()">Logout</button>
   </div>
 
-  <div class="profile">
-    <h2>Profile</h2>
-    <input type="file" (change)="uploadFile($event)" title="Upload a file" />
-    <div *ngIf="uploadPercent | async as percent">
-      Upload Progress: {{ percent }}%
-    </div>
-    <img *ngIf="downloadURL | async as url" [src]="url" alt="Uploaded File" />
-  </div>
-</div>
+ 
