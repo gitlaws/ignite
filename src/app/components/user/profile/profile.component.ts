@@ -51,6 +51,12 @@ export class ProfileComponent implements OnInit {
     event.preventDefault();
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.photoURL = e.target.result;
+        this.cdr.detectChanges(); // Trigger change detection to update the view
+      };
+      reader.readAsDataURL(this.selectedFile);
     }
   }
 
