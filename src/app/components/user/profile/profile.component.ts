@@ -64,6 +64,7 @@ export class ProfileComponent implements OnInit {
             displayName: this.displayName,
             photoURL: this.photoURL,
           };
+          this.cdr.detectChanges(); // Manually trigger change detection
         }
       })
       .catch((error) => {
