@@ -94,6 +94,12 @@ export class ProfileComponent implements OnInit {
     event.preventDefault();
   }
 
+  removePhoto(): void {
+    this.photoURL = null;
+    this.selectedFile = null;
+    this.cdr.detectChanges();
+  }
+
   async updateProfile() {
     try {
       let photoURL = this.photoURL; // Use the current photoURL
