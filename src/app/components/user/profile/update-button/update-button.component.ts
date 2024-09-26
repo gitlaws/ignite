@@ -10,6 +10,7 @@ export class UpdateButtonComponent {
   @Input() user: any;
   @Input() tempDisplayName!: string;
   @Input() tempPhotoURL!: string;
+  @Input() disabled: boolean = true;
   @Output() updateProfile = new EventEmitter<void>();
 
   onUpdateProfile() {
@@ -21,10 +22,12 @@ export class UpdateButtonComponent {
       alert('Photo URL is required');
       return;
     }
-    this.user.displayName = this.tempDisplayName;
-    this.user.photoURL = this.tempPhotoURL;
-    // Emit the event to notify the parent component
-    this.updateProfile.emit();
-    console.log('Profile updated:', this.user);
+    if (!this.disabled) {
+      this.user.displayName = this.tempDisplayName;
+      this.user.photoURL = this.tempPhotoURL;
+      // Emit the event to notify the parent component
+      this.updateProfile.emit();
+      console.log('Profile updated:', this.user);
+    }
   }
 }

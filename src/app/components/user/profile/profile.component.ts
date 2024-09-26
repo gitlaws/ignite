@@ -24,6 +24,7 @@ import { SnackbarService } from '../../../services/snackbar.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  disabled: boolean = false;
   user = {
     displayName: '',
     photoURL: '',
@@ -54,6 +55,13 @@ export class ProfileComponent implements OnInit {
 
   validateField(fieldName: string) {
     // Add validation logic if needed
+  }
+
+  get isUpdateDisabled(): boolean {
+    return (
+      this.tempDisplayName === this.user.displayName &&
+      this.tempPhotoURL === this.user.photoURL
+    );
   }
 
   onUpdateProfile() {

@@ -47,6 +47,7 @@
       <label for="profilePicture">Upload Profile Picture:</label>
       <app-drop-zone></app-drop-zone>
       <app-update-button
+        [disabled]="disabled"
         [user]="user"
         [tempDisplayName]="tempDisplayName"
         [tempPhotoURL]="tempPhotoURL"
