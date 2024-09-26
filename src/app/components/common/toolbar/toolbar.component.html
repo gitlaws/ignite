@@ -2,15 +2,10 @@
   <a routerLink="/home" class="header__logo" title="Home">
     <app-drone-logo></app-drone-logo>
   </a>
-
   <nav class="header__nav" aria-label="Main Navigation">
-    <div class="nav__login-links">
-      <a *ngIf="!isLoggedIn" routerLink="/login" class="nav__login-link">
-        Login
-      </a>
-
+    <div class="nav__login-links" *ngIf="!isLoggedIn">
+      <a routerLink="/login" class="nav__login-link">Login</a>
       <a
-        *ngIf="!isLoggedIn"
         routerLink="/register"
         class="nav__login-link sign-up-background sign-up-link"
       >
@@ -18,6 +13,6 @@
       </a>
     </div>
   </nav>
-
+  <app-user-menu *ngIf="isLoggedIn"></app-user-menu>
   <!-- <app-mobile-menu class="header__menu"></app-mobile-menu> -->
 </header>

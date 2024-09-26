@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 import { DroneLogoComponent } from './drone-logo/drone-logo.component';
+import { UserMenuComponent } from '../user-menu/user-menu.component';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { RouterModule } from '@angular/router';
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     MobileMenuComponent,
     DroneLogoComponent,
+    UserMenuComponent,
     RouterLink,
     RouterModule,
     CommonModule,
