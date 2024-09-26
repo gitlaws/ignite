@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { CubeLogoComponent } from './cube-logo/cube-logo.component';
 import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
-import { IgniteLogoComponent } from './ignite-logo/ignite-logo.component';
 import { DroneLogoComponent } from './drone-logo/drone-logo.component';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -13,9 +11,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-toolbar',
   standalone: true,
   imports: [
-    CubeLogoComponent,
     MobileMenuComponent,
-    IgniteLogoComponent,
     DroneLogoComponent,
     RouterLink,
     RouterModule,
