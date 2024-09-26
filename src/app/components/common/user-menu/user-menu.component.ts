@@ -13,6 +13,7 @@ export class UserMenuComponent implements OnInit {
   isLoggedIn: boolean = true; // Example value, replace with actual logic
   isMenuOpen: boolean = false; // Add this property
   user: any = {}; // Assuming you have a user object
+  private closeMenuTimeout: any;
 
   constructor(private authService: AuthService) {}
 
@@ -21,6 +22,19 @@ export class UserMenuComponent implements OnInit {
       this.user = user;
       this.isLoggedIn = !!user; // Set isLoggedIn based on user presence
     });
+  }
+
+  onMouseEnter() {
+    if (this.closeMenuTimeout) {
+      clearTimeout(this.closeMenuTimeout);
+    }
+    this.isMenuOpen = true;
+  }
+
+  onMouseLeave() {
+    this.closeMenuTimeout = setTimeout(() => {
+      this.isMenuOpen = false;
+    }, 300); // Adjust the delay as needed
   }
 
   openLink(event: MouseEvent, url: string): void {

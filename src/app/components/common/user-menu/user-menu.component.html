@@ -2,7 +2,8 @@
   *ngIf="isLoggedIn"
   class="dropdown-toggle"
   aria-label="Menu"
-  (click)="toggleMenu($event)"
+  (mouseenter)="toggleMenu($event)"
+  (mouseleave)="toggleMenu($event)"
 >
   <img
     [src]="user.photoURL || 'https://via.placeholder.com/40'"
@@ -17,7 +18,7 @@
   <li class="dropdown-item" *ngIf="isLoggedIn" (click)="logout()">
     <a>Logout</a>
   </li>
-  <li class="dropdown-item-social-links">
+  <!-- <li class="dropdown-item-social-links">
     <a
       href="https://www.linkedin.com"
       target="_blank"
@@ -63,5 +64,5 @@
     >
       <i class="fab fa-discord"></i>
     </a>
-  </li>
+  </li> -->
 </ul>
