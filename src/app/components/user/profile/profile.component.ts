@@ -6,6 +6,7 @@ import { RouterLink, RouterModule, Router } from '@angular/router';
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import { UpdateButtonComponent } from './update-button/update-button.component';
+import { SnackbarService } from '../../../services/snackbar.service';
 
 @Component({
   selector: 'app-profile',
@@ -31,7 +32,11 @@ export class ProfileComponent implements OnInit {
   tempPhotoURL = '';
   isChanged = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackbarService: SnackbarService
+  ) {}
 
   ngOnInit(): void {
     // Fetch the user profile from the AuthService
@@ -61,5 +66,6 @@ export class ProfileComponent implements OnInit {
     this.user.displayName = this.tempDisplayName;
     this.user.photoURL = this.tempPhotoURL;
     console.log('Profile updated:', this.user);
+    this.snackbarService.callSnackbar('Profile updated successfully');
   }
 }

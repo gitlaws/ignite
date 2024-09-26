@@ -32,7 +32,6 @@
         (input)="validateField('displayName')"
         required
       />
-
       <label for="photoURL">Photo URL:</label>
       <input
         type="text"
@@ -47,13 +46,13 @@
       />
       <label for="profilePicture">Upload Profile Picture:</label>
       <!-- <app-drop-zone (fileSelected)="onFileSelected($event)"></app-drop-zone> -->
+      <app-update-button
+        [user]="user"
+        [tempDisplayName]="tempDisplayName"
+        [tempPhotoURL]="tempPhotoURL"
+        (updateProfile)="onUpdateProfile()"
+      ></app-update-button>
     </form>
-    <app-update-button
-      [user]="user"
-      [tempDisplayName]="tempDisplayName"
-      [tempPhotoURL]="tempPhotoURL"
-      (updateProfile)="onUpdateProfile()"
-    ></app-update-button>
   </div>
   <app-snackbar></app-snackbar>
 </div>

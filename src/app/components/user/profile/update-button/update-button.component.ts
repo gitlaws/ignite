@@ -8,8 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class UpdateButtonComponent {
   @Input() user: any;
-  @Input()
-  tempDisplayName!: string;
+  @Input() tempDisplayName!: string;
   @Input() tempPhotoURL!: string;
   @Output() updateProfile = new EventEmitter<void>();
 
