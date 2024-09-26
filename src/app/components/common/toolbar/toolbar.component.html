@@ -18,20 +18,6 @@
       >
         Sign Up
       </a>
-
-      <div *ngIf="isLoggedIn" class="nav__profile">
-        <img
-          [src]="user.photoURL || 'https://via.placeholder.com/40'"
-          alt="Profile Photo"
-          class="profile-photo"
-        />
-        <a routerLink="/profile" class="nav__login-link">
-          <i class="fa-solid fa-user"></i> Profile
-        </a>
-        <a (click)="logout()" class="nav__login-link">
-          <i class="fa-solid fa-power-off"></i> Logout
-        </a>
-      </div>
     </div>
   </nav>
 
