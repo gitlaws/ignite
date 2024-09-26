@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-update-button',
   standalone: true,
-  imports: [],
   templateUrl: './update-button.component.html',
-  styleUrl: './update-button.component.scss'
+  styleUrls: ['./update-button.component.scss'],
 })
 export class UpdateButtonComponent {
+  @Input() isChanged: boolean = false;
+  @Output() updateProfile = new EventEmitter<void>();
 
+  onUpdateProfile() {
+    this.updateProfile.emit();
+  }
 }

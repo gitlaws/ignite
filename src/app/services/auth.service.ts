@@ -57,7 +57,7 @@ export class AuthService {
     return this.user$;
   }
 
-  async updateProfile(
+  async onUpdateProfile(
     displayName: string,
     photoURL: string | null
   ): Promise<void> {

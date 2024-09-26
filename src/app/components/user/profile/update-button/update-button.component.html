@@ -1,1 +1,8 @@
-<p>update-button works!</p>
+<button
+  type="submit"
+  [disabled]="!isChanged"
+  [title]="isChanged ? '' : 'No changes to update'"
+  (click)="onUpdateProfile()"
+>
+  Update Profile
+</button>

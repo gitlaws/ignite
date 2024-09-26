@@ -13,17 +13,17 @@
     <h2 class="profile-heading">Profile</h2>
     <div class="profile-photo-container">
       <img
-        [src]="photoURL || 'https://via.placeholder.com/150'"
+        [src]="user.photoURL || 'https://via.placeholder.com/150'"
         alt="Profile Photo"
         class="profile-photo"
       />
     </div>
-    <form (ngSubmit)="updateProfile()" class="profile-form">
+    <form (ngSubmit)="onUpdateProfile()" class="profile-form">
       <label for="displayName">Display Name:</label>
       <input
         type="text"
         id="displayName"
-        [(ngModel)]="displayName"
+        [(ngModel)]="user.displayName"
         name="displayName"
         title="Enter your display name"
         placeholder="Display Name"
@@ -34,7 +34,7 @@
       <input
         type="text"
         id="photoURL"
-        [(ngModel)]="photoURL"
+        [(ngModel)]="user.photoURL"
         name="photoURL"
         title="Enter the URL of your profile photo"
         placeholder="Paste Photo URL"
@@ -43,16 +43,11 @@
       />
       <label for="profilePicture">Upload Profile Picture:</label>
       <app-drop-zone (fileSelected)="onFileSelected($event)"></app-drop-zone>
-      <div class="button-container">
-        <button
-          type="submit"
-          [disabled]="!isChanged"
-          [title]="isChanged ? '' : 'No changes to update'"
-        >
-          Update Profile
-        </button>
-      </div>
     </form>
+    <app-update-button
+      [isChanged]="isChanged"
+      (updateProfile)="onUpdateProfile()"
+    ></app-update-button>
   </div>
   <app-snackbar></app-snackbar>
 </div>
