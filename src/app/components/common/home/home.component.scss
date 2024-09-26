@@ -1,32 +1,35 @@
-$home-primary-color: #238636;
-$home-secondary-color: #58a6ff;
-$home-background-color: #0d1117;
-$home-text-color: #c9d1d9;
-$home-contrast-background-color: #161b22;
-$font-family: "Arial, sans-serif";
+/* Base Colors */
+$home-primary-color: #238636; /* Primary color for buttons and accents */
+$home-secondary-color: #58a6ff; /* Secondary color for links and highlights */
+$home-background-color: #0d1117; /* Background color for the home section */
+$home-text-color: #c9d1d9; /* Primary text color */
+$home-contrast-background-color: #161b22; /* Contrast background color */
+$font-family: "Arial, sans-serif"; /* Font family for the home section */
 
+/* Home Wrapper Styles */
 #home-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 100px; // Ensure at least 100px below the toolbar
+  margin-top: 100px; /* Ensure at least 100px below the toolbar */
 
   @media (max-width: 400px) {
-    margin: 120px 0 0 0; // Ensure at least 100px below the toolbar
+    margin: 120px 0 0 0; /* Ensure at least 100px below the toolbar */
     padding: 0 10px;
   }
 
   @media (min-width: 401px) and (max-width: 768px) {
-    margin: 150px 0 0 0; // Adjust for tablet
+    margin: 150px 0 0 0; /* Adjust for tablet */
     padding: 0 20px;
   }
 
   @media (min-width: 769px) {
-    margin: 120px 0 0 0; // Adjust for desktop
+    margin: 120px 0 0 0; /* Adjust for desktop */
     padding: 0 30px;
   }
 }
 
+/* Section Styles */
 section {
   font-family: $font-family;
   background-color: $home-background-color;
@@ -35,6 +38,7 @@ section {
   padding: 0;
 }
 
+/* Category Container Styles */
 .category-container {
   background: $home-background-color;
   padding: 20px;
@@ -44,6 +48,7 @@ section {
   justify-content: center;
 }
 
+/* Placeholder Header Styles */
 .placeholder-header h2 {
   font-size: 1.5rem;
   line-height: 1.4;
@@ -54,6 +59,7 @@ section {
   margin: 0 0 20px;
 }
 
+/* Placeholder Content Styles */
 .placeholder-content p {
   font-size: 1rem;
   line-height: 1.6;
@@ -72,6 +78,7 @@ section {
   }
 }
 
+/* Placeholder Content List Styles */
 .placeholder-content ul {
   list-style: none;
   padding: 0;
@@ -90,6 +97,7 @@ section {
   }
 }
 
+/* Getting Started Section Styles */
 .getting-started {
   background-color: $home-contrast-background-color;
   padding: 20px;
@@ -132,6 +140,7 @@ section {
   }
 }
 
+/* Button Wrapper Styles */
 #button-wrapper {
   display: flex;
   flex-direction: row;
@@ -155,6 +164,7 @@ section {
   }
 }
 
+/* CTA Button Styles */
 .cta-button {
   display: inline-block;
   padding: 12px 24px;
@@ -168,7 +178,7 @@ section {
   text-decoration: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.3s ease;
-  margin: 10px; // Default margin for spacing
+  margin: 10px; /* Default margin for spacing */
 
   &:hover {
     background-color: darken($home-primary-color, 10%);
@@ -176,6 +186,7 @@ section {
   }
 }
 
+/* Register Button Styles */
 .register-button {
   background-color: $home-secondary-color;
 
@@ -184,6 +195,7 @@ section {
   }
 }
 
+/* Login Button Styles */
 .login-button {
   background-color: $home-contrast-background-color;
 
@@ -192,24 +204,25 @@ section {
   }
 }
 
+/* Media Queries */
 @media (max-width: 400px) {
   .cta-button {
-    margin: 10px 0; // Stack buttons vertically with spacing
-    width: 100%; // Full width for mobile
+    margin: 10px 0; /* Stack buttons vertically with spacing */
+    width: 100%; /* Full width for mobile */
   }
 }
 
 @media (min-width: 401px) and (max-width: 768px) {
   .cta-button {
-    margin: 10px 5px; // Slightly reduced margin for tablet
-    width: auto; // Auto width for tablet
+    margin: 10px 5px; /* Slightly reduced margin for tablet */
+    width: auto; /* Auto width for tablet */
   }
 }
 
 @media (min-width: 769px) {
   .cta-button {
-    margin: 10px 10px; // Default margin for desktop
-    width: auto; // Auto width for desktop
+    margin: 10px 10px; /* Default margin for desktop */
+    width: auto; /* Auto width for desktop */
   }
 }
 

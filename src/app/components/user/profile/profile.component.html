@@ -1,23 +1,24 @@
 <div id="profile-wrapper">
   <div class="profile-container" *ngIf="user">
-    <h1>Welcome, {{ user.displayName }}!</h1>
-    <p>
+    <h1 class="welcome-message">Welcome, {{ user.displayName }}!</h1>
+    <p class="intro-text">
       Welcome to your profile page. Here you can update your display name and
       profile photo. Make sure to save your changes by clicking the "Update
       Profile" button.
     </p>
-    <p>
+    <p class="intro-text">
       If you wish to log out, you can do so by clicking the "Logout" button
       below.
     </p>
-    <h2>Profile</h2>
+    <h2 class="profile-heading">Profile</h2>
     <div class="profile-photo-container">
       <img
         [src]="photoURL || 'https://via.placeholder.com/150'"
         alt="Profile Photo"
+        class="profile-photo"
       />
     </div>
-    <form (ngSubmit)="updateProfile()">
+    <form (ngSubmit)="updateProfile()" class="profile-form">
       <label for="displayName">Display Name:</label>
       <input
         type="text"
@@ -27,6 +28,7 @@
         title="Enter your display name"
         placeholder="Display Name"
         (ngModelChange)="onFieldChange()"
+        (input)="validateField('displayName')"
       />
       <label for="photoURL">Photo URL:</label>
       <input
@@ -37,20 +39,20 @@
         title="Enter the URL of your profile photo"
         placeholder="Paste Photo URL"
         (ngModelChange)="onFieldChange()"
+        (input)="validateField('photoURL')"
       />
       <label for="profilePicture">Upload Profile Picture:</label>
       <app-drop-zone (fileSelected)="onFileSelected($event)"></app-drop-zone>
+      <div class="button-container">
+        <button
+          type="submit"
+          [disabled]="!isChanged"
+          [title]="isChanged ? '' : 'No changes to update'"
+        >
+          Update Profile
+        </button>
+      </div>
     </form>
-    <div class="button-container">
-      <button (click)="logout()">Logout</button>
-      <button
-        type="submit"
-        [disabled]="!isChanged"
-        [title]="isChanged ? '' : 'No changes to update'"
-      >
-        Update Profile
-      </button>
-    </div>
   </div>
   <app-snackbar></app-snackbar>
 </div>

@@ -29,6 +29,9 @@ import { DropZoneComponent } from './drop-zone/drop-zone.component';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  validateField(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   user: User | null = null;
   displayName: string = '';
   photoURL: string | null = '';
@@ -127,11 +130,5 @@ export class ProfileComponent implements OnInit {
       this.displayName !== this.initialDisplayName ||
       this.photoURL !== this.initialPhotoURL ||
       !!this.selectedFile;
-  }
-
-  logout() {
-    this.authService.logout().then(() => {
-      this.router.navigate(['/login']);
-    });
   }
 }
