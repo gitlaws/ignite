@@ -2,12 +2,14 @@
   <img
     [src]="user.photoURL || 'https://via.placeholder.com/40'"
     alt="Profile Photo"
-    class="profile-photo"
+    class="profile-photo dropdown-trigger"
   />
-  <a routerLink="/profile" class="nav__login-link">
-    <i class="fa-solid fa-user"></i> Profile
-  </a>
-  <a (click)="logout()" class="nav__login-link">
-    <i class="fa-solid fa-power-off"></i> Logout
-  </a>
+  <div class="dropdown-content">
+    <a routerLink="/profile" class="nav__login-link">
+      <i class="fa-solid fa-user"></i> Profile
+    </a>
+    <a (click)="logout()" class="nav__login-link">
+      <i class="fa-solid fa-power-off"></i> Logout
+    </a>
+  </div>
 </div>
