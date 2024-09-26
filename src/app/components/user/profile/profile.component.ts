@@ -25,8 +25,11 @@ import { UpdateButtonComponent } from './update-button/update-button.component';
 export class ProfileComponent implements OnInit {
   user = {
     displayName: '',
+    photoURL: '',
   };
   tempDisplayName = '';
+  tempPhotoURL = '';
+  isChanged = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -46,22 +49,22 @@ export class ProfileComponent implements OnInit {
     // Add validation logic if needed
   }
 
-  onFileSelected(file: File) {
-    this.selectedFile = file;
-    this.isChanged = true;
-  }
+  // onFileSelected(file: File) {
+  //   this.selectedFile = file;
+  //   this.isChanged = true;
+  // }
 
   onUpdateProfile() {
     if (this.tempDisplayName.trim() === '') {
       alert('Display name is required');
       return;
     }
+    if (this.tempPhotoURL.trim() === '') {
+      alert('Photo URL is required');
+      return;
+    }
     this.user.displayName = this.tempDisplayName;
-    console.log('Display name updated:', this.user.displayName);
-  }
-
-  showSnackbar(message: string) {
-    // Implement snackbar logic here
-    alert(message); // Replace with actual snackbar implementation
+    this.user.photoURL = this.tempPhotoURL;
+    console.log('Profile updated:', this.user);
   }
 }
