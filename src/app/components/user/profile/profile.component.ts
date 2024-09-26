@@ -43,6 +43,8 @@ export class ProfileComponent implements OnInit {
     this.authService.getUserProfile().then((profile) => {
       this.user.displayName = profile.displayName;
       this.user.photoURL = profile.photoURL;
+      this.tempDisplayName = profile.displayName;
+      this.tempPhotoURL = profile.photoURL;
     });
   }
 
@@ -63,9 +65,18 @@ export class ProfileComponent implements OnInit {
       alert('Photo URL is required');
       return;
     }
-    this.user.displayName = this.tempDisplayName;
-    this.user.photoURL = this.tempPhotoURL;
-    console.log('Profile updated:', this.user);
-    this.snackbarService.callSnackbar('Profile updated successfully');
+
+    this.authService
+      .onUpdateProfile(this.tempDisplayName, this.tempPhotoURL)
+      .then(() => {
+        this.user.displayName = this.tempDisplayName;
+        this.user.photoURL = this.tempPhotoURL;
+        console.log('Profile updated:', this.user);
+        this.snackbarService.callSnackbar('Profile updated successfully');
+      })
+      .catch((error) => {
+        console.error('Error updating profile:', error);
+        this.snackbarService.callSnackbar('Error updating profile');
+      });
   }
 }
