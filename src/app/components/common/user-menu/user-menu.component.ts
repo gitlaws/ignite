@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./user-menu.component.scss'],
 })
 export class UserMenuComponent implements OnInit {
-  isLoggedIn: boolean = false; // Add this property
+  isLoggedIn: boolean = true; // Example value, replace with actual logic
+  isMenuOpen: boolean = false; // Add this property
   user: any = {}; // Assuming you have a user object
 
   constructor(private authService: AuthService) {}
@@ -20,6 +21,11 @@ export class UserMenuComponent implements OnInit {
       this.user = user;
       this.isLoggedIn = !!user; // Set isLoggedIn based on user presence
     });
+  }
+
+  toggleMenu(event: Event): void {
+    this.isMenuOpen = !this.isMenuOpen;
+    event.stopPropagation();
   }
 
   logout(): void {
