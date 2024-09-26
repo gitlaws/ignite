@@ -1,15 +1,20 @@
 /* Base Colors */
 $base-color: #0d1117; /* Background color */
-$text-color: #c9d1d9; /* Primary text color */
+$text-color: #e6edf3; /* Lighter primary text color for better readability */
 $secondary-text-color: #8b949e; /* Secondary text color */
 $accent-color: #1f6feb; /* Accent color */
 $border-color: #30363d; /* Border color */
 $button-bg-color: #238636; /* Button background color */
-$button-hover-color: #2ea043; /* Button hover color */
+$button-hover-color: #1c7a2e; /* Darker button hover color for more noticeable change */
+$highlight-color: #ff7b72; /* Highlight color for important elements */
+$link-color: #58a6ff; /* Link color */
+$link-hover-color: #79c0ff; /* Link hover color */
+$background-secondary-color: #161b22; /* Secondary background color */
+$shadow-color: rgba(0, 0, 0, 0.2); /* Shadow color */
 
 /* General Styles */
 #profile-wrapper {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Roboto", "Arial";
   background-color: $base-color;
   color: $text-color;
   padding: 20px;
@@ -18,19 +23,27 @@ $button-hover-color: #2ea043; /* Button hover color */
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
+  border-radius: 10px; /* Add rounded corners */
+  // box-shadow: 0 4px 8px $shadow-color; /* Add subtle shadow */
 
   @media (max-width: 400px) {
     padding: 0 10px;
   }
 
   .profile-container {
-    background-color: #222;
+    background-color: $background-secondary-color;
     display: block;
     padding: 1.5rem;
     border-radius: 8px;
     max-width: 100%;
     margin: 1rem auto;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.5rem $shadow-color;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
+
+    &:hover {
+      // transform: translateY(-5px); /* Lift effect on hover */
+      box-shadow: 0 0.5rem 1rem $shadow-color; /* Enhanced shadow on hover */
+    }
 
     @media (min-width: 768px) {
       padding: 2rem;
@@ -41,6 +54,8 @@ $button-hover-color: #2ea043; /* Button hover color */
   .welcome-message {
     font-size: 1.5em;
     font-weight: bold;
+    color: $highlight-color; /* Highlight color for welcome message */
+    text-shadow: 1px 1px 2px $shadow-color; /* Add text shadow */
   }
 
   .intro-text {
@@ -52,6 +67,7 @@ $button-hover-color: #2ea043; /* Button hover color */
   .profile-heading {
     font-size: 1.2em;
     margin-top: 20px;
+    color: $accent-color; /* Accent color for profile heading */
   }
 
   .profile-photo-container {
@@ -64,7 +80,12 @@ $button-hover-color: #2ea043; /* Button hover color */
       object-fit: cover; /* Ensures the image covers the container */
       border-radius: 50%;
       border: 2px solid $accent-color;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 10px $shadow-color;
+      transition: transform 0.3s ease; /* Add transition for hover effect */
+
+      // &:hover {
+      //   transform: scale(1.05); /* Slight zoom effect on hover */
+      // }
     }
 
     button {
@@ -75,9 +96,11 @@ $button-hover-color: #2ea043; /* Button hover color */
       background-color: $button-bg-color;
       color: $text-color;
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
 
       &:hover {
         background-color: $button-hover-color;
+        transform: translateY(-2px); /* Lift effect on hover */
       }
     }
   }
@@ -86,6 +109,7 @@ $button-hover-color: #2ea043; /* Button hover color */
     label {
       display: block;
       margin-top: 10px;
+      color: $accent-color; /* Accent color for labels */
     }
 
     input,
@@ -97,6 +121,12 @@ $button-hover-color: #2ea043; /* Button hover color */
       border: 1px solid $border-color;
       background-color: #333;
       color: $text-color;
+      transition: border-color 0.3s ease; /* Add transition for focus effect */
+
+      &:focus {
+        border-color: $accent-color; /* Change border color on focus */
+        outline: none; /* Remove default outline */
+      }
     }
   }
 
@@ -112,6 +142,7 @@ $button-hover-color: #2ea043; /* Button hover color */
       background-color: $button-bg-color;
       color: $text-color;
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
 
       &:disabled {
         background-color: #555;
@@ -120,6 +151,7 @@ $button-hover-color: #2ea043; /* Button hover color */
 
       &:hover:not(:disabled) {
         background-color: $button-hover-color;
+        transform: translateY(-2px); /* Lift effect on hover */
       }
     }
   }
@@ -143,5 +175,36 @@ $button-hover-color: #2ea043; /* Button hover color */
     button {
       margin-bottom: 10px;
     }
+  }
+}
+
+.profile-photo-container .profile-photo {
+  /* Add a subtle border and shadow to the profile photo */
+  border: 2px solid $accent-color;
+  box-shadow: 0 0 10px $shadow-color;
+}
+
+.profile-form {
+  /* Increase line spacing for better readability */
+  line-height: 1.6;
+}
+
+button {
+  /* Add subtle animations */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Link Styles */
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $link-hover-color;
   }
 }
