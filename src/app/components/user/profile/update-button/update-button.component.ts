@@ -14,20 +14,21 @@ export class UpdateButtonComponent {
   @Output() updateProfile = new EventEmitter<void>();
 
   onUpdateProfile() {
-    if (this.tempDisplayName.trim() === '') {
-      alert('Display name is required');
+    if (this.disabled) {
+      alert('Please enter a display name or photo URL to update.');
       return;
     }
-    if (this.tempPhotoURL.trim() === '') {
-      alert('Photo URL is required');
-      return;
-    }
-    if (!this.disabled) {
+
+    if (this.tempDisplayName.trim() !== '') {
       this.user.displayName = this.tempDisplayName;
-      this.user.photoURL = this.tempPhotoURL;
-      // Emit the event to notify the parent component
-      this.updateProfile.emit();
-      console.log('Profile updated:', this.user);
     }
+
+    if (this.tempPhotoURL.trim() !== '') {
+      this.user.photoURL = this.tempPhotoURL;
+    }
+
+    // Emit the event to notify the parent component
+    this.updateProfile.emit();
+    console.log('Profile updated:', this.user);
   }
 }

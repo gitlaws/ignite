@@ -44,14 +44,17 @@ export class ProfileComponent implements OnInit {
     this.authService.getUserProfile().then((profile) => {
       this.user.displayName = profile.displayName;
       this.user.photoURL = profile.photoURL;
-      this.tempDisplayName = profile.displayName;
-      this.tempPhotoURL = profile.photoURL;
     });
+
+    // Initialize user data
+    this.tempDisplayName = '';
+    this.tempPhotoURL = '';
+    this.disabled = true;
   }
 
   onFieldChange(): void {
     this.isChanged = true;
-    this.disabled = !this.tempDisplayName.trim() || !this.tempPhotoURL.trim();
+    this.disabled = !this.tempDisplayName.trim() && !this.tempPhotoURL.trim();
   }
 
   validateField(fieldName: string): void {
@@ -66,20 +69,22 @@ export class ProfileComponent implements OnInit {
   }
 
   onUpdateProfile(): void {
-    if (this.tempDisplayName.trim() === '') {
-      alert('Display name is required');
+    if (this.tempDisplayName.trim() === '' && this.tempPhotoURL.trim() === '') {
+      alert('Please enter a display name or photo URL to update.');
       return;
     }
-    if (this.tempPhotoURL.trim() === '') {
-      alert('Photo URL is required');
-      return;
+
+    if (this.tempDisplayName.trim() !== '') {
+      this.user.displayName = this.tempDisplayName;
+    }
+
+    if (this.tempPhotoURL.trim() !== '') {
+      this.user.photoURL = this.tempPhotoURL;
     }
 
     this.authService
       .onUpdateProfile(this.tempDisplayName, this.tempPhotoURL)
       .then(() => {
-        this.user.displayName = this.tempDisplayName;
-        this.user.photoURL = this.tempPhotoURL;
         this.tempDisplayName = '';
         this.tempPhotoURL = '';
         this.disabled = true;
