@@ -1,23 +1,25 @@
 <header class="header">
-  <!-- Logo -->
   <a routerLink="/home" class="header__logo" title="Home">
     <!-- <app-ignite-logo></app-ignite-logo> -->
     <app-drone-logo></app-drone-logo>
   </a>
-  <!-- Items -->
-  <nav class="header__nav" aria-label="Main Navigation">
-    <!-- Links -->
-    <!-- <a routerLink="/projects" class="nav__item-link">Link</a>
-    <a routerLink="/profile" class="nav__item-link">Link</a> -->
 
+  <nav class="header__nav" aria-label="Main Navigation">
     <!-- Login Links -->
     <div class="nav__login-links">
-      <a *ngIf="!isLoggedIn" routerLink="/register" class="nav__login-link">
-        <i class="fa-solid fa-user-pen"></i> Register
-      </a>
       <a *ngIf="!isLoggedIn" routerLink="/login" class="nav__login-link">
-        <i class="fa-duotone fa-solid fa-user"></i> Login
+         Login
       </a>
+
+      <a
+        *ngIf="!isLoggedIn"
+        routerLink="/register"
+        class="nav__login-link sign-up-background sign-up-link"
+      > Sign Up
+    </a>
+    <!-- <i class="fa-duotone fa-solid fa-user"></i> -->
+    <!-- <i class="fa-solid fa-user-pen"></i> Sign Up -->
+
       <a *ngIf="isLoggedIn" routerLink="/profile" class="nav__login-link">
         <i class="fa-solid fa-user"></i> Profile
       </a>
@@ -25,56 +27,7 @@
         <i class="fa-solid fa-power-off"></i> Logout
       </a>
     </div>
-    <!-- <div class="nav__social-links">
-      <ul>
-        <li>
-          <a
-            href="https://www.linkedin.com"
-            target="_blank"
-            rel="noopener"
-            class="footer-icon"
-            aria-label="LinkedIn"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener"
-            class="footer-icon"
-            aria-label="GitHub"
-          >
-            <i class="fab fa-github"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.youtube.com"
-            target="_blank"
-            rel="noopener"
-            class="footer-icon"
-            aria-label="YouTube"
-          >
-            <i class="fab fa-youtube"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://discord.com"
-            target="_blank"
-            rel="noopener"
-            class="footer-icon"
-            aria-label="Discord"
-          >
-            <i class="fab fa-discord"></i>
-          </a>
-        </li>
-      </ul>
-    </div> -->
   </nav>
 
-  <!-- NavBtn -->
   <app-mobile-menu class="header__menu"></app-mobile-menu>
 </header>

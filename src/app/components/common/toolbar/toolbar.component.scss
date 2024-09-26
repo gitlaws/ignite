@@ -21,7 +21,7 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   height: 100px;
   background-color: #0d1117;
   padding: 20px;
-  @include theme-mode-transition;
+  // @include theme-mode-transition;
   @include header-box-shadow(0, 4px, 6px, 0, hsla(0, 0%, 0%, 0.2));
 }
 
@@ -56,13 +56,10 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
     font-size: 1em;
     font-family: "SUSE", sans-serif;
     cursor: pointer;
-    // background-color: #21262d;
-    // border: 1px solid #30363d;
     padding: 10px 15px;
     transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover {
-      // background-color: #30363d;
       color: #539bf5;
 
       i {
@@ -76,6 +73,18 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
       transition: color 0.3s ease;
     }
   }
+}
+
+.sign-up-background {
+  background-color: black;
+  border-radius: 8px;
+  height: 24px;
+}
+
+.sign-up-link {
+  margin-top: 10px;
+  // padding: 10px 20px;
+  display: inline-block;
 }
 
 .nav__social-links {
