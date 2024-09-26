@@ -26,18 +26,21 @@ import { CommonModule } from '@angular/common';
 })
 export class ToolbarComponent implements OnInit {
   isLoggedIn = false;
+  user: any = {};
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authService.getUser().subscribe((user) => {
       this.isLoggedIn = !!user;
+      this.user = user;
     });
   }
 
   logout() {
     this.authService.logout().then(() => {
       this.isLoggedIn = false;
+      this.user = {};
       this.router.navigate(['/login']);
     });
   }

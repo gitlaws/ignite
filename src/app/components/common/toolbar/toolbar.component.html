@@ -8,24 +8,30 @@
     <!-- Login Links -->
     <div class="nav__login-links">
       <a *ngIf="!isLoggedIn" routerLink="/login" class="nav__login-link">
-         Login
+        Login
       </a>
 
       <a
         *ngIf="!isLoggedIn"
         routerLink="/register"
         class="nav__login-link sign-up-background sign-up-link"
-      > Sign Up
-    </a>
-    <!-- <i class="fa-duotone fa-solid fa-user"></i> -->
-    <!-- <i class="fa-solid fa-user-pen"></i> Sign Up -->
+      >
+        Sign Up
+      </a>
 
-      <a *ngIf="isLoggedIn" routerLink="/profile" class="nav__login-link">
-        <i class="fa-solid fa-user"></i> Profile
-      </a>
-      <a *ngIf="isLoggedIn" (click)="logout()" class="nav__login-link">
-        <i class="fa-solid fa-power-off"></i> Logout
-      </a>
+      <div *ngIf="isLoggedIn" class="nav__profile">
+        <img
+          [src]="user.photoURL || 'https://via.placeholder.com/40'"
+          alt="Profile Photo"
+          class="profile-photo"
+        />
+        <a routerLink="/profile" class="nav__login-link">
+          <i class="fa-solid fa-user"></i> Profile
+        </a>
+        <a (click)="logout()" class="nav__login-link">
+          <i class="fa-solid fa-power-off"></i> Logout
+        </a>
+      </div>
     </div>
   </nav>
 
