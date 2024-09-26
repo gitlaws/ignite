@@ -2,8 +2,8 @@
   *ngIf="isLoggedIn"
   class="dropdown-toggle"
   aria-label="Menu"
-  (mouseenter)="toggleMenu($event)"
-  (mouseleave)="toggleMenu($event)"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
 >
   <img
     [src]="user.photoURL || 'https://via.placeholder.com/40'"
@@ -11,7 +11,13 @@
     class="profile-photo"
   />
 </button>
-<ul *ngIf="isMenuOpen" class="dropdown-menu" (click)="$event.stopPropagation()">
+<ul
+  *ngIf="isMenuOpen"
+  class="dropdown-menu"
+  (click)="$event.stopPropagation()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
   <li class="dropdown-item" *ngIf="isLoggedIn">
     <a routerLink="/profile">Settings</a>
   </li>
