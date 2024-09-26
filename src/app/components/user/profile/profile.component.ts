@@ -24,14 +24,14 @@ import { SnackbarService } from '../../../services/snackbar.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  disabled: boolean = false;
-  user = {
+  user: any = {
     displayName: '',
     photoURL: '',
   };
-  tempDisplayName = '';
-  tempPhotoURL = '';
-  isChanged = false;
+  tempDisplayName: string = '';
+  tempPhotoURL: string = '';
+  disabled: boolean = true;
+  isChanged: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -49,11 +49,12 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onFieldChange() {
+  onFieldChange(): void {
     this.isChanged = true;
+    this.disabled = !this.tempDisplayName.trim() || !this.tempPhotoURL.trim();
   }
 
-  validateField(fieldName: string) {
+  validateField(fieldName: string): void {
     // Add validation logic if needed
   }
 
@@ -64,7 +65,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  onUpdateProfile() {
+  onUpdateProfile(): void {
     if (this.tempDisplayName.trim() === '') {
       alert('Display name is required');
       return;
@@ -79,7 +80,9 @@ export class ProfileComponent implements OnInit {
       .then(() => {
         this.user.displayName = this.tempDisplayName;
         this.user.photoURL = this.tempPhotoURL;
-        console.log('Profile updated:', this.user);
+        this.tempDisplayName = '';
+        this.tempPhotoURL = '';
+        this.disabled = true;
         this.snackbarService.callSnackbar('Profile updated successfully');
       })
       .catch((error) => {
