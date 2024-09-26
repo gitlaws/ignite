@@ -1,11 +1,9 @@
 <header class="header">
   <a routerLink="/home" class="header__logo" title="Home">
-    <!-- <app-ignite-logo></app-ignite-logo> -->
     <app-drone-logo></app-drone-logo>
   </a>
 
   <nav class="header__nav" aria-label="Main Navigation">
-    <!-- Login Links -->
     <div class="nav__login-links">
       <a *ngIf="!isLoggedIn" routerLink="/login" class="nav__login-link">
         Login
@@ -21,5 +19,5 @@
     </div>
   </nav>
 
-  <app-mobile-menu class="header__menu"></app-mobile-menu>
+  <!-- <app-mobile-menu class="header__menu"></app-mobile-menu> -->
 </header>
