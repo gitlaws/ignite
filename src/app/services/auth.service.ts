@@ -57,6 +57,18 @@ export class AuthService {
     return this.user$;
   }
 
+  async getUserProfile(): Promise<{ displayName: string; photoURL: string }> {
+    const user = this.auth.currentUser;
+    if (user) {
+      return {
+        displayName: user.displayName || '',
+        photoURL: user.photoURL || '',
+      };
+    } else {
+      throw new Error('No user is currently signed in');
+    }
+  }
+
   async onUpdateProfile(
     displayName: string,
     photoURL: string | null
