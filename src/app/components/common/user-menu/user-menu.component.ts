@@ -23,6 +23,11 @@ export class UserMenuComponent implements OnInit {
     });
   }
 
+  openLink(event: MouseEvent, url: string): void {
+    event.preventDefault(); // Prevent default anchor behavior
+    window.open(url, '_blank', 'noopener'); // Open link in a new tab
+  }
+
   toggleMenu(event: Event): void {
     this.isMenuOpen = !this.isMenuOpen;
     event.stopPropagation();
