@@ -23,12 +23,10 @@ import { UpdateButtonComponent } from './update-button/update-button.component';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: { displayName: string; photoURL: string } = {
+  user = {
     displayName: '',
-    photoURL: '',
   };
-  isChanged = false;
-  selectedFile: File | null = null;
+  tempDisplayName = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -54,25 +52,12 @@ export class ProfileComponent implements OnInit {
   }
 
   onUpdateProfile() {
-    if (this.selectedFile) {
-      this.authService
-        .uploadProfilePicture(this.selectedFile)
-        .then((photoURL) => {
-          this.user.photoURL = photoURL;
-          this.updateProfile();
-        });
-    } else {
-      this.updateProfile();
+    if (this.tempDisplayName.trim() === '') {
+      alert('Display name is required');
+      return;
     }
-  }
-
-  updateProfile() {
-    this.authService
-      .onUpdateProfile(this.user.displayName, this.user.photoURL)
-      .then(() => {
-        this.isChanged = false;
-        this.showSnackbar('Profile updated successfully!');
-      });
+    this.user.displayName = this.tempDisplayName;
+    console.log('Display name updated:', this.user.displayName);
   }
 
   showSnackbar(message: string) {

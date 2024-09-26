@@ -7,10 +7,19 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./update-button.component.scss'],
 })
 export class UpdateButtonComponent {
-  @Input() isChanged: boolean = false;
+  @Input() user: any;
+  @Input()
+  tempDisplayName!: string;
   @Output() updateProfile = new EventEmitter<void>();
 
-  onUpdateProfile() {
+  updateDisplayName() {
+    if (this.tempDisplayName.trim() === '') {
+      alert('Display name is required');
+      return;
+    }
+    this.user.displayName = this.tempDisplayName;
+    // Emit the event to notify the parent component
     this.updateProfile.emit();
+    console.log('Display name updated:', this.user.displayName);
   }
 }

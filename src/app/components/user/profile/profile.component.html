@@ -23,13 +23,15 @@
       <input
         type="text"
         id="displayName"
-        [(ngModel)]="user.displayName"
+        [(ngModel)]="tempDisplayName"
         name="displayName"
         title="Enter your display name"
         placeholder="Display Name"
         (ngModelChange)="onFieldChange()"
         (input)="validateField('displayName')"
+        required
       />
+
       <label for="photoURL">Photo URL:</label>
       <input
         type="text"
@@ -45,7 +47,8 @@
       <app-drop-zone (fileSelected)="onFileSelected($event)"></app-drop-zone>
     </form>
     <app-update-button
-      [isChanged]="isChanged"
+      [user]="user"
+      [tempDisplayName]="tempDisplayName"
       (updateProfile)="onUpdateProfile()"
     ></app-update-button>
   </div>
