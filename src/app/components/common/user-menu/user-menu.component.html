@@ -1,30 +1,31 @@
-<button
-  *ngIf="isLoggedIn"
-  class="dropdown-toggle"
-  aria-label="Menu"
-  (mouseenter)="onMouseEnter()"
-  (mouseleave)="onMouseLeave()"
->
-  <img
-    [src]="user.photoURL || 'https://via.placeholder.com/40'"
-    alt="Profile Photo"
-    class="profile-photo"
-  />
-</button>
-<ul
-  *ngIf="isMenuOpen"
-  class="dropdown-menu"
-  (click)="$event.stopPropagation()"
-  (mouseenter)="onMouseEnter()"
-  (mouseleave)="onMouseLeave()"
->
-  <li class="dropdown-item" *ngIf="isLoggedIn">
-    <a routerLink="/profile">Settings</a>
-  </li>
-  <li class="dropdown-item" *ngIf="isLoggedIn" (click)="logout()">
-    <a>Logout</a>
-  </li>
-  <!-- <li class="dropdown-item-social-links">
+<div class="dropdown-container">
+  <button
+    *ngIf="isLoggedIn"
+    class="dropdown-toggle"
+    aria-label="Menu"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <img
+      [src]="user.photoURL || 'https://via.placeholder.com/40'"
+      alt="Profile Photo"
+      class="profile-photo"
+    />
+  </button>
+  <ul
+    *ngIf="isMenuOpen"
+    class="dropdown-menu"
+    (click)="$event.stopPropagation()"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <li class="dropdown-item" *ngIf="isLoggedIn">
+      <a routerLink="/profile">Settings</a>
+    </li>
+    <li class="dropdown-item" *ngIf="isLoggedIn" (click)="logout()">
+      <a>Logout</a>
+    </li>
+    <!-- <li class="dropdown-item-social-links">
     <a
       href="https://www.linkedin.com"
       target="_blank"
@@ -71,4 +72,5 @@
       <i class="fab fa-discord"></i>
     </a>
   </li> -->
-</ul>
+  </ul>
+</div>
