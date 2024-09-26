@@ -13,7 +13,7 @@ export class UpdateButtonComponent {
   @Input() tempPhotoURL!: string;
   @Output() updateProfile = new EventEmitter<void>();
 
-  updateDisplayName() {
+  onUpdateProfile() {
     if (this.tempDisplayName.trim() === '') {
       alert('Display name is required');
       return;

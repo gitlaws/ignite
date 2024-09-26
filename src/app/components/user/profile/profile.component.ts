@@ -49,11 +49,6 @@ export class ProfileComponent implements OnInit {
     // Add validation logic if needed
   }
 
-  // onFileSelected(file: File) {
-  //   this.selectedFile = file;
-  //   this.isChanged = true;
-  // }
-
   onUpdateProfile() {
     if (this.tempDisplayName.trim() === '') {
       alert('Display name is required');
