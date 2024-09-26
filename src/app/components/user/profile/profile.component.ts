@@ -27,9 +27,7 @@ export class ProfileComponent implements OnInit {
     displayName: '',
     photoURL: '',
   };
-  tempDisplayName: string = '';
-  tempPhotoURL: string = '';
-  isChanged: boolean = false;
+  isChanged = false;
   selectedFile: File | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -39,22 +37,18 @@ export class ProfileComponent implements OnInit {
     this.authService.getUserProfile().then((profile) => {
       this.user.displayName = profile.displayName;
       this.user.photoURL = profile.photoURL;
-      this.tempDisplayName = this.user.displayName;
-      this.tempPhotoURL = this.user.photoURL;
     });
   }
 
   onFieldChange() {
-    this.isChanged =
-      this.tempDisplayName !== this.user.displayName ||
-      this.tempPhotoURL !== this.user.photoURL;
+    this.isChanged = true;
   }
 
   validateField(fieldName: string) {
     // Add validation logic if needed
   }
 
-  onFileSelected(file: File): void {
+  onFileSelected(file: File) {
     this.selectedFile = file;
     this.isChanged = true;
   }
@@ -73,8 +67,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    this.user.displayName = this.tempDisplayName;
-    this.user.photoURL = this.tempPhotoURL;
     this.authService
       .onUpdateProfile(this.user.displayName, this.user.photoURL)
       .then(() => {

@@ -23,7 +23,7 @@
       <input
         type="text"
         id="displayName"
-        [(ngModel)]="tempDisplayName"
+        [(ngModel)]="user.displayName"
         name="displayName"
         title="Enter your display name"
         placeholder="Display Name"
@@ -34,7 +34,7 @@
       <input
         type="text"
         id="photoURL"
-        [(ngModel)]="tempPhotoURL"
+        [(ngModel)]="user.photoURL"
         name="photoURL"
         title="Enter the URL of your profile photo"
         placeholder="Paste Photo URL"
@@ -43,8 +43,11 @@
       />
       <label for="profilePicture">Upload Profile Picture:</label>
       <app-drop-zone (fileSelected)="onFileSelected($event)"></app-drop-zone>
-      <app-update-button [isChanged]="isChanged"></app-update-button>
     </form>
+    <app-update-button
+      [isChanged]="isChanged"
+      (updateProfile)="onUpdateProfile()"
+    ></app-update-button>
   </div>
   <app-snackbar></app-snackbar>
 </div>

@@ -1,8 +1,15 @@
 <div
-  class="drop-zone"
-  (drop)="onFileDrop($event)"
+  id="drop-zone"
   (dragover)="onDragOver($event)"
+  (drop)="onDrop($event)"
+  (click)="triggerFileInput(fileInput)"
 >
-  <input type="file" (change)="onFileInput($event)" />
-  <p>Drag and drop a file here, or click to select a file</p>
+  Drag and drop your file here or click to select
+  <input
+    type="file"
+    id="fileInput"
+    (change)="onFileSelected($event)"
+    #fileInput
+    hidden
+  />
 </div>
