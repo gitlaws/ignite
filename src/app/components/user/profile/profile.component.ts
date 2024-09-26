@@ -44,23 +44,22 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onFieldChange(): void {
-    this.isChanged = true;
+  onFieldChange() {
+    this.isChanged =
+      this.tempDisplayName !== this.user.displayName ||
+      this.tempPhotoURL !== this.user.photoURL;
   }
 
   validateField(fieldName: string) {
     // Add validation logic if needed
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-      this.isChanged = true;
-    }
+  onFileSelected(file: File): void {
+    this.selectedFile = file;
+    this.isChanged = true;
   }
 
-  onUpdateProfile(): void {
+  onUpdateProfile() {
     if (this.selectedFile) {
       this.authService
         .uploadProfilePicture(this.selectedFile)
@@ -73,7 +72,19 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  updateProfile(): void {
-    // Update profile logic
+  updateProfile() {
+    this.user.displayName = this.tempDisplayName;
+    this.user.photoURL = this.tempPhotoURL;
+    this.authService
+      .onUpdateProfile(this.user.displayName, this.user.photoURL)
+      .then(() => {
+        this.isChanged = false;
+        this.showSnackbar('Profile updated successfully!');
+      });
+  }
+
+  showSnackbar(message: string) {
+    // Implement snackbar logic here
+    alert(message); // Replace with actual snackbar implementation
   }
 }
