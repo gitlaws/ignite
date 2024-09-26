@@ -15,76 +15,81 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   font-family: "Roboto", "Arial";
   background-color: $base-color;
   color: $text-color;
-  padding: 30px; // Increased padding for better spacing
+  padding: 30px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px; // Reduced margin-top for better alignment
-  border-radius: 12px; // Slightly increased border-radius for smoother corners
+  margin-top: 80px;
+  border-radius: 12px;
+  // background-image: url("path/to/background-image.jpg"); // Add a background image
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 15px $shadow-color;
 
   @media (max-width: 400px) {
-    padding: 0 15px; // Adjusted padding for smaller screens
+    padding: 0 15px;
   }
 
   .profile-container {
-    background-color: $background-secondary-color;
+    background-color: rgba(22, 27, 34, 0.9); // Add transparency
     display: block;
-    padding: 2rem; // Increased padding for better spacing
-    border-radius: 10px; // Increased border-radius for smoother corners
+    padding: 2rem;
+    border-radius: 10px;
     max-width: 100%;
-    margin: 1.5rem auto; // Increased margin for better spacing
-    box-shadow: 0 0.5rem 1rem $shadow-color; // Enhanced shadow for better depth
+    margin: 1.5rem auto;
+    box-shadow: 0 0.5rem 1rem $shadow-color;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-      box-shadow: 0 1rem 2rem $shadow-color; // Enhanced hover shadow
+      box-shadow: 0 1rem 2rem $shadow-color;
     }
 
     @media (min-width: 768px) {
-      padding: 2.5rem; // Increased padding for larger screens
+      padding: 2.5rem;
       max-width: 800px;
     }
   }
 
   .welcome-message {
-    font-size: 1.8em; // Increased font size for better emphasis
+    font-size: 2em; // Increased font size
     font-weight: bold;
     color: $highlight-color;
-    text-shadow: 2px 2px 4px $shadow-color; // Enhanced text shadow
+    text-shadow: 2px 2px 4px $shadow-color;
+    margin-bottom: 20px; // Add margin-bottom
   }
 
   .intro-text {
-    font-size: 1.1em; // Slightly increased font size
-    margin-bottom: 15px; // Increased margin-bottom for better spacing
+    font-size: 1.2em; // Slightly increased font size
+    margin-bottom: 20px; // Increased margin-bottom
     color: $secondary-text-color;
   }
 
   .profile-heading {
-    font-size: 1.4em; // Increased font size for better emphasis
-    margin-top: 25px; // Increased margin-top for better spacing
+    font-size: 1.6em; // Increased font size
+    margin-top: 30px; // Increased margin-top
     color: $accent-color;
   }
 
   .profile-photo-container {
     text-align: center;
-    margin-bottom: 25px; // Increased margin-bottom for better spacing
+    margin-bottom: 30px; // Increased margin-bottom
 
     .profile-photo {
-      width: 160px; // Slightly increased size
+      width: 160px;
       height: 160px;
       object-fit: cover;
       border-radius: 50%;
-      border: 3px solid $accent-color; // Increased border thickness
-      box-shadow: 0 0 15px $shadow-color; // Enhanced shadow
+      border: 4px solid $accent-color; // Increased border thickness
+      box-shadow: 0 0 20px $shadow-color; // Enhanced shadow
       transition: transform 0.3s ease;
     }
 
     button {
-      margin-top: 15px; // Increased margin-top for better spacing
-      padding: 8px 15px; // Increased padding for better button size
+      margin-top: 20px; // Increased margin-top
+      padding: 10px 20px; // Increased padding
       border: none;
-      border-radius: 6px; // Increased border-radius for smoother corners
+      border-radius: 6px;
       background-color: $button-bg-color;
       color: $text-color;
       cursor: pointer;
@@ -92,7 +97,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
 
       &:hover {
         background-color: $button-hover-color;
-        transform: translateY(-3px); // Enhanced hover effect
+        transform: translateY(-3px);
       }
     }
   }
@@ -100,16 +105,17 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   .profile-form {
     label {
       display: block;
-      margin-top: 15px; // Increased margin-top for better spacing
+      margin-top: 20px; // Increased margin-top
       color: $accent-color;
+      font-weight: bold; // Make labels bold
     }
 
     input,
     textarea {
       width: 100%;
-      padding: 10px; // Increased padding for better input size
-      margin-top: 8px; // Increased margin-top for better spacing
-      border-radius: 6px; // Increased border-radius for smoother corners
+      padding: 12px; // Increased padding
+      margin-top: 10px; // Increased margin-top
+      border-radius: 6px;
       border: 1px solid $border-color;
       background-color: #333;
       color: $text-color;
@@ -123,14 +129,14 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   }
 
   .button-container {
-    margin-top: 25px; // Increased margin-top for better spacing
+    margin-top: 30px; // Increased margin-top
     display: flex;
     justify-content: center;
 
     button {
-      padding: 12px 25px; // Increased padding for better button size
+      padding: 15px 30px; // Increased padding
       border: none;
-      border-radius: 6px; // Increased border-radius for smoother corners
+      border-radius: 6px;
       background-color: $button-bg-color;
       color: $text-color;
       cursor: pointer;
@@ -143,7 +149,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
 
       &:hover:not(:disabled) {
         background-color: $button-hover-color;
-        transform: translateY(-3px); // Enhanced hover effect
+        transform: translateY(-3px);
       }
     }
   }
@@ -157,32 +163,32 @@ $shadow-color: rgba(0, 0, 0, 0.2);
 
 @media (max-width: 480px) {
   #profile-wrapper .profile-photo-container {
-    margin-bottom: 15px; // Increased margin-bottom for better spacing
+    margin-bottom: 20px; // Increased margin-bottom
   }
 
   #profile-wrapper .button-container {
     flex-direction: column;
 
     button {
-      margin-bottom: 15px; // Increased margin-bottom for better spacing
+      margin-bottom: 20px; // Increased margin-bottom
     }
   }
 }
 
 .profile-photo-container .profile-photo {
-  border: 3px solid $accent-color; // Increased border thickness
-  box-shadow: 0 0 15px $shadow-color; // Enhanced shadow
+  border: 4px solid $accent-color; // Increased border thickness
+  box-shadow: 0 0 20px $shadow-color; // Enhanced shadow
 }
 
 .profile-form {
-  line-height: 1.8; // Increased line-height for better readability
+  line-height: 1.8;
 }
 
 button {
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    transform: translateY(-3px); // Enhanced hover effect
+    transform: translateY(-3px);
   }
 }
 
