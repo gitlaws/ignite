@@ -27,7 +27,9 @@ export class ProfileComponent implements OnInit {
     displayName: '',
     photoURL: '',
   };
-  isChanged = false;
+  tempDisplayName: string = '';
+  tempPhotoURL: string = '';
+  isChanged: boolean = false;
   selectedFile: File | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -37,10 +39,12 @@ export class ProfileComponent implements OnInit {
     this.authService.getUserProfile().then((profile) => {
       this.user.displayName = profile.displayName;
       this.user.photoURL = profile.photoURL;
+      this.tempDisplayName = this.user.displayName;
+      this.tempPhotoURL = this.user.photoURL;
     });
   }
 
-  onFieldChange() {
+  onFieldChange(): void {
     this.isChanged = true;
   }
 
@@ -48,12 +52,15 @@ export class ProfileComponent implements OnInit {
     // Add validation logic if needed
   }
 
-  onFileSelected(file: File) {
-    this.selectedFile = file;
-    this.isChanged = true;
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.isChanged = true;
+    }
   }
 
-  onUpdateProfile() {
+  onUpdateProfile(): void {
     if (this.selectedFile) {
       this.authService
         .uploadProfilePicture(this.selectedFile)
@@ -66,17 +73,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  updateProfile() {
-    this.authService
-      .onUpdateProfile(this.user.displayName, this.user.photoURL)
-      .then(() => {
-        this.isChanged = false;
-        this.showSnackbar('Profile updated successfully!');
-      });
-  }
-
-  showSnackbar(message: string) {
-    // Implement snackbar logic here
-    alert(message); // Replace with actual snackbar implementation
+  updateProfile(): void {
+    // Update profile logic
   }
 }

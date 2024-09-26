@@ -43,15 +43,8 @@
       />
       <label for="profilePicture">Upload Profile Picture:</label>
       <app-drop-zone (fileSelected)="onFileSelected($event)"></app-drop-zone>
+      <app-update-button [isChanged]="isChanged"></app-update-button>
     </form>
-    <app-update-button
-      [isChanged]="isChanged"
-      (updateProfile)="onUpdateProfile()"
-    ></app-update-button>
-    <app-update-button
-      [isChanged]="isChanged"
-      (updateProfile)="onUpdateProfile()"
-    ></app-update-button>
   </div>
   <app-snackbar></app-snackbar>
 </div>
