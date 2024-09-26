@@ -13,7 +13,7 @@
 </button>
 <ul *ngIf="isMenuOpen" class="dropdown-menu" (click)="$event.stopPropagation()">
   <li class="dropdown-item" *ngIf="isLoggedIn">
-    <a routerLink="/profile">Profile</a>
+    <a routerLink="/profile">Settings</a>
   </li>
   <li class="dropdown-item" *ngIf="isLoggedIn" (click)="logout()">
     <a>Logout</a>
