@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterModule],
   templateUrl: './user-menu.component.html',
   styleUrls: ['./user-menu.component.scss'],
 })
