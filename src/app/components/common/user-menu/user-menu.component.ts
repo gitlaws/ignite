@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-menu',
@@ -14,13 +15,15 @@ export class UserMenuComponent implements OnInit {
   isMenuOpen: boolean = false; // Add this property
   user: any = {}; // Assuming you have a user object
   private closeMenuTimeout: any;
+  menuItems: Array<{ name: string; url: string }> = [];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.authService.getUser().subscribe((user) => {
       this.user = user;
       this.isLoggedIn = !!user; // Set isLoggedIn based on user presence
+      this.updateMenuItems();
     });
   }
 
@@ -49,8 +52,29 @@ export class UserMenuComponent implements OnInit {
 
   logout(): void {
     this.authService.logout().then(() => {
-      this.user = {};
-      this.isLoggedIn = false; // Update isLoggedIn on logout
+      this.isLoggedIn = false;
+      this.updateMenuItems();
+      this.router.navigate(['/login']);
     });
+  }
+
+  navigateToProfile() {
+    if (this.isLoggedIn) {
+      this.router.navigate(['/profile']);
+    }
+  }
+
+  private updateMenuItems() {
+    if (this.isLoggedIn) {
+      this.menuItems = [
+        { name: 'Profile', url: '/profile' },
+        { name: 'Logout', url: '/logout' },
+      ];
+    } else {
+      this.menuItems = [
+        { name: 'Login', url: '/login' },
+        { name: 'Register', url: '/register' },
+      ];
+    }
   }
 }
