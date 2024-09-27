@@ -26,52 +26,50 @@
             <div class="overlay" (click)="removePhoto()">Remove Photo</div>
           </div>
         </div>
-        <!-- Bio Information -->
-        <div class="bio-container">
-          <h3 class="profile-subheading">Bio</h3>
-          <p>{{ user.bio || "No bio available" }}</p>
+
+        <div class="right-column">
+          <form (ngSubmit)="onUpdateProfile()" class="profile-form">
+            <label for="displayName">Display Name:</label>
+            <input
+              type="text"
+              id="displayName"
+              [(ngModel)]="tempDisplayName"
+              name="displayName"
+              title="Enter your display name"
+              placeholder="Display Name"
+              (ngModelChange)="onFieldChange()"
+              (input)="validateField('displayName')"
+              required
+            />
+            <label for="photoURL">Photo URL:</label>
+            <input
+              type="text"
+              id="photoURL"
+              [(ngModel)]="tempPhotoURL"
+              name="photoURL"
+              title="Enter the URL of your profile photo"
+              placeholder="Paste Photo URL"
+              (ngModelChange)="onFieldChange()"
+              (input)="validateField('photoURL')"
+              required
+            />
+            <label for="bio">Bio:</label>
+            <textarea
+              id="bio"
+              [(ngModel)]="tempBio"
+              name="bio"
+              title="Enter a short bio"
+              placeholder="Write a short bio"
+            ></textarea>
+            <div class="button-container">
+              <button type="submit" [disabled]="disabled">
+                Update Profile
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="right-column">
-        <form (ngSubmit)="onUpdateProfile()" class="profile-form">
-          <label for="displayName">Display Name:</label>
-          <input
-            type="text"
-            id="displayName"
-            [(ngModel)]="tempDisplayName"
-            name="displayName"
-            title="Enter your display name"
-            placeholder="Display Name"
-            (ngModelChange)="onFieldChange()"
-            (input)="validateField('displayName')"
-            required
-          />
-          <label for="photoURL">Photo URL:</label>
-          <input
-            type="text"
-            id="photoURL"
-            [(ngModel)]="tempPhotoURL"
-            name="photoURL"
-            title="Enter the URL of your profile photo"
-            placeholder="Paste Photo URL"
-            (ngModelChange)="onFieldChange()"
-            (input)="validateField('photoURL')"
-            required
-          />
-          <label for="bio">Bio:</label>
-          <textarea
-            id="bio"
-            [(ngModel)]="tempBio"
-            name="bio"
-            title="Enter a short bio"
-            placeholder="Write a short bio"
-          ></textarea>
-          <div class="button-container">
-            <button type="submit" [disabled]="disabled">Update Profile</button>
-          </div>
-        </form>
-      </div>
     </div>
+    <app-snackbar></app-snackbar>
   </div>
-  <app-snackbar></app-snackbar>
 </div>

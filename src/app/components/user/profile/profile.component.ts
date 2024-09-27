@@ -24,10 +24,10 @@ import { SnackbarService } from '../../../services/snackbar.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  [x: string]: any;
   user: any = {
     displayName: '',
     photoURL: '',
-    bio: '',
   };
   tempDisplayName: string = '';
   tempPhotoURL: string = '';
@@ -46,42 +46,30 @@ export class ProfileComponent implements OnInit {
     // Retrieve values from local storage
     const storedDisplayName = localStorage.getItem('displayName');
     const storedPhotoURL = localStorage.getItem('photoURL');
-    const storedBio = localStorage.getItem('bio');
 
     if (storedDisplayName) {
       this.user.displayName = storedDisplayName;
-      this.tempDisplayName = storedDisplayName;
     }
 
     if (storedPhotoURL) {
       this.user.photoURL = storedPhotoURL;
-      this.tempPhotoURL = storedPhotoURL;
-    }
-
-    if (storedBio) {
-      this.user.bio = storedBio;
-      this.tempBio = storedBio;
     }
 
     // Fetch the user profile from the AuthService
     this.authService.getUserProfile().then((profile) => {
-      this.user.displayName = profile.displayName || this.user.displayName;
-      this.user.photoURL = profile.photoURL || this.user.photoURL;
-      this.user.bio = profile.bio || this.user.bio;
-      this.tempDisplayName = this.user.displayName;
-      this.tempPhotoURL = this.user.photoURL;
-      this.tempBio = this.user.bio;
+      this.user.displayName = profile.displayName;
+      this.user.photoURL = profile.photoURL;
     });
 
+    // Initialize user data
+    this.tempDisplayName = '';
+    this.tempPhotoURL = '';
     this.disabled = true;
   }
 
   onFieldChange(): void {
     this.isChanged = true;
-    this.disabled =
-      !this.tempDisplayName.trim() &&
-      !this.tempPhotoURL.trim() &&
-      !this.tempBio.trim();
+    this.disabled = !this.tempDisplayName.trim() && !this.tempPhotoURL.trim();
     this.profileCompletion = this.calculateProfileCompletion();
   }
 
@@ -92,18 +80,13 @@ export class ProfileComponent implements OnInit {
   get isUpdateDisabled(): boolean {
     return (
       this.tempDisplayName === this.user.displayName &&
-      this.tempPhotoURL === this.user.photoURL &&
-      this.tempBio === this.user.bio
+      this.tempPhotoURL === this.user.photoURL
     );
   }
 
   onUpdateProfile(): void {
-    if (
-      this.tempDisplayName.trim() === '' &&
-      this.tempPhotoURL.trim() === '' &&
-      this.tempBio.trim() === ''
-    ) {
-      alert('Please enter a display name, photo URL, or bio to update.');
+    if (this.tempDisplayName.trim() === '' && this.tempPhotoURL.trim() === '') {
+      alert('Please enter a display name or photo URL to update.');
       return;
     }
 
@@ -115,21 +98,15 @@ export class ProfileComponent implements OnInit {
       this.user.photoURL = this.tempPhotoURL;
     }
 
-    if (this.tempBio.trim() !== '') {
-      this.user.bio = this.tempBio;
-    }
-
     // Store values in local storage
     localStorage.setItem('displayName', this.user.displayName);
     localStorage.setItem('photoURL', this.user.photoURL);
-    localStorage.setItem('bio', this.user.bio);
 
     this.authService
       .onUpdateProfile(this.tempDisplayName, this.tempPhotoURL)
       .then(() => {
-        this.tempDisplayName = this.user.displayName;
-        this.tempPhotoURL = this.user.photoURL;
-        this.tempBio = this.user.bio;
+        this.tempDisplayName = '';
+        this.tempPhotoURL = '';
         this.disabled = true;
         this.snackbarService.callSnackbar('Profile updated successfully');
       })
@@ -141,7 +118,6 @@ export class ProfileComponent implements OnInit {
 
   removePhoto(): void {
     this.user.photoURL = '';
-    this.tempPhotoURL = '';
     localStorage.removeItem('photoURL');
     this.authService
       .onUpdateProfile(this.user.displayName, '')
@@ -160,7 +136,6 @@ export class ProfileComponent implements OnInit {
     let completion = 0;
     if (this.user.photoURL) completion += 50;
     if (this.tempDisplayName) completion += 50;
-    if (this.tempBio) completion += 25;
     return completion;
   }
 }

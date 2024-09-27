@@ -57,7 +57,11 @@ export class AuthService {
     return this.user$;
   }
 
-  async getUserProfile(): Promise<{ displayName: string; photoURL: string }> {
+  async getUserProfile(): Promise<{
+    [x: string]: any;
+    displayName: string;
+    photoURL: string;
+  }> {
     const user = this.auth.currentUser;
     if (user) {
       return {

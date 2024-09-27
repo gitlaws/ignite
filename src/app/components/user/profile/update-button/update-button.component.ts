@@ -10,12 +10,13 @@ export class UpdateButtonComponent {
   @Input() user: any;
   @Input() tempDisplayName!: string;
   @Input() tempPhotoURL!: string;
+  @Input() tempBio!: string; // Add tempBio input
   @Input() disabled: boolean = true;
   @Output() updateProfile = new EventEmitter<void>();
 
   onUpdateProfile() {
     if (this.disabled) {
-      alert('Please enter a display name or photo URL to update.');
+      alert('Please enter a display name, photo URL, or bio to update.');
       return;
     }
 
