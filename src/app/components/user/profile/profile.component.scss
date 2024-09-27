@@ -9,6 +9,7 @@ $link-hover-color: #79c0ff;
 $background-secondary-color: #161b22;
 $shadow-color: rgba(0, 0, 0, 0.2);
 
+// Profile Wrapper
 #profile-wrapper {
   font-family: "Roboto", "Arial";
   background-color: $base-color;
@@ -19,9 +20,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   flex-direction: column;
   align-items: center;
   height: auto;
-  // margin-top: 80px;
   border-radius: 12px;
-  // background-image: url("path/to/background-image.jpg"); // Add a background image
   background-size: cover;
   background-position: center;
   box-shadow: 0 0 15px $shadow-color;
@@ -31,7 +30,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   }
 
   .profile-container {
-    background-color: rgba(22, 27, 34, 0.9); // Add transparency
+    background-color: rgba(22, 27, 34, 0.9);
     display: block;
     padding: 2rem;
     border-radius: 10px;
@@ -48,76 +47,112 @@ $shadow-color: rgba(0, 0, 0, 0.2);
       padding: 2.5rem;
       max-width: 800px;
     }
-  }
 
-  .welcome-message {
-    font-size: 2em; // Increased font size
-    font-weight: bold;
-    color: $highlight-color;
-    text-shadow: 2px 2px 4px $shadow-color;
-    margin-bottom: 20px; // Add margin-bottom
-  }
-
-  .intro-text {
-    font-size: 1.2em; // Slightly increased font size
-    margin-bottom: 20px; // Increased margin-bottom
-    color: $secondary-text-color;
-  }
-
-  .profile-heading {
-    font-size: 1.6em; // Increased font size
-    margin-top: 30px; // Increased margin-top
-    color: $accent-color;
-  }
-
-  .profile-photo-container {
-    text-align: center;
-    margin-bottom: 30px; // Increased margin-bottom
-
-    .profile-photo {
-      width: 160px;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid $accent-color; // Increased border thickness
-      box-shadow: 0 0 20px $shadow-color; // Enhanced shadow
-      transition: transform 0.3s ease;
+    @media (max-width: 320px) {
+      padding: 1rem;
     }
-  }
-
-  .profile-form {
-    label {
-      display: block;
-      margin-top: 20px; // Increased margin-top
-      color: $accent-color;
-      font-weight: bold; // Make labels bold
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 12px; // Increased padding
-      margin-top: 10px; // Increased margin-top
-      border-radius: 6px;
-      border: 1px solid $border-color;
-      background-color: #333;
-      color: $text-color;
-      transition: border-color 0.3s ease;
-
-      &:focus {
-        border-color: $accent-color;
-        outline: none;
-      }
-    }
-  }
-
-  .button-container {
-    margin-top: 30px; // Increased margin-top
-    display: flex;
-    justify-content: center;
   }
 }
 
+// Welcome Message
+.welcome-message {
+  font-size: 2em;
+  font-weight: bold;
+  color: $highlight-color;
+  text-shadow: 2px 2px 4px $shadow-color;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 1.8em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.6em;
+  }
+}
+
+// Intro Text
+.intro-text {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: $secondary-text-color;
+
+  @media (max-width: 768px) {
+    font-size: 1.1em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1em;
+  }
+}
+
+// Profile Heading
+.profile-heading {
+  font-size: 1.6em;
+  margin-top: 30px;
+  color: $accent-color;
+
+  @media (max-width: 768px) {
+    font-size: 1.4em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.2em;
+  }
+}
+
+// Profile Photo Container
+.profile-photo-container {
+  text-align: center;
+  margin-bottom: 30px;
+
+  .profile-photo {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid $accent-color;
+    box-shadow: 0 0 20px $shadow-color;
+    transition: transform 0.3s ease;
+  }
+}
+
+// Profile Form
+.profile-form {
+  label {
+    display: block;
+    margin-top: 20px;
+    color: $accent-color;
+    font-weight: bold;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid $border-color;
+    background-color: #333;
+    color: $text-color;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: $accent-color;
+      outline: none;
+    }
+  }
+  line-height: 1.8;
+}
+
+// Button Container
+.button-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+// Media Queries
 @media (max-width: 768px) {
   #profile-wrapper .profile-container {
     flex-direction: column;
@@ -126,7 +161,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
 
 @media (max-width: 480px) {
   #profile-wrapper .profile-photo-container {
-    margin-bottom: 20px; // Increased margin-bottom
+    margin-bottom: 20px;
   }
 
   #profile-wrapper .button-container {
@@ -134,15 +169,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   }
 }
 
-.profile-photo-container .profile-photo {
-  border: 4px solid $accent-color; // Increased border thickness
-  box-shadow: 0 0 20px $shadow-color; // Enhanced shadow
-}
-
-.profile-form {
-  line-height: 1.8;
-}
-
+// Links
 a {
   color: $link-color;
   text-decoration: none;
@@ -153,6 +180,7 @@ a {
   }
 }
 
+// Profile Container
 .profile-container {
   app-update-button {
     display: block;
