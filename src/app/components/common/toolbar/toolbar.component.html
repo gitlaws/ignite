@@ -19,12 +19,12 @@
 -->
 
 <div class="header-container">
-  <div class="header-item item-left">
+  <div class="header-item1">
     <a routerLink="/home" class="header__logo" title="Home">
       <app-drone-logo></app-drone-logo>
     </a>
   </div>
-  <div class="header-item item-center">
+  <div class="header-item2">
     <nav class="header__nav" aria-label="Main Navigation">
       <div class="nav__login-links" *ngIf="!isLoggedIn">
         <a routerLink="/login" class="nav__login-link">Login</a>
@@ -37,7 +37,7 @@
       </div>
     </nav>
   </div>
-  <div class="header-item item-right">
+  <div class="header-item3">
     <app-user-menu *ngIf="isLoggedIn" class="header__menu"></app-user-menu>
   </div>
 </div>
