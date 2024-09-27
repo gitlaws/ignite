@@ -24,7 +24,8 @@
       <app-drone-logo></app-drone-logo>
     </a>
   </div>
-  <div class="header-item2">
+  <div class="header-item2"></div>
+  <div class="header-item3">
     <nav class="header__nav" aria-label="Main Navigation">
       <div class="nav__login-links" *ngIf="!isLoggedIn">
         <a routerLink="/login" class="nav__login-link">Login</a>
@@ -36,8 +37,6 @@
         </a>
       </div>
     </nav>
-  </div>
-  <div class="header-item3">
     <app-user-menu *ngIf="isLoggedIn" class="header__menu"></app-user-menu>
   </div>
 </div>
