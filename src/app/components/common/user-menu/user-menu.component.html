@@ -22,8 +22,8 @@
     <li class="dropdown-item" *ngIf="isLoggedIn">
       <a routerLink="/profile">Settings</a>
     </li>
-    <li class="dropdown-item" *ngIf="isLoggedIn" (click)="logout()">
-      <a>Logout</a>
+    <li class="dropdown-item" *ngIf="isLoggedIn">
+      <a (click)="logout()">Logout</a>
     </li>
     <!-- <li class="dropdown-item-social-links">
     <a
