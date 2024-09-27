@@ -23,11 +23,25 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   padding: 20px;
   // @include theme-mode-transition;
   @include header-box-shadow(0, 4px, 6px, 0, hsla(0, 0%, 0%, 0.2));
+
+  .header-item {
+    align-self: auto;
+  }
+
+  .item-left {
+    background-color: green;
+  }
+  .item-right {
+    background-color: blue;
+  }
+  .item-center {
+    background-color: red;
+  }
 }
 
-.header__menu {
-  display: none;
-}
+// .header__menu {
+//   display: visible;
+// }
 
 .header__nav {
   display: flex;
@@ -88,73 +102,19 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   display: inline-block;
 }
 
-.nav__social-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 1em;
-  }
-
-  i {
-    font-size: 1em;
-
-    &.light {
-      color: #8b949e;
-
-      &:hover {
-        color: #c9d1d9;
-        text-shadow: 0px 0px 5px #c9d1d9;
-      }
-    }
-
-    &.dark {
-      color: #8b949e;
-
-      &:hover {
-        color: #c9d1d9;
-        text-shadow: 0px 0px 5px #c9d1d9;
-      }
-    }
-  }
-
-  a {
-    font-size: 1.75em;
-    transition: color 0.3s ease;
-    color: #c9d1d9;
-
-    &:hover {
-      color: $social-link-hover-color;
-    }
-  }
-}
-
 @media (max-width: $tablet) {
   .header {
     justify-content: space-around;
     align-items: center;
   }
 
-  .nav__theme-toggle {
-    display: none;
-  }
+  // .header__nav {
+  //   display: none;
+  // }
 
-  .nav__social-links {
-    display: none;
-  }
-
-  .header__nav {
-    display: none;
-  }
-
-  .header__menu {
-    display: block;
-  }
+  // .header__menu {
+  //   display: block;
+  // }
 }
 
 @media (max-width: $mobile) {
@@ -163,28 +123,20 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
     align-items: center;
   }
 
-  .nav__theme-toggle {
-    display: none;
-  }
+  // .header__nav {
+  //   display: none;
+  // }
 
-  .nav__social-links {
-    display: none;
-  }
-
-  .header__nav {
-    display: none;
-  }
-
-  .header__menu {
-    display: block;
-  }
+  // .header__menu {
+  //   display: block;
+  // }
 }
 
-@media (max-width: 120px) {
-  .header {
-    height: auto;
-    flex-direction: column;
-    overflow: hidden;
-    gap: 1rem;
-  }
-}
+// @media (max-width: 120px) {
+//   .header {
+//     height: auto;
+//     flex-direction: column;
+//     overflow: hidden;
+//     gap: 1rem;
+//   }
+// }
