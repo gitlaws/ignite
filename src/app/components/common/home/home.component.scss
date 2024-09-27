@@ -9,20 +9,21 @@ $font-family: "Roboto", "Arial";
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 100px;
+  // margin-top: 100px;
+  height: auto;
 
   @media (max-width: 400px) {
-    margin: 120px 0 0 0;
+    // margin: 120px 0 0 0;
     padding: 0 10px;
   }
 
   @media (min-width: 401px) and (max-width: 768px) {
-    margin: 150px 0 0 0;
+    // margin: 150px 0 0 0;
     padding: 0 20px;
   }
 
   @media (min-width: 769px) {
-    margin: 120px 0 0 0;
+    // margin: 120px 0 0 0;
     padding: 0 30px;
   }
 }

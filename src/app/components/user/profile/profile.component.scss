@@ -18,7 +18,8 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px;
+  height: auto;
+  // margin-top: 80px;
   border-radius: 12px;
   // background-image: url("path/to/background-image.jpg"); // Add a background image
   background-size: cover;
