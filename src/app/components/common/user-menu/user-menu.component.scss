@@ -30,6 +30,12 @@ $dropdown-hover-text-shadow: rgba(88, 166, 255, 0.5);
   //   padding: 10px;
   cursor: pointer;
   position: relative;
+
+  &.hover {
+    border: 2px solid #58a6ff;
+    box-shadow: 0 0 10px #58a6ff;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
 }
 
 .profile-photo {
