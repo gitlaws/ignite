@@ -7,7 +7,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./drop-zone.component.scss'],
 })
 export class DropZoneComponent {
-  @Output() fileSelected = new EventEmitter<File>();
+  @Output() fileSelected = new EventEmitter<string>();
+  selectedFileName: string | null = null;
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
@@ -17,19 +18,28 @@ export class DropZoneComponent {
     event.preventDefault();
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       const file = event.dataTransfer.files[0];
-      this.fileSelected.emit(file);
+      this.readFile(file);
     }
+  }
+
+  triggerFileInput(fileInput: HTMLInputElement) {
+    fileInput.click();
   }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const file = input.files[0];
-      this.fileSelected.emit(file);
+      this.readFile(file);
     }
   }
 
-  triggerFileInput(fileInput: HTMLInputElement): void {
-    fileInput.click();
+  private readFile(file: File) {
+    this.selectedFileName = file.name;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.fileSelected.emit(reader.result as string);
+    };
+    reader.readAsDataURL(file);
   }
 }

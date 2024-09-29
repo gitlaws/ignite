@@ -53,7 +53,9 @@
               (input)="validateField('photoURL')"
               required
             />
-            <app-drop-zone></app-drop-zone>
+            <app-drop-zone
+              (fileSelected)="onFileSelected($event)"
+            ></app-drop-zone>
 
             <div class="button-container">
               <button type="submit" [disabled]="disabled">

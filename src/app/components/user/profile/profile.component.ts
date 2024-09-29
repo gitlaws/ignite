@@ -24,14 +24,12 @@ import { SnackbarService } from '../../../services/snackbar.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  [x: string]: any;
   user: any = {
     displayName: '',
     photoURL: '',
   };
   tempDisplayName: string = '';
   tempPhotoURL: string = '';
-  tempContact: string = ''; // Define the tempBio property
   disabled: boolean = true;
   isChanged: boolean = false;
   profileCompletion: number = 0;
@@ -137,5 +135,9 @@ export class ProfileComponent implements OnInit {
     if (this.user.photoURL) completion += 50;
     if (this.tempDisplayName) completion += 50;
     return completion;
+  }
+
+  onFileSelected(fileDataUrl: string) {
+    this.user.photoURL = fileDataUrl;
   }
 }
