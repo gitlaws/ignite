@@ -140,7 +140,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(fileDataUrl: string) {
-    this.tempPhotoURL = fileDataUrl;
+    this.user.photoURL = fileDataUrl;
     this.onFieldChange();
   }
 
