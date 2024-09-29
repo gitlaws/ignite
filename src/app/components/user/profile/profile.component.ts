@@ -107,6 +107,7 @@ export class ProfileComponent implements OnInit {
         this.tempPhotoURL = '';
         this.disabled = true;
         this.snackbarService.callSnackbar('Profile updated successfully');
+        this.updateUserMenuPhoto();
       })
       .catch((error) => {
         console.error('Error updating profile:', error);
@@ -139,5 +140,10 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(fileDataUrl: string) {
     this.user.photoURL = fileDataUrl;
+  }
+
+  updateUserMenuPhoto() {
+    // Implement the logic to update the profile photo in the user menu
+    console.log('User menu photo updated');
   }
 }
