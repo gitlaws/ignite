@@ -101,7 +101,7 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem('photoURL', this.user.photoURL);
 
     this.authService
-      .onUpdateProfile(this.tempDisplayName, this.tempPhotoURL)
+      .onUpdateProfile(this.user.displayName, this.user.photoURL)
       .then(() => {
         this.tempDisplayName = '';
         this.tempPhotoURL = '';
@@ -122,6 +122,7 @@ export class ProfileComponent implements OnInit {
       .onUpdateProfile(this.user.displayName, '')
       .then(() => {
         this.snackbarService.callSnackbar('Photo removed successfully');
+        this.updateUserMenuPhoto();
       })
       .catch((error) => {
         console.error('Error removing photo:', error);
@@ -139,11 +140,16 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(fileDataUrl: string) {
-    this.user.photoURL = fileDataUrl;
+    this.tempPhotoURL = fileDataUrl;
+    this.onFieldChange();
   }
 
   updateUserMenuPhoto() {
     // Implement the logic to update the profile photo in the user menu
+    const userMenuPhotoElement = document.querySelector('.user-menu-photo');
+    if (userMenuPhotoElement) {
+      userMenuPhotoElement.setAttribute('src', this.user.photoURL);
+    }
     console.log('User menu photo updated');
   }
 }
