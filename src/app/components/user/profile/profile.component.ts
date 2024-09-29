@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   };
   tempDisplayName: string = '';
   tempPhotoURL: string = '';
-  tempBio: string = ''; // Define the tempBio property
+  tempContact: string = ''; // Define the tempBio property
   disabled: boolean = true;
   isChanged: boolean = false;
   profileCompletion: number = 0;
