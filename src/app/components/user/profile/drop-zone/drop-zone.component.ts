@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Output,
@@ -12,6 +13,7 @@ import {
   standalone: true,
   templateUrl: './drop-zone.component.html',
   styleUrls: ['./drop-zone.component.scss'],
+  imports: [CommonModule],
 })
 export class DropZoneComponent implements AfterViewInit {
   @Output() fileSelected = new EventEmitter<string>();
