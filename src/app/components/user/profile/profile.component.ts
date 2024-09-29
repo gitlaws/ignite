@@ -5,6 +5,7 @@ import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
+import { UpdateButtonComponent } from './update-button/update-button.component';
 import { SnackbarService } from '../../../services/snackbar.service';
 
 @Component({
@@ -17,6 +18,7 @@ import { SnackbarService } from '../../../services/snackbar.service';
     RouterModule,
     SnackbarComponent,
     DropZoneComponent,
+    UpdateButtonComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
@@ -28,7 +30,6 @@ export class ProfileComponent implements OnInit {
   };
   tempDisplayName: string = '';
   tempPhotoURL: string = '';
-  newPhotoURL: string = ''; // Temporary storage for new photo URL
   disabled: boolean = true;
   isChanged: boolean = false;
   profileCompletion: number = 0;
@@ -66,10 +67,7 @@ export class ProfileComponent implements OnInit {
 
   onFieldChange(): void {
     this.isChanged = true;
-    this.disabled =
-      !this.tempDisplayName.trim() &&
-      !this.tempPhotoURL.trim() &&
-      !this.newPhotoURL.trim();
+    this.disabled = !this.tempDisplayName.trim() && !this.tempPhotoURL.trim();
     this.profileCompletion = this.calculateProfileCompletion();
   }
 
@@ -80,17 +78,12 @@ export class ProfileComponent implements OnInit {
   get isUpdateDisabled(): boolean {
     return (
       this.tempDisplayName === this.user.displayName &&
-      this.tempPhotoURL === this.user.photoURL &&
-      this.newPhotoURL === ''
+      this.tempPhotoURL === this.user.photoURL
     );
   }
 
   onUpdateProfile(): void {
-    if (
-      this.tempDisplayName.trim() === '' &&
-      this.tempPhotoURL.trim() === '' &&
-      this.newPhotoURL.trim() === ''
-    ) {
+    if (this.tempDisplayName.trim() === '' && this.tempPhotoURL.trim() === '') {
       alert('Please enter a display name or photo URL to update.');
       return;
     }
@@ -99,9 +92,7 @@ export class ProfileComponent implements OnInit {
       this.user.displayName = this.tempDisplayName;
     }
 
-    if (this.newPhotoURL.trim() !== '') {
-      this.user.photoURL = this.newPhotoURL;
-    } else if (this.tempPhotoURL.trim() !== '') {
+    if (this.tempPhotoURL.trim() !== '') {
       this.user.photoURL = this.tempPhotoURL;
     }
 
@@ -110,11 +101,10 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem('photoURL', this.user.photoURL);
 
     this.authService
-      .onUpdateProfile(this.tempDisplayName, this.user.photoURL)
+      .onUpdateProfile(this.tempDisplayName, this.tempPhotoURL)
       .then(() => {
         this.tempDisplayName = '';
         this.tempPhotoURL = '';
-        this.newPhotoURL = '';
         this.disabled = true;
         this.snackbarService.callSnackbar('Profile updated successfully');
       })
@@ -148,7 +138,6 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(fileDataUrl: string) {
-    this.newPhotoURL = fileDataUrl;
-    this.onFieldChange();
+    this.user.photoURL = fileDataUrl;
   }
 }

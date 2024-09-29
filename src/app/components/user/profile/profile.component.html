@@ -58,11 +58,7 @@
             ></app-drop-zone>
 
             <div class="button-container">
-              <button
-                type="submit"
-                [disabled]="isUpdateDisabled"
-                (click)="onUpdateProfile()"
-              >
+              <button type="submit" [disabled]="disabled">
                 Update Profile
               </button>
             </div>
