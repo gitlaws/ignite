@@ -5,7 +5,6 @@ import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
-import { UpdateButtonComponent } from './update-button/update-button.component';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { UserService } from '../../../services/user.service';
 
@@ -19,7 +18,6 @@ import { UserService } from '../../../services/user.service';
     RouterModule,
     SnackbarComponent,
     DropZoneComponent,
-    UpdateButtonComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
