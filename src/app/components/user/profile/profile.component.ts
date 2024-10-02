@@ -84,7 +84,6 @@ export class ProfileComponent implements OnInit {
 
   onUpdateProfile(): void {
     if (this.tempDisplayName.trim() === '' && this.tempPhotoURL.trim() === '') {
-      alert('Please enter a display name or photo URL to update.');
       return;
     }
 
