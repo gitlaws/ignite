@@ -43,16 +43,11 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Retrieve user data from UserService
     this.user = this.userService.getUser();
-
-    // Fetch the user profile from the AuthService
     this.authService.getUserProfile().then((profile) => {
       this.user.displayName = profile.displayName;
       this.user.photoURL = profile.photoURL;
     });
-
-    // Initialize user data
     this.tempDisplayName = '';
     this.tempPhotoURL = '';
     this.disabled = true;
@@ -141,7 +136,7 @@ export class ProfileComponent implements OnInit {
     const userMenuPhotoElement = document.querySelector('.user-menu-photo');
     if (userMenuPhotoElement) {
       userMenuPhotoElement.setAttribute('src', this.user.photoURL);
+      this.snackbarService.callSnackbar('User menu photo updated successfully');
     }
-    console.log('User menu photo updated');
   }
 }
