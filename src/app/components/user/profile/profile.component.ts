@@ -7,6 +7,7 @@ import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import { UpdateButtonComponent } from './update-button/update-button.component';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -37,21 +38,13 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    // Retrieve values from local storage
-    const storedDisplayName = localStorage.getItem('displayName');
-    const storedPhotoURL = localStorage.getItem('photoURL');
-
-    if (storedDisplayName) {
-      this.user.displayName = storedDisplayName;
-    }
-
-    if (storedPhotoURL) {
-      this.user.photoURL = storedPhotoURL;
-    }
+    // Retrieve user data from UserService
+    this.user = this.userService.getUser();
 
     // Fetch the user profile from the AuthService
     this.authService.getUserProfile().then((profile) => {
@@ -139,7 +132,8 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(fileDataUrl: string) {
-    this.user.photoURL = fileDataUrl;
+    this.userService.updateUserPhoto(fileDataUrl);
+    this.user = this.userService.getUser(); // Update the local user data
     this.onFieldChange();
   }
 
