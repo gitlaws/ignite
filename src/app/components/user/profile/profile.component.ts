@@ -131,14 +131,13 @@ export class ProfileComponent implements OnInit {
     return completion;
   }
 
-  onFileSelected(fileDataUrl: string) {
+  onFileSelected(fileDataUrl: string): void {
     this.userService.updateUserPhoto(fileDataUrl);
     this.user = this.userService.getUser(); // Update the local user data
     this.onFieldChange();
   }
 
-  updateUserMenuPhoto() {
-    // Implement the logic to update the profile photo in the user menu
+  updateUserMenuPhoto(): void {
     const userMenuPhotoElement = document.querySelector('.user-menu-photo');
     if (userMenuPhotoElement) {
       userMenuPhotoElement.setAttribute('src', this.user.photoURL);
