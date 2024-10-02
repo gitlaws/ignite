@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { User } from '../../../models/user.models';
+import { User as FirebaseUser } from '@firebase/auth';
+import { User as AppUser } from '../../../models/user.models';
 
 @Component({
   selector: 'app-user-menu',
@@ -14,7 +15,7 @@ import { User } from '../../../models/user.models';
 export class UserMenuComponent implements OnInit {
   isLoggedIn: boolean = true;
   isMenuOpen: boolean = false;
-  user: User = { photoURL: '' };
+  user: AppUser = { displayName: '', photoURL: '' };
   tempPhotoURL: string = '';
   private closeMenuTimeout: any;
   menuItems: Array<{ name: string; url: string }> = [];
@@ -22,11 +23,27 @@ export class UserMenuComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe((user: User | null) => {
-      this.user = user ?? { photoURL: '' };
-      this.isLoggedIn = !!user;
-      this.updateMenuItems();
-    });
+    this.authService
+      .getUser()
+      .subscribe((firebaseUser: FirebaseUser | null) => {
+        const appUser = this.transformFirebaseUser(firebaseUser);
+        this.user = appUser ?? { displayName: '', photoURL: '' };
+        this.isLoggedIn = !!appUser;
+        this.updateMenuItems();
+      });
+  }
+
+  private transformFirebaseUser(
+    firebaseUser: FirebaseUser | null
+  ): AppUser | null {
+    if (!firebaseUser) {
+      return null;
+    }
+    return {
+      displayName: firebaseUser.displayName ?? '',
+      photoURL: firebaseUser.photoURL ?? '',
+      // map other properties...
+    };
   }
 
   onMouseEnter() {

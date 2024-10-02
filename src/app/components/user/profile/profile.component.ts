@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
-import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user.models';
+import { DropZoneComponent } from './drop-zone/drop-zone.component';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +24,7 @@ import { User } from '../../../models/user.models';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: any = {
+  user: User = {
     displayName: '',
     photoURL: '',
   };
@@ -83,11 +83,11 @@ export class ProfileComponent implements OnInit {
     }
 
     // Store values in local storage
-    localStorage.setItem('displayName', this.user.displayName);
-    localStorage.setItem('photoURL', this.user.photoURL);
+    localStorage.setItem('displayName', this.user.displayName ?? '');
+    localStorage.setItem('photoURL', this.user.photoURL ?? '');
 
     this.authService
-      .onUpdateProfile(this.user.displayName, this.user.photoURL)
+      .onUpdateProfile(this.user.displayName ?? '', this.user.photoURL ?? '')
       .then(() => {
         this.tempDisplayName = '';
         this.tempPhotoURL = '';
@@ -105,7 +105,7 @@ export class ProfileComponent implements OnInit {
     this.user.photoURL = '';
     localStorage.removeItem('photoURL');
     this.authService
-      .onUpdateProfile(this.user.displayName, '')
+      .onUpdateProfile(this.user.displayName ?? '', '')
       .then(() => {
         this.snackbarService.callSnackbar('Photo removed successfully');
         this.updateUserMenuPhoto();
@@ -117,8 +117,6 @@ export class ProfileComponent implements OnInit {
   }
 
   calculateProfileCompletion(): number {
-    // Logic to calculate profile completion percentage
-    // This is just an example, adjust it according to your requirements
     let completion = 0;
     if (this.user.photoURL) completion += 50;
     if (this.tempDisplayName) completion += 50;
@@ -133,7 +131,7 @@ export class ProfileComponent implements OnInit {
   updateUserMenuPhoto(): void {
     const userMenuPhotoElement = document.querySelector('.user-menu-photo');
     if (userMenuPhotoElement) {
-      userMenuPhotoElement.setAttribute('src', this.user.photoURL);
+      userMenuPhotoElement.setAttribute('src', this.user.photoURL ?? '');
       this.snackbarService.callSnackbar('User menu photo updated successfully');
     }
   }

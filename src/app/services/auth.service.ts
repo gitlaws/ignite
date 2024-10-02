@@ -58,7 +58,6 @@ export class AuthService {
   }
 
   async getUserProfile(): Promise<{
-    [x: string]: any;
     displayName: string;
     photoURL: string;
   }> {
