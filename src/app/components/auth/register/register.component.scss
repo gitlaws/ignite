@@ -96,11 +96,18 @@ form {
     }
 
     &:-webkit-autofill {
-      background-color: $input-background !important;
-      -webkit-box-shadow: 0 0 0px 1000px $input-background inset;
-      -webkit-text-fill-color: $input-background !important;
-      transition: background-color $transition-duration,
-        -webkit-box-shadow $transition-duration;
+      background-color: #161b22 !important; /* $input-background */
+      -webkit-box-shadow: 0 0 0px 1000px #161b22 inset !important; /* $input-background */
+      box-shadow: 0 0 0px 1000px #161b22 inset !important; /* $input-background */
+      -webkit-text-fill-color: #c9d1d9 !important; /* $form-text-color */
+      color: #c9d1d9 !important; /* $form-text-color */
+    }
+
+    &:-webkit-autofill::first-line {
+      font-family: inherit !important;
+      font-size: inherit !important;
+      -webkit-text-fill-color: #c9d1d9 !important; /* $form-text-color */
+      color: #c9d1d9 !important; /* $form-text-color */
     }
   }
 
