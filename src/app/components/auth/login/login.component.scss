@@ -12,6 +12,8 @@ $input-focus-border-color: lighten($input-border, 10%);
 $text-color: #c9d1d9;
 $transition-duration: 0.3s;
 
+$focus-background: #161b22; /* Background color on focus */
+
 #login-wrapper {
   display: flex;
   justify-content: center;
@@ -70,16 +72,26 @@ $transition-duration: 0.3s;
   border-radius: 8px;
   color: $form-text-color;
   font-size: 1em;
-  transition: border-color $transition-duration, box-shadow $transition-duration;
+  transition: border-color $transition-duration, box-shadow $transition-duration,
+    background-color $transition-duration;
 
   &::placeholder {
     color: lighten($form-text-color, 20%);
   }
 
   &:focus {
+    background-color: $focus-background;
     border-color: $input-focus-border-color;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  &:-webkit-autofill {
+    background-color: $input-background !important;
+    -webkit-box-shadow: 0 0 0px 1000px $input-background inset;
+    -webkit-text-fill-color: $form-text-color !important;
+    transition: background-color $transition-duration,
+      -webkit-box-shadow $transition-duration;
   }
 }
 
