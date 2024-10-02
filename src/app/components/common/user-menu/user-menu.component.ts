@@ -3,7 +3,7 @@ import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { User as FirebaseUser } from '@firebase/auth';
-import { User as AppUser } from '../../../models/user.models';
+import { AppUser } from '../../../models/user.models';
 
 @Component({
   selector: 'app-user-menu',
@@ -15,7 +15,12 @@ import { User as AppUser } from '../../../models/user.models';
 export class UserMenuComponent implements OnInit {
   isLoggedIn: boolean = true;
   isMenuOpen: boolean = false;
-  user: AppUser = { displayName: '', photoURL: '' };
+  user: AppUser = {
+    displayName: '',
+    photoURL: '',
+    tempDisplayName: '',
+    tempPhotoURL: '',
+  };
   tempPhotoURL: string = '';
   private closeMenuTimeout: any;
   menuItems: Array<{ name: string; url: string }> = [];
@@ -27,7 +32,12 @@ export class UserMenuComponent implements OnInit {
       .getUser()
       .subscribe((firebaseUser: FirebaseUser | null) => {
         const appUser = this.transformFirebaseUser(firebaseUser);
-        this.user = appUser ?? { displayName: '', photoURL: '' };
+        this.user = appUser ?? {
+          displayName: '',
+          photoURL: '',
+          tempDisplayName: '',
+          tempPhotoURL: '',
+        };
         this.isLoggedIn = !!appUser;
         this.updateMenuItems();
       });
@@ -42,6 +52,8 @@ export class UserMenuComponent implements OnInit {
     return {
       displayName: firebaseUser.displayName ?? '',
       photoURL: firebaseUser.photoURL ?? '',
+      tempDisplayName: '',
+      tempPhotoURL: '',
       // map other properties...
     };
   }

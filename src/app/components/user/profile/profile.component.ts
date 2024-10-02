@@ -1,3 +1,4 @@
+// profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -6,7 +7,7 @@ import { RouterLink, RouterModule, Router } from '@angular/router';
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { UserService } from '../../../services/user.service';
-import { User } from '../../../models/user.models';
+import { AppUser } from '../../../models/user.models';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 
 @Component({
@@ -24,7 +25,7 @@ import { DropZoneComponent } from './drop-zone/drop-zone.component';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: User = {
+  user: AppUser = {
     displayName: '',
     photoURL: '',
   };

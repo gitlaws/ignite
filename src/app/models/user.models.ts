@@ -1,4 +1,6 @@
-export interface User {
-  displayName: string | null;
+export interface AppUser {
+  displayName: string;
   photoURL: string;
+  tempDisplayName?: string;
+  tempPhotoURL?: string;
 }
