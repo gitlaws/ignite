@@ -1,5 +1,4 @@
 export interface User {
-  displayName: string;
-  photoURL: string;
-  bio?: string; // Add the bio property
+  // displayName: string;
+  photoURL: string | null;
 }

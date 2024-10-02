@@ -7,7 +7,7 @@
     (mouseleave)="onMouseLeave()"
   >
     <img
-      [src]="user.photoURL || 'https://via.placeholder.com/40'"
+      [src]="tempPhotoURL || user.photoURL || 'https://via.placeholder.com/40'"
       alt="Profile Photo"
       class="profile-photo"
     />

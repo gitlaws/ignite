@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
+import { User } from '../../../models/user.models';
 
 @Component({
   selector: 'app-user-menu',
@@ -11,18 +12,19 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
   styleUrls: ['./user-menu.component.scss'],
 })
 export class UserMenuComponent implements OnInit {
-  isLoggedIn: boolean = true; // Example value, replace with actual logic
-  isMenuOpen: boolean = false; // Add this property
-  user: any = {}; // Assuming you have a user object
+  isLoggedIn: boolean = true;
+  isMenuOpen: boolean = false;
+  user: User = { photoURL: '' };
+  tempPhotoURL: string = '';
   private closeMenuTimeout: any;
   menuItems: Array<{ name: string; url: string }> = [];
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe((user) => {
-      this.user = user;
-      this.isLoggedIn = !!user; // Set isLoggedIn based on user presence
+    this.authService.getUser().subscribe((user: User | null) => {
+      this.user = user ?? { photoURL: '' };
+      this.isLoggedIn = !!user;
       this.updateMenuItems();
     });
   }
@@ -37,12 +39,12 @@ export class UserMenuComponent implements OnInit {
   onMouseLeave() {
     this.closeMenuTimeout = setTimeout(() => {
       this.isMenuOpen = false;
-    }, 300); // Adjust the delay as needed
+    }, 300);
   }
 
   openLink(event: MouseEvent, url: string): void {
-    event.preventDefault(); // Prevent default anchor behavior
-    window.open(url, '_blank', 'noopener'); // Open link in a new tab
+    event.preventDefault();
+    window.open(url, '_blank', 'noopener');
   }
 
   toggleMenu(event: Event): void {

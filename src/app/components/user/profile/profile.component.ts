@@ -127,8 +127,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(fileDataUrl: string): void {
-    this.userService.updateUserPhoto(fileDataUrl);
-    this.user = this.userService.getUser(); // Update the local user data
+    this.tempPhotoURL = fileDataUrl;
     this.onFieldChange();
   }
 
