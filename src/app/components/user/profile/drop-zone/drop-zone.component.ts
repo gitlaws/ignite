@@ -17,67 +17,53 @@ import {
 })
 export class DropZoneComponent implements AfterViewInit {
   @Output() fileSelected = new EventEmitter<string>();
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
   selectedFileName: string | null = null;
 
-  @ViewChild('dropZone') dropZone!: ElementRef;
-
-  ngAfterViewInit() {
-    const dropZoneElement = this.dropZone.nativeElement;
-
-    dropZoneElement.addEventListener('dragover', (event: DragEvent) => {
-      event.preventDefault();
-      dropZoneElement.classList.add('dragover');
-    });
-
-    dropZoneElement.addEventListener('dragleave', () => {
-      dropZoneElement.classList.remove('dragover');
-    });
-
-    dropZoneElement.addEventListener('drop', (event: DragEvent) => {
-      event.preventDefault();
-      dropZoneElement.classList.remove('dragover');
-      if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-        const file = event.dataTransfer.files[0];
-        this.readFile(file);
-      }
-    });
+  ngAfterViewInit(): void {
+    // Additional initialization if needed
   }
 
-  triggerFileInput(fileInput: HTMLInputElement) {
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    // Add dragover class to the drop zone
+  }
+
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    // Remove dragover class from the drop zone
+  }
+
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      this.handleFile(files[0]);
+    }
+  }
+
+  triggerFileInput(fileInput: HTMLInputElement): void {
     fileInput.click();
   }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      this.readFile(file);
+    if (input.files && input.files.length > 0) {
+      this.handleFile(input.files[0]);
     }
   }
 
-  private readFile(file: File) {
+  handleFile(file: File): void {
     this.selectedFileName = file.name;
     const reader = new FileReader();
-    reader.onload = () => {
-      this.fileSelected.emit(reader.result as string);
+    reader.onload = (e: any) => {
+      const fileDataUrl = e.target.result;
+      this.fileSelected.emit(fileDataUrl);
     };
     reader.readAsDataURL(file);
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-  }
-
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-      const file = event.dataTransfer.files[0];
-      this.readFile(file);
-    }
-  }
-
-  onDragLeave(event: DragEvent) {
-    const dropZoneElement = this.dropZone.nativeElement;
-    dropZoneElement.classList.remove('dragover');
   }
 }
