@@ -6,7 +6,6 @@
   height: 70px;
   transition: transform 0.5s ease;
 
-  &:hover,
   &:active {
     transform: scale(1.1);
   }
@@ -17,7 +16,6 @@
   height: 100%;
   transition: opacity 0.5s ease;
 
-  &:hover,
   &:active {
     opacity: 0.8;
   }
