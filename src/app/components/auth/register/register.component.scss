@@ -15,14 +15,6 @@ $transition-duration: 0.3s;
   display: flex;
   justify-content: center;
   flex-direction: column;
-
-  // min-height: 100dvh;
-  // min-height: 100vh;
-
-  // @media (max-width: 400px) {
-  //   margin: 120px 0;
-  //   // padding: 0 10px;
-  // }
 }
 
 .register-container {
@@ -31,20 +23,15 @@ $transition-duration: 0.3s;
   align-items: center;
   justify-content: center;
   padding: 30px;
-  // margin: auto;
-  // margin-top: 100px;
-  margin-bottom: 100px;
-  // max-width: 600px;
+
+  @media (max-width: 1024px) {
+    padding: 25px;
+    max-width: 90%;
+  }
+
   @media (max-width: 768px) {
     padding: 20px;
     max-width: 100%;
-    // margin-top: 100px;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    padding: 25px;
-    // margin: 100px auto;
-    max-width: 90%;
-    // margin-top: 100px;
   }
 }
 
@@ -55,17 +42,10 @@ $transition-duration: 0.3s;
 
 form {
   background-color: $background-color;
-  // background: linear-gradient(
-  // 135deg,
-  // lighten($background-color, 5%),
-  // darken($background-color, 5%)
-  // );
   color: $form-text-color;
   padding: 30px;
   border-radius: 12px;
-  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 500px;
-  // margin: 20px auto;
   font-family: "Roboto", "Arial", sans-serif;
   width: 100%;
 
@@ -77,7 +57,7 @@ form {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 16px;
   }
 
   input {
@@ -88,7 +68,7 @@ form {
     border: 1px solid $input-border;
     border-radius: 6px;
     color: $form-text-color;
-    font-size: 1em;
+    font-size: 16px;
 
     &:focus {
       border-color: $input-focus-border-color;
@@ -96,18 +76,18 @@ form {
     }
 
     &:-webkit-autofill {
-      background-color: #161b22 !important; /* $input-background */
-      -webkit-box-shadow: 0 0 0px 1000px #161b22 inset !important; /* $input-background */
-      box-shadow: 0 0 0px 1000px #161b22 inset !important; /* $input-background */
-      -webkit-text-fill-color: #c9d1d9 !important; /* $form-text-color */
-      color: #c9d1d9 !important; /* $form-text-color */
+      background-color: $input-background !important;
+      -webkit-box-shadow: 0 0 0px 1000px $input-background inset !important;
+      box-shadow: 0 0 0px 1000px $input-background inset !important;
+      -webkit-text-fill-color: $form-text-color !important;
+      color: $form-text-color !important;
     }
 
     &:-webkit-autofill::first-line {
       font-family: inherit !important;
       font-size: inherit !important;
-      -webkit-text-fill-color: #c9d1d9 !important; /* $form-text-color */
-      color: #c9d1d9 !important; /* $form-text-color */
+      -webkit-text-fill-color: $form-text-color !important;
+      color: $form-text-color !important;
     }
   }
 
@@ -115,7 +95,7 @@ form {
     color: $error-color;
     display: block;
     margin-top: 5px;
-    font-size: 0.9em;
+    font-size: 16px;
   }
 
   button {
@@ -126,7 +106,7 @@ form {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 16px;
 
     &:hover {
       background-color: lighten($button-background, 10%);
