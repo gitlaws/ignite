@@ -59,7 +59,7 @@ section {
 }
 
 .placeholder-header h2 {
-  font-size: 1.5rem;
+  font-size: 16px;
   line-height: 1.4;
   letter-spacing: 0.5px;
   color: $home-text-color;
@@ -68,28 +68,28 @@ section {
   margin: 0 0 20px;
 
   @media (max-width: 768px) {
-    font-size: 1.25rem;
+    font-size: 16px;
   }
 
   @media (max-width: 480px) {
-    font-size: 1rem;
+    font-size: 16px;
   }
 
   @media (min-width: 480px) {
-    font-size: 1.75rem;
+    font-size: 16px;
   }
 
   @media (min-width: 768px) {
-    font-size: 2rem;
+    font-size: 16px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 2.5rem;
+    font-size: 16px;
   }
 }
 
 .placeholder-content p {
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.6;
   margin-bottom: 20px;
   color: $home-text-color;
@@ -106,23 +106,23 @@ section {
   }
 
   @media (max-width: 768px) {
-    font-size: 0.9rem;
+    font-size: 16px;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.85rem;
+    font-size: 16px;
   }
 
   @media (min-width: 480px) {
-    font-size: 1.1rem;
+    font-size: 16px;
   }
 
   @media (min-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 16px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 1.4rem;
+    font-size: 16px;
   }
 }
 
@@ -143,11 +143,11 @@ section {
     }
 
     @media (max-width: 768px) {
-      font-size: 0.9rem;
+      font-size: 16px;
     }
 
     @media (max-width: 480px) {
-      font-size: 0.85rem;
+      font-size: 16px;
     }
   }
 }
@@ -162,31 +162,31 @@ section {
   width: 100%;
 
   h3 {
-    font-size: 1.75rem;
+    font-size: 16px;
     color: $home-text-color;
     margin-bottom: 15px;
 
     @media (max-width: 768px) {
-      font-size: 1.5rem;
+      font-size: 16px;
     }
 
     @media (max-width: 480px) {
-      font-size: 1.25rem;
+      font-size: 16px;
     }
   }
 
   p {
-    font-size: 1rem;
+    font-size: 16px;
     line-height: 1.6;
     color: $home-text-color;
     margin-bottom: 15px;
 
     @media (max-width: 768px) {
-      font-size: 0.9rem;
+      font-size: 16px;
     }
 
     @media (max-width: 480px) {
-      font-size: 0.85rem;
+      font-size: 16px;
     }
   }
 
@@ -195,7 +195,7 @@ section {
 
     li {
       margin-bottom: 10px;
-      font-size: 1rem;
+      font-size: 16px;
       line-height: 1.6;
       color: $home-text-color;
 
@@ -208,11 +208,11 @@ section {
       }
 
       @media (max-width: 768px) {
-        font-size: 0.9rem;
+        font-size: 16px;
       }
 
       @media (max-width: 480px) {
-        font-size: 0.85rem;
+        font-size: 16px;
       }
     }
   }
