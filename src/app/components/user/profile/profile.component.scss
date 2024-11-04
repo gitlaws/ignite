@@ -4,6 +4,7 @@ $text-color: #c9d1d9;
 $secondary-text-color: #8b949e;
 $accent-color: #1f6feb;
 $border-color: #30363d;
+$border-hover-color: #6e7681;
 $highlight-color: #1f6feb;
 $link-color: #58a6ff;
 $link-hover-color: #79c0ff;
@@ -355,6 +356,7 @@ a {
 
     &:hover {
       color: $link-hover-color;
+      border-color: $border-hover-color;
     }
   }
 }
