@@ -59,7 +59,7 @@ section {
 }
 
 .placeholder-header h2 {
-  font-size: 16px;
+  font-size: 32px;
   line-height: 1.4;
   letter-spacing: 0.5px;
   color: $home-text-color;
@@ -68,23 +68,23 @@ section {
   margin: 0 0 20px;
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 32px;
   }
 
   @media (max-width: 480px) {
-    font-size: 16px;
+    font-size: 32px;
   }
 
   @media (min-width: 480px) {
-    font-size: 16px;
+    font-size: 32px;
   }
 
   @media (min-width: 768px) {
-    font-size: 16px;
+    font-size: 32px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 16px;
+    font-size: 32px;
   }
 }
 
