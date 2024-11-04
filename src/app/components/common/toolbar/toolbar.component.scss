@@ -32,7 +32,7 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
   padding: 10px 15px;
   font-weight: 600;
   font-style: normal;
-  font-size: 1.5em;
+  font-size: 16px;
 }
 
 // Navigation Login Links
@@ -46,7 +46,7 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
     align-items: center;
     gap: 16px;
     color: #c9d1d9;
-    font-size: 1em;
+    font-size: 16px;
     font-family: "SUSE", sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -60,7 +60,7 @@ $social-link-hover-shadow: rgba(0, 0, 0, 0.5);
     }
 
     i {
-      font-size: 1.25em;
+      font-size: 16px;
       color: #768390;
       transition: color 0.3s ease;
     }
