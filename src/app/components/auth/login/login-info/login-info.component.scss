@@ -5,11 +5,9 @@ $link-color: #58a6ff;
 $link-hover-color: lighten($link-color, 10%);
 $spacing: 16px;
 $spacing-lg: 24px; // Larger spacing for larger screens
-$font-size-base: 1rem;
-$font-size-lg: 1.25rem; // Larger font size for larger screens
+$font-size-base: 16px;
+$font-size-lg: 16px; // Larger font size for larger screens
 $transition-duration: 0.3s;
-
-
 
 .login-info {
   display: flex;
@@ -29,7 +27,7 @@ $transition-duration: 0.3s;
 
     h1 {
       color: $header-color;
-      font-size: 2rem;
+      font-size: 32px;
       margin: 0;
       transition: color $transition-duration;
     }
