@@ -9,6 +9,7 @@ import { UserProfileService } from '../../../services/user-profile.service';
 import { AppUser } from '../../../models/user.models';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import { ChangeDetectorRef } from '@angular/core';
+import { CameraComponent } from './camera/camera.component';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +21,7 @@ import { ChangeDetectorRef } from '@angular/core';
     RouterModule,
     SnackbarComponent,
     DropZoneComponent,
+    CameraComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
