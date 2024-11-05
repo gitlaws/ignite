@@ -44,9 +44,21 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password).then(() => {
-      this.authenticated = true;
-    });
+    return signInWithEmailAndPassword(this.auth, email, password)
+      .then(() => {
+        this.authenticated = true;
+        this.snackbarService.callSnackbar('Logged in successfully');
+      })
+      .catch((error) => {
+        if (error.code === 'auth/too-many-requests') {
+          this.snackbarService.callSnackbar(
+            'Too many login attempts. Please try again later.'
+          );
+        } else {
+          this.snackbarService.callSnackbar('Login failed: ' + error.message);
+        }
+        throw error;
+      });
   }
 
   isAuthenticated(): boolean {
