@@ -1,4 +1,3 @@
-// src/app/components/user/profile/profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +8,7 @@ import { UserService } from '../../../services/user.service';
 import { UserProfileService } from '../../../services/user-profile.service';
 import { AppUser } from '../../../models/user.models';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-profile',
@@ -39,7 +39,8 @@ export class ProfileComponent implements OnInit {
     private userProfileService: UserProfileService,
     private router: Router,
     private snackbarService: SnackbarService,
-    private userService: UserService
+    private userService: UserService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +58,7 @@ export class ProfileComponent implements OnInit {
     this.isChanged = true;
     this.disabled = !this.tempDisplayName.trim() && !this.tempPhotoURL.trim();
     this.profileCompletion = this.calculateProfileCompletion();
+    this.changeDetectorRef.detectChanges(); // Trigger change detection
   }
 
   validateField(fieldName: string): void {
@@ -91,6 +93,7 @@ export class ProfileComponent implements OnInit {
         this.disabled = true;
         this.snackbarService.callSnackbar('Profile updated successfully');
         this.updateUserMenuPhoto();
+        this.changeDetectorRef.detectChanges(); // Trigger change detection
       })
       .catch((error) => {
         console.error('Error updating profile:', error);
@@ -101,11 +104,13 @@ export class ProfileComponent implements OnInit {
   removePhoto(): void {
     this.user.photoURL = '';
     localStorage.removeItem('photoURL');
+    this.userService.updateUserPhoto('');
     this.userProfileService
       .updateProfile(this.user.displayName ?? '', '')
       .then(() => {
         this.snackbarService.callSnackbar('Photo removed successfully');
         this.updateUserMenuPhoto();
+        this.changeDetectorRef.detectChanges(); // Trigger change detection
       })
       .catch((error) => {
         console.error('Error removing photo:', error);
