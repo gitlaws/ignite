@@ -15,6 +15,10 @@ $primary-color: #1f6feb;
   max-width: 600px;
   margin: 2rem auto;
 
+  p {
+    font-size: 16px;
+  }
+
   @media (max-width: 768px) {
     max-width: 90%;
     padding: 1.5rem;
@@ -49,5 +53,5 @@ $primary-color: #1f6feb;
 .file-info {
   margin-top: 10px;
   font-size: 14px;
-  color: #333;
+  color: #c9d1d9;
 }
