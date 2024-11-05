@@ -59,13 +59,17 @@ $input-background-color: #0d1117; // Background color for input fields
     align-items: center;
     padding: 2rem;
     border-radius: 10px;
-    max-width: 100%;
+    // max-width: 100%;
     margin: 1.5rem auto;
     box-shadow: 0 0.5rem 1rem $shadow-color;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
       box-shadow: 0 1rem 2rem $shadow-color;
+    }
+
+    @include respond-to(desktop) {
+      max-width: 800px;
     }
 
     @include respond-to(tablet) {
