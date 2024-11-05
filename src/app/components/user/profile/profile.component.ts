@@ -8,7 +8,6 @@ import { SnackbarService } from '../../../services/snackbar.service';
 import { UserService } from '../../../services/user.service';
 import { UserProfileService } from '../../../services/user-profile.service';
 import { AppUser } from '../../../models/user.models';
-import { ToolbarComponent } from '../../common/toolbar/toolbar.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 
 @Component({
