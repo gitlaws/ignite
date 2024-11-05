@@ -7,16 +7,9 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile,
   sendPasswordResetEmail,
   User,
 } from '@angular/fire/auth';
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { SnackbarService } from './snackbar.service';
 
@@ -25,7 +18,6 @@ import { SnackbarService } from './snackbar.service';
 })
 export class AuthService {
   private authenticated = false;
-  private storage = getStorage();
   user$: Observable<User | null>;
 
   constructor(private auth: Auth, private snackbarService: SnackbarService) {
@@ -44,21 +36,34 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
+    const errorMessages: { [key: string]: string } = {
+      'auth/invalid-email': 'The email address is not valid.',
+      'auth/user-disabled': 'The user account has been disabled.',
+      'auth/user-not-found':
+        'There is no user corresponding to the given email.',
+      'auth/wrong-password': 'The password is invalid.',
+      'auth/too-many-requests':
+        'Too many login attempts. Please try again later.',
+    };
+
     return signInWithEmailAndPassword(this.auth, email, password)
       .then(() => {
         this.authenticated = true;
         this.snackbarService.callSnackbar('Logged in successfully');
       })
       .catch((error) => {
-        if (error.code === 'auth/too-many-requests') {
-          this.snackbarService.callSnackbar(
-            'Too many login attempts. Please try again later.'
-          );
-        } else {
-          this.snackbarService.callSnackbar('Login failed: ' + error.message);
-        }
+        const customMessage =
+          errorMessages[error.code] || 'Login failed: ' + error.message;
+        this.snackbarService.callSnackbar(customMessage);
         throw error;
       });
+  }
+
+  logout(): Promise<void> {
+    return signOut(this.auth).then(() => {
+      this.authenticated = false;
+      this.snackbarService.callSnackbar('You have been logged out');
+    });
   }
 
   isAuthenticated(): boolean {
@@ -67,52 +72,6 @@ export class AuthService {
 
   getUser(): Observable<User | null> {
     return this.user$;
-  }
-
-  async getUserProfile(): Promise<{
-    displayName: string;
-    photoURL: string;
-  }> {
-    const user = this.auth.currentUser;
-    if (user) {
-      return {
-        displayName: user.displayName || '',
-        photoURL: user.photoURL || '',
-      };
-    } else {
-      throw new Error('No user is currently signed in');
-    }
-  }
-
-  async onUpdateProfile(
-    displayName: string,
-    photoURL: string | null
-  ): Promise<void> {
-    const user = this.auth.currentUser;
-    if (user) {
-      await updateProfile(user, { displayName, photoURL });
-      this.snackbarService.callSnackbar('Profile updated successfully');
-    } else {
-      throw new Error('No user is currently signed in');
-    }
-  }
-
-  uploadProfilePicture(file: File): Promise<string> {
-    const user = this.auth.currentUser;
-    if (!user) {
-      return Promise.reject('No user is currently logged in');
-    }
-
-    const storageRef = ref(this.storage, `profile_pictures/${user.uid}`);
-    return uploadBytes(storageRef, file).then(() => {
-      return getDownloadURL(storageRef);
-    });
-  }
-
-  async logout(): Promise<void> {
-    await signOut(this.auth);
-    this.authenticated = false;
-    this.snackbarService.callSnackbar('You have been logged out');
   }
 
   sendPasswordResetEmail(email: string) {
