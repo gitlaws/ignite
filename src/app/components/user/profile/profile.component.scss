@@ -14,9 +14,27 @@ $gradient-start: #0d1117;
 $gradient-end: #161b22;
 $input-background-color: #0d1117; // Background color for input fields
 
-.button-container {
-  margin-top: 10px;
+// Mixins for media queries
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == desktop {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == mobile {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $breakpoint == small-mobile {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
 }
+
 // Profile Wrapper
 #profile-wrapper {
   font-family: "Roboto", "Arial";
@@ -30,7 +48,7 @@ $input-background-color: #0d1117; // Background color for input fields
   background-size: cover;
   background-position: center;
 
-  @media (max-width: 400px) {
+  @include respond-to(small-mobile) {
     padding: 0 15px;
   }
 
@@ -50,13 +68,29 @@ $input-background-color: #0d1117; // Background color for input fields
       box-shadow: 0 1rem 2rem $shadow-color;
     }
 
-    @media (min-width: 768px) {
+    @include respond-to(tablet) {
       padding: 2.5rem;
       max-width: 800px;
     }
 
-    @media (max-width: 320px) {
+    @include respond-to(small-mobile) {
       padding: 1rem;
+    }
+
+    .welcome-message,
+    .profile-heading,
+    .intro-text,
+    .camera-module p {
+      font-size: 16px;
+      color: $secondary-text-color;
+
+      @include respond-to(tablet) {
+        font-size: 16px;
+      }
+
+      @include respond-to(mobile) {
+        font-size: 16px;
+      }
     }
 
     .welcome-message {
@@ -66,30 +100,13 @@ $input-background-color: #0d1117; // Background color for input fields
       text-shadow: 2px 2px 4px $shadow-color;
       margin-bottom: 20px;
       align-self: flex-start;
-
-      @media (max-width: 768px) {
-        font-size: 32px;
-      }
-
-      @media (max-width: 480px) {
-        font-size: 32px;
-      }
     }
 
     .profile-heading {
-      font-size: 14px;
       margin-top: 30px;
       color: $accent-color;
       text-align: left;
       align-self: flex-start;
-
-      @media (max-width: 768px) {
-        font-size: 14px;
-      }
-
-      @media (max-width: 480px) {
-        font-size: 14px;
-      }
     }
 
     .progress-bar {
@@ -113,7 +130,7 @@ $input-background-color: #0d1117; // Background color for input fields
       width: 100%;
       justify-content: space-between;
 
-      @media (max-width: 768px) {
+      @include respond-to(tablet) {
         flex-direction: column;
       }
     }
@@ -123,7 +140,7 @@ $input-background-color: #0d1117; // Background color for input fields
       flex: 1;
       padding: 1rem;
 
-      @media (max-width: 768px) {
+      @include respond-to(tablet) {
         padding: 0;
       }
     }
@@ -131,8 +148,8 @@ $input-background-color: #0d1117; // Background color for input fields
     .profile-photo-container {
       text-align: center;
       margin-bottom: 30px;
-      width: 150px; /* Adjust as needed */
-      height: 150px; /* Adjust as needed */
+      width: 150px;
+      height: 150px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -202,21 +219,6 @@ $input-background-color: #0d1117; // Background color for input fields
   }
 }
 
-// Intro Text
-.intro-text {
-  font-size: 14px;
-  margin-bottom: 20px;
-  color: $secondary-text-color;
-
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 14px;
-  }
-}
-
 // Profile Form
 .profile-form {
   label {
@@ -275,23 +277,6 @@ $input-background-color: #0d1117; // Background color for input fields
   }
 }
 
-// Media Queries
-@media (max-width: 768px) {
-  #profile-wrapper .profile-container {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  #profile-wrapper .profile-photo-container {
-    margin-bottom: 20px;
-  }
-
-  #profile-wrapper .button-container {
-    flex-direction: column;
-  }
-}
-
 // Links
 a {
   color: $link-color;
@@ -313,7 +298,7 @@ a {
 }
 
 .fa-camera {
-  font-size: 14px;
+  font-size: 16px;
   color: $accent-color;
   margin-right: 10px;
   transition: color 0.3s ease;
@@ -325,30 +310,18 @@ a {
 
 .camera-module {
   padding: 20px;
-  // border: 1px solid $border-color;
-  // border-radius: 5px;
   text-align: center;
-  // background-color: $background-color;
 
   p {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 20px;
     color: $secondary-text-color;
-
-    @media (max-width: 768px) {
-      font-size: 14px;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 14px;
-    }
   }
 
   .fa-camera {
     padding: 20px;
     border: 1px solid $border-color;
     border-radius: 50%;
-
     font-size: 32px;
     color: $accent-color;
     margin-right: 10px;
@@ -358,5 +331,31 @@ a {
       color: $link-hover-color;
       border-color: $border-hover-color;
     }
+  }
+}
+
+// Media Queries
+@include respond-to(tablet) {
+  #profile-wrapper .profile-container {
+    flex-direction: column;
+  }
+
+  .profile-content {
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    padding: 0;
+  }
+}
+
+@include respond-to(mobile) {
+  #profile-wrapper .profile-photo-container {
+    margin-bottom: 20px;
+  }
+
+  #profile-wrapper .button-container {
+    flex-direction: column;
   }
 }

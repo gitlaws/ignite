@@ -1,13 +1,14 @@
-// profile.component.ts
+// src/app/components/user/profile/profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
 import { RouterLink, RouterModule, Router } from '@angular/router';
 import { SnackbarComponent } from '../../common/snackbar/snackbar.component';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { UserService } from '../../../services/user.service';
+import { UserProfileService } from '../../../services/user-profile.service';
 import { AppUser } from '../../../models/user.models';
+import { ToolbarComponent } from '../../common/toolbar/toolbar.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 
 @Component({
@@ -36,7 +37,7 @@ export class ProfileComponent implements OnInit {
   profileCompletion: number = 0;
 
   constructor(
-    private authService: AuthService,
+    private userProfileService: UserProfileService,
     private router: Router,
     private snackbarService: SnackbarService,
     private userService: UserService
@@ -44,7 +45,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
-    this.authService.getUserProfile().then((profile) => {
+    this.userProfileService.getUserProfile().then((profile) => {
       this.user.displayName = profile.displayName;
       this.user.photoURL = profile.photoURL;
     });
@@ -74,21 +75,17 @@ export class ProfileComponent implements OnInit {
     if (this.tempDisplayName.trim() === '' && this.tempPhotoURL.trim() === '') {
       return;
     }
-
     if (this.tempDisplayName.trim() !== '') {
       this.user.displayName = this.tempDisplayName;
     }
-
     if (this.tempPhotoURL.trim() !== '') {
       this.user.photoURL = this.tempPhotoURL;
     }
-
     // Store values in local storage
     localStorage.setItem('displayName', this.user.displayName ?? '');
     localStorage.setItem('photoURL', this.user.photoURL ?? '');
-
-    this.authService
-      .onUpdateProfile(this.user.displayName ?? '', this.user.photoURL ?? '')
+    this.userProfileService
+      .updateProfile(this.user.displayName ?? '', this.user.photoURL ?? '')
       .then(() => {
         this.tempDisplayName = '';
         this.tempPhotoURL = '';
@@ -105,8 +102,8 @@ export class ProfileComponent implements OnInit {
   removePhoto(): void {
     this.user.photoURL = '';
     localStorage.removeItem('photoURL');
-    this.authService
-      .onUpdateProfile(this.user.displayName ?? '', '')
+    this.userProfileService
+      .updateProfile(this.user.displayName ?? '', '')
       .then(() => {
         this.snackbarService.callSnackbar('Photo removed successfully');
         this.updateUserMenuPhoto();
@@ -124,16 +121,16 @@ export class ProfileComponent implements OnInit {
     return completion;
   }
 
-  onFileSelected(fileDataUrl: string): void {
-    this.tempPhotoURL = fileDataUrl;
-    this.onFieldChange();
-  }
-
   updateUserMenuPhoto(): void {
     const userMenuPhotoElement = document.querySelector('.user-menu-photo');
     if (userMenuPhotoElement) {
       userMenuPhotoElement.setAttribute('src', this.user.photoURL ?? '');
       this.snackbarService.callSnackbar('User menu photo updated successfully');
     }
+  }
+
+  onFileSelected(fileUrl: string): void {
+    this.tempPhotoURL = fileUrl;
+    this.onFieldChange();
   }
 }

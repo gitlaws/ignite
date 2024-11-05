@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
   Output,
   EventEmitter,
-  ElementRef,
-  ViewChild,
-  AfterViewInit,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FileUploadService } from '../../../../services/file-upload.service';
 
 @Component({
   selector: 'app-drop-zone',
@@ -21,6 +22,8 @@ export class DropZoneComponent implements AfterViewInit {
 
   @ViewChild('dropZone') dropZone!: ElementRef;
   @ViewChild('fileInput') fileInput!: ElementRef;
+
+  constructor(private fileUploadService: FileUploadService) {}
 
   ngAfterViewInit(): void {
     const dropZoneElement = this.dropZone.nativeElement;
@@ -60,7 +63,9 @@ export class DropZoneComponent implements AfterViewInit {
     this.selectedFileName = file.name;
     const reader = new FileReader();
     reader.onload = () => {
-      this.fileSelected.emit(reader.result as string);
+      this.fileUploadService.uploadFile(file, 'userId').then((url) => {
+        this.fileSelected.emit(url);
+      });
     };
     reader.readAsDataURL(file);
   }
