@@ -5,6 +5,7 @@ import {
   ElementRef,
   Output,
   EventEmitter,
+  Inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileUploadService } from '../../../../services/file-upload.service';
@@ -23,7 +24,9 @@ export class DropZoneComponent implements AfterViewInit {
   @ViewChild('dropZone') dropZone!: ElementRef;
   @ViewChild('fileInput') fileInput!: ElementRef;
 
-  constructor(private fileUploadService: FileUploadService) {}
+  constructor(
+    @Inject(FileUploadService) private fileUploadService: FileUploadService
+  ) {}
 
   ngAfterViewInit(): void {
     const dropZoneElement = this.dropZone.nativeElement;
@@ -63,7 +66,7 @@ export class DropZoneComponent implements AfterViewInit {
     this.selectedFileName = file.name;
     const reader = new FileReader();
     reader.onload = () => {
-      this.fileUploadService.uploadFile(file, 'userId').then((url) => {
+      this.fileUploadService.uploadFile(file, 'userId').then((url: string) => {
         this.fileSelected.emit(url);
       });
     };

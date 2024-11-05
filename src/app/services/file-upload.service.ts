@@ -1,14 +1,16 @@
-// src/app/services/file-upload.service.ts
 import { Injectable } from '@angular/core';
-import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FileUploadService {
-  constructor(private storageService: StorageService) {}
-
   uploadFile(file: File, userId: string): Promise<string> {
-    return this.storageService.uploadProfilePicture(file, userId);
+    // Logic to upload the file and return the URL
+    return new Promise((resolve, reject) => {
+      // Simulate file upload
+      setTimeout(() => {
+        resolve('https://example.com/uploaded-file-url');
+      }, 1000);
+    });
   }
 }
