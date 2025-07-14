@@ -84,17 +84,18 @@
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Folder Structure
 
+```bash
 ignite/
 ├── src/
-│ ├── app/
-│ │ ├── components/
-│ │ │ └── camera-capture/
-│ │ ├── pages/
-│ │ ├── services/
-│ │ └── guards/
-│ ├── assets/
-│ └── environments/
-├── firebase.json
-└── README.md
+│   ├── app/
+│   │   ├── components/
+│   │   │   └── camera-capture/      # 📸 Camera capture component
+│   │   ├── pages/                   # 🧩 Feature pages (Profile, Dashboard, Auth, etc.)
+│   │   ├── services/                # 🛠️ Firebase services, Auth services, Theme, etc.
+│   │   └── guards/                  # 🔐 Route protection guards
+│   ├── assets/                      # 🎨 Static assets (icons, logos, etc.)
+│   └── environments/                # 🌎 Environment configs (dev/prod)
+├── firebase.json                    # 🔥 Firebase Hosting configuration
+└── README.md                        # 📄 This documentation file
