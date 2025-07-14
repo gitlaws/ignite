@@ -1,27 +1,100 @@
-# Ignite
+# 🔥 Ignite – Angular + Firebase SPA
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+**Ignite** is a responsive single-page application built with **Angular 18** and powered by **Firebase**. It offers a complete full-stack solution, featuring user authentication, real-time data sync, secure cloud storage, and mobile-friendly features like camera access for photo capture.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Live Features
 
-## Code scaffolding
+- 🔐 Secure user authentication with email verification
+- 👤 Profile management with drag-and-drop or camera photo upload
+- 📸 Mobile Camera Module: Capture and upload profile photos using device camera
+- 🕒 Real-time Firestore data sync
+- 📱 Mobile-first responsive UI with animations
+- ⚙️ Optimized for performance and progressive enhancement
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🧱 Frontend Development
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular 18**: Built with standalone components and Angular CLI
+- **TypeScript**: Strong typing, interfaces, and clean OOP design
+- **Responsive Layout**: Mobile-first grid/flexbox design with media queries
+- **SCSS/Sass Styling**: Variables, mixins, animations, and scoped component styles
+- **Component Architecture**:
+  - Modular and reusable with clear separation of concerns
+  - Reactive forms and inter-component communication via `@Input()` / `@Output()`
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📸 Mobile Camera Module
 
-## Running end-to-end tests
+- **Device Integration**:
+  - Access mobile or desktop camera using the native MediaDevices API
+  - Preview captured image before upload
+- **Angular Component**:
+  - Reusable `CameraCaptureComponent` integrated with profile module
+- **Profile Image Upload**:
+  - Option to either select a file or take a photo on mobile devices
+- **Security & Compatibility**:
+  - Uses HTTPS context and proper permissions
+  - Fallbacks for devices without camera access
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 🔥 Firebase Backend Integration
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Authentication**:
+  - Sign up/login with email & password
+  - Email verification and protected routes
+- **Firestore**:
+  - Real-time updates and structured user data
+- **Cloud Storage**:
+  - Upload profile pictures with drag-and-drop or camera
+- **Hosting**:
+  - Deployed via Firebase Hosting for fast global access
+
+---
+
+## ⚙️ Technical Skills & Tooling
+
+| Skill/Tool         | Description                                |
+|--------------------|--------------------------------------------|
+| Angular CLI        | Project generation, dev server, prod builds|
+| TypeScript         | Interfaces, OOP, async/await                |
+| SCSS / CSS3        | Advanced styling & animations               |
+| RxJS               | Observables for reactive state/data flows   |
+| Git                | Version control and branching strategy      |
+| Firebase SDK       | Auth, Firestore, Storage, Hosting           |
+| MediaDevices API   | Camera input and stream handling            |
+
+---
+
+## 💻 UI/UX Development
+
+- **Progressive Enhancement**:
+  - Mobile-first design, responsive grid layout
+  - ARIA labels, form validation, and keyboard support
+- **CSS Animations**:
+  - Smooth transitions and hover effects
+- **Cross-browser Compatibility**:
+  - Works across all modern browsers and devices
+- **Camera Access UX**:
+  - User-friendly interface for capturing and uploading images
+
+---
+
+## 📁 Project Structure
+
+ignite/
+├── src/
+│ ├── app/
+│ │ ├── components/
+│ │ │ └── camera-capture/
+│ │ ├── pages/
+│ │ ├── services/
+│ │ └── guards/
+│ ├── assets/
+│ └── environments/
+├── firebase.json
+└── README.md
